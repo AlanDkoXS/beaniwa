@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 
 ---
 
@@ -8,9 +10,41 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Aniwa Creative Design</title>
+		<style>
+			body {
+				background-color: #fa6e02;
+				margin: 0;
+				min-height: 100vh;
+				position: relative;
+			}
+			.logo {
+				position: absolute;
+				bottom: 1%;
+				left: 1%;
+				width: 60vw;
+				height: auto;
+				z-index: 10;
+			}
+			@media (max-width: 768px) {
+				.logo {
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					width: 50vw;
+				}
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<Image
+        src="/images/aniwa-logo-H.svg"
+        width="200"
+        height="100"
+        class="logo"
+        decoding="async"
+        loading="lazy"
+        alt="Aniwa Logo"
+        />
 	</body>
 </html>
