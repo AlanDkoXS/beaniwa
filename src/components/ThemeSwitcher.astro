@@ -1,0 +1,62 @@
+---
+---
+
+client:load
+
+
+
+<div class="theme-switcher">
+	<button class="theme-toggle" id="theme-toggle">🌙</button>
+</div>
+
+<script>
+	function toggleTheme() {
+		const html = document.documentElement;
+		const currentTheme = html.getAttribute('data-theme');
+		const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		html.setAttribute('data-theme', newTheme);
+		localStorage.setItem('theme', newTheme);
+
+		// Update button icon
+		const themeBtn = document.getElementById('theme-toggle') as HTMLButtonElement;
+		if (themeBtn) {
+			themeBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+		}
+	}
+
+	// Initialize theme
+	document.addEventListener('DOMContentLoaded', function() {
+		const savedTheme = localStorage.getItem('theme') || 'light';
+		document.documentElement.setAttribute('data-theme', savedTheme);
+		const themeBtn = document.getElementById('theme-toggle') as HTMLButtonElement;
+		if (themeBtn) {
+			themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+			themeBtn.addEventListener('click', toggleTheme);
+		}
+	});
+</script>
+
+<style>
+	.theme-switcher {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		margin-left: 1rem;
+	}
+
+	.theme-toggle {
+		background: transparent;
+		border: 1px solid var(--accent-color);
+		color: var(--accent-color);
+		padding: 0.5rem 1rem;
+		border-radius: 20px;
+		cursor: pointer;
+		font-weight: 500;
+		transition: all 0.3s;
+	}
+
+	.theme-toggle:hover {
+		background: var(--accent-color);
+		color: white;
+	}
+</style>
