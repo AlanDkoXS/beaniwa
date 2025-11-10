@@ -1,0 +1,11 @@
+---
+import { t } from "../i18n/translations.js";
+import FooterControls from "./FooterControls.astro";
+---
+
+<footer>
+	<div class="footer-content">
+		<p>&copy; {new Date().getFullYear()}. {t('footerText')}</p>
+		<FooterControls />
+	</div>
+</footer>

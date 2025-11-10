@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import { t } from "../i18n/translations.js";
+---
+
+<header>
+	<Image
+		src="/images/aniwa-logo-H.svg"
+		width="150"
+		height="75"
+		class="logo-header"
+		alt="Aniwa Logo"
+	/>
+	<nav>
+		<ul>
+			<li><a href="#hero">{t('navHome')}</a></li>
+			<li><a href="#services">{t('navServices')}</a></li>
+			<li><a href="#portfolio">{t('navPortfolio')}</a></li>
+			<li><a href="#contact">{t('navContact')}</a></li>
+		</ul>
+	</nav>
+</header>

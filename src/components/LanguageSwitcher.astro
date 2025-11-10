@@ -4,7 +4,7 @@ import { getLocale } from "astro-i18n-aut";
 const locale = getLocale(Astro.url);
 ---
 
-<div client:load class="language-switcher">
+<div  class="language-switcher">
 	<button onclick="switchLanguage('es')" class={`lang-btn ${locale === 'es' ? 'active' : ''}`}>ES</button>
 	<span>|</span>
 	<button onclick="switchLanguage('en')" class={`lang-btn ${locale === 'en' ? 'active' : ''}`}>EN</button>
