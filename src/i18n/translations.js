@@ -120,60 +120,14 @@ export const translations = {
 };
 
 export function getLanguage() {
-    if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search);
-        const lang = urlParams.get("lang");
-        if (lang && ["es", "en"].includes(lang)) {
-            return lang;
-        }
-        const browserLang = navigator.language.split("-")[0];
-        if (["es", "en"].includes(browserLang)) {
-            return browserLang;
-        }
+    if (typeof window === "undefined") {
+        return "es";
     }
-    // For server-side rendering, check if Astro.request exists
-    if (typeof Astro !== "undefined" && Astro.request) {
-        const url = new URL(Astro.request.url);
-        const lang = url.searchParams.get("lang");
-        if (lang && ["es", "en"].includes(lang)) {
-            return lang;
-        }
-    }
-    return "es";
-}
-
-export function t(key, lang = null) {
-    const currentLang = lang || getLanguage();
-    const keys = key.split(".");
-    let value = translations[currentLang];
-
-    for (const k of keys) {
-        value = value?.[k];
-    }
-
-    return value || key;
-}
-
-export function getLanguage() {
-    if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search);
-        const lang = urlParams.get("lang");
-        if (lang && ["es", "en"].includes(lang)) {
-            return lang;
-        }
-        const browserLang = navigator.language.split("-")[0];
-        if (["es", "en"].includes(browserLang)) {
-            return browserLang;
-        }
-    }
-    // For server-side rendering, check if Astro.request exists
-    if (typeof Astro !== "undefined" && Astro.request) {
-        const url = new URL(Astro.request.url);
-        const lang = url.searchParams.get("lang");
-        if (lang && ["es", "en"].includes(lang)) {
-            return lang;
-        }
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get("lang");
+    if (langParam && ["es", "en"].includes(langParam)) return langParam;
+    const navLang = navigator?.language?.split("-")?.[0];
+    if (navLang && ["es", "en"].includes(navLang)) return navLang;
     return "es";
 }
 
