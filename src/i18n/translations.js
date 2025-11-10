@@ -57,7 +57,7 @@ export const translations = {
         contactPhone: "Teléfono: +52 614 684 9441",
         contactLocation: "Alcance Global",
         contactHours: "Horarios: Lunes a Viernes, 9:00 - 18:00",
-        footerText: "&Aniwa Creative Design. Todos los derechos reservados.",
+        footerText: "Aniwa Diseño Creativo. Todos los derechos reservados.",
     },
     en: {
         title: "Aniwa Creative Design - Digital Marketing and Web Design",

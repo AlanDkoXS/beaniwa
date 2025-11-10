@@ -1,8 +1,7 @@
 ---
 import { getLocale } from "astro-i18n-aut";
 import { Image } from "astro:assets";
-import LanguageSwitcher from "../components/LanguageSwitcher.astro";
-import ThemeSwitcher from "../components/ThemeSwitcher.astro";
+import FooterControls from "../components/FooterControls.astro";
 import { t } from "../i18n/translations.js";
 
 const locale = getLocale(Astro.url);
@@ -345,57 +344,6 @@ const locale = getLocale(Astro.url);
 				color: var(--text-color);
 			}
 
-			.language-switcher {
-				display: flex;
-				gap: 0.5rem;
-				align-items: center;
-			}
-
-			.theme-switcher {
-				display: flex;
-				gap: 0.5rem;
-				align-items: center;
-				margin-left: 1rem;
-			}
-
-			.lang-btn {
-				background: transparent;
-				border: 1px solid var(--accent-color);
-				color: var(--accent-color);
-				padding: 0.5rem 1rem;
-				border-radius: 20px;
-				cursor: pointer;
-				font-weight: 500;
-				transition: all 0.3s;
-			}
-
-			.lang-btn:hover {
-				background: var(--accent-color);
-				color: white;
-			}
-
-			.lang-btn.active {
-				background: var(--accent-color);
-				color: white;
-			}
-
-			/* Theme Toggle Button */
-			.theme-toggle {
-				background: transparent;
-				border: 1px solid var(--accent-color);
-				color: var(--accent-color);
-				padding: 0.5rem 1rem;
-				border-radius: 20px;
-				cursor: pointer;
-				font-weight: 500;
-				transition: all 0.3s;
-				margin-left: 0.5rem;
-			}
-
-			.theme-toggle:hover {
-				background: var(--accent-color);
-				color: white;
-			}
 
 			/* Responsive */
 			@media (max-width: 768px) {
@@ -426,10 +374,6 @@ const locale = getLocale(Astro.url);
 				.footer-content {
 					flex-direction: column;
 					text-align: center;
-				}
-
-				.language-switcher {
-					justify-content: center;
 				}
 			}
 		</style>
@@ -565,9 +509,8 @@ const locale = getLocale(Astro.url);
 
 		<footer>
 			<div class="footer-content">
-				<p>&copy; {new Date().getFullYear()} Aniwa Creative Design. {t('footerText')}</p>
-				<LanguageSwitcher />
-				<ThemeSwitcher />
+				<p>&copy; {new Date().getFullYear()}. {t('footerText')}</p>
+				<FooterControls />
 			</div>
 		</footer>
 
