@@ -9,6 +9,8 @@ import { initMobileMenu } from "./components/mobile-menu.js";
 import { initScrollAnimations } from "./components/scroll-animations.js";
 import { initNavigation } from "./navigation.js";
 import { initScroll } from "./scroll.js";
+import updateDateYear from "./utils/date_updater.js";
+import { initViewTransitions } from "./view-transitions.js";
 
 /**
  * Initialize all application modules
@@ -18,10 +20,13 @@ function initApp() {
 
   // Initialize all modules
   initNavigation();
+  initViewTransitions();
   initScroll();
   initHeader();
   initMobileMenu();
   initScrollAnimations();
+  // Initialize utils
+  updateDateYear();
 
   console.log("Aniwa initialized successfully");
 }

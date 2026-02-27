@@ -3,16 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aniwa | Digital Marketing</title>
+    <meta name="author" content="Alan Quintana" />
+    <meta name="description" content="Aumenta tus ventas hasta un %300" />
+    <meta name="keywords" content="web, marketing, social media, ads" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.beaniwa.com/" />
+    <meta property="og:title" content="Aniwa | Marketing" />
     <meta
-      name="description"
-      content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+      property="og:description"
+      content="Aumenta las ventas de tu negocio" />
+    <meta property="og:image" content="https://placehold.co/1200x630" />
+
+    <!-- DNS-Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <!-- Head -->
+    <title>Aniwa | Digital Marketing</title>
     <link rel="canonical" href="https://beaniwa.com/" />
-    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Preload important sources -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="prefetch" href="assets/js/main.js" as="script" />
+    <link
+      rel="prefetch"
+      href="https://placehold.co/150x150.svg?text=Logo+here?font=antonio"
+      as="image"
+      type="image/svg+xml" />
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js" type="module"></script>
+
+    <!-- Fonts -->
+    <!--    <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    as="font"
+    type="font/woff2"
+    crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet" />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media = 'all'" /> -->
+
+    <!-- Icons -->
+    <!--     <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+    media="print"
+    onload="this.media = 'all'" />
+    <noscript>
+      <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+    </noscript> -->
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://placehold.co/32x32.png?text=fav" />
+    <link
+      rel="shortcut icon"
+      href="https://placehold.co/32x32.png?text=fav"
+      type="image/x-icon" />
   </head>
   <body>
     <!-- Header -->
-    <header class="header" id="header">
+    <header class="header" id="header" style="view-transition-name: header">
       <nav class="nav">
         <a href="/" class="logo">Aniwa</a>
         <ul class="nav-menu">
@@ -27,7 +94,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
-      <h1 class="hero-title">Lorem ipsum dolor sit amet</h1>
+      <h1 class="hero-title">Aquí va el Hero</h1>
       <p class="hero-subtitle">
         Consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
         et dolore magna aliqua.
@@ -37,7 +104,7 @@
 
     <!-- Services Section -->
     <section class="servicios" id="servicios">
-      <h2>Lorem ipsum</h2>
+      <h2>Aquí van los Servicios</h2>
       <p>Dolor sit amet, consectetur adipiscing elit</p>
       <div class="servicios-grid">
         <article class="servicio-card">
@@ -74,7 +141,7 @@
 
     <!-- Portfolio Section -->
     <section class="portafolio" id="portafolio">
-      <h2>Lorem ipsum</h2>
+      <h2>Aquí va el Portafolio</h2>
       <p>Dolor sit amet, consectetur adipiscing elit</p>
       <div class="portafolio-grid">
         <article class="proyecto-card">
@@ -95,7 +162,7 @@
 
     <!-- About Us Section -->
     <section class="nosotros" id="nosotros">
-      <h2>Lorem ipsum</h2>
+      <h2>Aquí va quienes somos</h2>
       <p>Dolor sit amet, consectetur adipiscing elit</p>
       <div class="nosotros-content">
         <p>
@@ -124,7 +191,7 @@
 
     <!-- Contact Section -->
     <section class="contacto" id="contacto">
-      <h2>Lorem ipsum</h2>
+      <h2>Aquí va contactos</h2>
       <p>Dolor sit amet, consectetur adipiscing elit</p>
       <div class="contacto-content">
         <div class="contacto-info">
@@ -159,7 +226,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" style="view-transition-name: footer">
       <div class="footer-content">
         <div class="footer-brand">
           <a href="/" class="logo">Aniwa</a>
@@ -176,10 +243,10 @@
         </nav>
       </div>
       <div class="footer-bottom">
-        <p>Lorem ipsum dolor sit amet</p>
+        <span> Hecho con ❤️ y mucho ☕. </span>
+        <span class="footer__year"></span>
+        <span class="footer__copyright">Derechos Reservados</span>
       </div>
     </footer>
-
-    <script src="js/main.js" type="module"></script>
   </body>
 </html>
