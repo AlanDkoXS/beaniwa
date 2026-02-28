@@ -1,4 +1,21 @@
 /* ===================================
+   Font Faces - Local Fonts
+   =================================== */
+@font-face {
+  font-family: "Antonio";
+  src: url("../fonts/Antonio-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../fonts/NotoSans-VariableFont_wdth,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* ===================================
    CSS Variables - Design Tokens
    =================================== */
 
@@ -326,6 +343,18 @@ section {
   padding: 0.55em 0 0.85em;
   transition: transform var(--timeOut, 0.7s);
   text-decoration: none;
+}
+
+.mobile-menu__item:focus {
+  outline: 2px solid var(--bgColorItem, #ff8000);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.mobile-menu__item:focus-visible {
+  outline: 2px solid var(--bgColorItem, #ff8000);
+  outline-offset: 2px;
+  border-radius: 50%;
 }
 
 .mobile-menu__item::before {

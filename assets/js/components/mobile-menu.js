@@ -72,9 +72,14 @@ function getCurrentItem() {
     }
   }
 
-  // Fallback to hash or default to inicio
+  // Fallback to hash or default to last section (contacto)
+  // This prevents returning to "inicio" when scrolling past the last section
   const hash = window.location.hash.slice(1);
-  return hash || "inicio";
+  if (hash && sections.includes(hash)) {
+    return hash;
+  }
+  // Return the last section instead of "inicio" when scroll is past all sections
+  return sections[sections.length - 1];
 }
 
 /**
