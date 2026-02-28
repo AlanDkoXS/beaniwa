@@ -15,6 +15,7 @@ function getCurrentLanguage() {
 // Navigation labels by language
 const labels = {
   es: {
+    regresar: "Regresar",
     inicio: "Inicio",
     servicios: "Servicios",
     portafolio: "Portafolio",
@@ -23,6 +24,7 @@ const labels = {
     mas: "Más",
   },
   en: {
+    regresar: "Return",
     inicio: "Home",
     servicios: "Services",
     portafolio: "Portfolio",
@@ -32,7 +34,7 @@ const labels = {
   },
 };
 
-// Navigation items configuration
+// Navigation items configuration (bottom menu - stays the same)
 const navItems = [
   {
     id: "inicio",
@@ -240,8 +242,40 @@ function offsetMenuBorder(element, menuBorder) {
   menuBorder.style.transform = `translate3d(${left}, 0, 0)`;
 }
 
+// Social networks configuration - using actual SVG icons from assets
+const socialNetworks = [
+  {
+    id: "facebook",
+    href: "https://facebook.com/beaniwa",
+  },
+  {
+    id: "instagram",
+    href: "https://instagram.com/beaniwa",
+  },
+  {
+    id: "tiktok",
+    href: "https://tiktok.com/@beaniwa",
+  },
+  {
+    id: "whatsapp",
+    href: "https://wa.me/526141234567",
+  },
+];
+
+// Language switcher labels
+const languageLabels = {
+  es: {
+    otros: "Otros",
+    cambioIdioma: "Cambiar idioma",
+  },
+  en: {
+    otros: "Other",
+    cambioIdioma: "Change language",
+  },
+};
+
 /**
- * Toggle hamburger menu panel
+ * Toggle hamburger menu panel - Centered modal with blur
  */
 
 /**
@@ -262,31 +296,40 @@ function animateHamburgerIcon(hamburgerButton, toActive) {
 
 function toggleHamburgerMenu(hamburgerButton) {
   let panel = document.querySelector(".mobile-menu__panel");
+  let overlay = document.querySelector(".mobile-menu__overlay");
   const menuBorder = document.querySelector(".mobile-menu__border");
   const currentLang = getCurrentLanguage();
   const currentLabels = labels[currentLang];
+  const langLabels = languageLabels[currentLang];
 
   // Toggle panel visibility
-  if (panel) {
-    if (panel.classList.contains("open")) {
-      panel.classList.remove("open");
-      hamburgerButton.classList.remove("active");
-      // Remove hamburger-active attribute
-      document
-        .querySelector(".mobile-menu")
-        ?.removeAttribute("data-hamburger-active");
-      // Show menu border again
-      if (menuBorder) {
-        menuBorder.style.opacity = "1";
-      }
-      // Animate hamburger icon back to lines
-      animateHamburgerIcon(hamburgerButton, false);
-      setTimeout(() => {
-        if (panel.parentNode) {
-          panel.parentNode.removeChild(panel);
-        }
-      }, 700);
+  if (panel && panel.classList.contains("open")) {
+    panel.classList.remove("open");
+    hamburgerButton.classList.remove("active");
+    // Remove hamburger-active attribute
+    document
+      .querySelector(".mobile-menu")
+      ?.removeAttribute("data-hamburger-active");
+    // Show menu border again
+    if (menuBorder) {
+      menuBorder.style.opacity = "1";
     }
+    // Animate hamburger icon back to lines
+    animateHamburgerIcon(hamburgerButton, false);
+    // Close overlay
+    if (overlay) {
+      overlay.classList.remove("open");
+      setTimeout(() => {
+        if (overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+      }, 400);
+    }
+    setTimeout(() => {
+      if (panel.parentNode) {
+        panel.parentNode.removeChild(panel);
+      }
+    }, 400);
     return;
   }
 
@@ -313,21 +356,143 @@ function toggleHamburgerMenu(hamburgerButton) {
   // Animate hamburger icon to X
   animateHamburgerIcon(hamburgerButton, true);
 
-  // Create new panel
+  // Create overlay with blur
+  overlay = document.createElement("div");
+  overlay.className = "mobile-menu__overlay";
+  document.body.appendChild(overlay);
+
+  // Close modal when clicking on overlay
+  overlay.addEventListener("click", () => {
+    closeHamburgerPanel(panel, overlay, hamburgerButton);
+  });
+
+  // Create new panel - centered modal
   panel = document.createElement("div");
   panel.className = "mobile-menu__panel";
 
   // Determine href paths based on language
   const hrefLang = currentLang === "en" ? "/en" : "";
+  const otherLang = currentLang === "en" ? "es" : "en";
+  const otherLangHref = otherLang === "en" ? "/en" : "";
 
-  // Add panel content with language-specific labels
+  // Navigation items with icons for modal
+  // navItems indices: 0=inicio, 1=servicios, 2=portafolio, 3=nosotros, 4=contacto
+  const navItemsWithIcons = [
+    {
+      id: "regresar",
+      href: hrefLang + "/",
+      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
+      label: currentLabels.regresar,
+    },
+    {
+      id: "inicio",
+      href: hrefLang + "/#inicio",
+      icon: navItems[0].icon,
+      label: currentLabels.inicio,
+    },
+    {
+      id: "nosotros",
+      href: hrefLang + "/#nosotros",
+      icon: navItems[3].icon,
+      label: currentLabels.nosotros,
+    },
+    {
+      id: "servicios",
+      href: hrefLang + "/#servicios",
+      icon: navItems[1].icon,
+      label: currentLabels.servicios,
+    },
+    {
+      id: "portafolio",
+      href: hrefLang + "/#portafolio",
+      icon: navItems[2].icon,
+      label: currentLabels.portafolio,
+    },
+    {
+      id: "contacto",
+      href: hrefLang + "/#contacto",
+      icon: navItems[4].icon,
+      label: currentLabels.contacto,
+    },
+  ];
+
+  // Use absolute paths for icons to work from any directory
+  const iconBasePath = "/assets/icons";
+
+  // Check if current page is not the index page
+  function isNotIndexPage() {
+    const path = window.location.pathname;
+    // Check if it's index page (root, /index.html, /es/, /es/index.html, /en/, /en/index.html)
+    const isIndex =
+      path === "/" ||
+      path === "/index.html" ||
+      path === "/es" ||
+      path === "/es/" ||
+      path === "/es/index.html" ||
+      path === "/en" ||
+      path === "/en/" ||
+      path === "/en/index.html";
+    return !isIndex;
+  }
+
+  const isNotIndex = isNotIndexPage();
+
+  // Build social networks HTML
+  const socialHtml = socialNetworks
+    .map(
+      social => `
+      <a href="${social.href}" class="mobile-menu__social-item" target="_blank" rel="noopener noreferrer" aria-label="${social.id}">
+        <img src="${iconBasePath}/social/${social.id}.svg" alt="${social.id}" class="social-icon" />
+      </a>
+    `,
+    )
+    .join("");
+
+  // Build language switcher HTML
+  const langButtonText = currentLang === "en" ? "Español" : "English";
+  const langButtonHref = otherLang === "en" ? "/en/" : "/";
+
+  // Build navigation HTML - always show all nav items in modal
+  const navHtml = navItemsWithIcons
+    .slice(1)
+    .map(
+      item => `
+      <a href="${item.href}" class="mobile-menu__nav-card">
+        <div class="mobile-menu__nav-card-icon">
+          <svg class="icon" viewBox="0 0 24 24">
+            ${item.icon}
+          </svg>
+        </div>
+        <span class="mobile-menu__nav-card-label">${item.label}</span>
+      </a>
+    `,
+    )
+    .join("");
+
+  // Add panel content with language-specific labels - Modal format
   panel.innerHTML = `
     <div class="mobile-menu__panel-content">
-      <a href="${hrefLang}/#inicio" class="mobile-menu__panel-item">${currentLabels.inicio}</a>
-      <a href="${hrefLang}/#nosotros" class="mobile-menu__panel-item">${currentLabels.nosotros}</a>
-      <a href="${hrefLang}/#servicios" class="mobile-menu__panel-item">${currentLabels.servicios}</a>
-      <a href="${hrefLang}/#portafolio" class="mobile-menu__panel-item">${currentLabels.portafolio}</a>
-      <a href="${hrefLang}/#contacto" class="mobile-menu__panel-item">${currentLabels.contacto}</a>
+      <!-- Navigation Grid Section -->
+      <div class="mobile-menu__section mobile-menu__nav-grid">
+        ${navHtml}
+      </div>
+
+      <!-- Social Networks Section -->
+      <div class="mobile-menu__section mobile-menu__social-section">
+        <h3 class="mobile-menu__section-title">${currentLang === "en" ? "Follow us" : "Síguenos"}</h3>
+        <div class="mobile-menu__social-grid">
+          ${socialHtml}
+        </div>
+      </div>
+
+      <!-- Language Switcher Section -->
+      <div class="mobile-menu__section mobile-menu__lang-section">
+        <h3 class="mobile-menu__section-title">${currentLang === "en" ? "Change language" : "Cambiar idioma"}</h3>
+        <a href="${langButtonHref}" class="mobile-menu__lang-card">
+          <img src="${iconBasePath}/translate.svg" alt="translate" class="lang-icon" />
+          <span>${langButtonText}</span>
+        </a>
+      </div>
     </div>
   `;
 
@@ -335,30 +500,85 @@ function toggleHamburgerMenu(hamburgerButton) {
   const mobileMenu = document.querySelector(".mobile-menu");
   mobileMenu.parentNode.insertBefore(panel, mobileMenu);
 
-  // Add click handlers to panel items
-  panel.querySelectorAll(".mobile-menu__panel-item").forEach(item => {
-    item.addEventListener("click", () => {
-      panel.classList.remove("open");
-      hamburgerButton.classList.remove("active");
-      // Animate hamburger icon back to lines
-      animateHamburgerIcon(hamburgerButton, false);
-      // Remove hamburger-active attribute
-      document
-        .querySelector(".mobile-menu")
-        ?.removeAttribute("data-hamburger-active");
+  // Add click handlers to navigation cards
+  panel.querySelectorAll(".mobile-menu__nav-card").forEach(item => {
+    item.addEventListener("click", e => {
+      e.preventDefault();
+      const href = item.getAttribute("href");
+      closeHamburgerPanel(panel, overlay, hamburgerButton);
+      // Navigate after modal closes
       setTimeout(() => {
-        if (panel.parentNode) {
-          panel.parentNode.removeChild(panel);
-        }
-      }, 700);
+        window.location.href = href;
+      }, 400);
     });
   });
 
-  // Animate panel opening with wave effect
+  // Add click handlers to social network items
+  panel.querySelectorAll(".mobile-menu__social-item").forEach(item => {
+    item.addEventListener("click", e => {
+      e.preventDefault();
+      closeHamburgerPanel(panel, overlay, hamburgerButton);
+    });
+  });
+
+  // Add click handler to language switcher
+  const langBtn = panel.querySelector(".mobile-menu__lang-btn");
+  if (langBtn) {
+    langBtn.addEventListener("click", e => {
+      e.preventDefault();
+      closeHamburgerPanel(panel, overlay, hamburgerButton);
+    });
+  }
+
+  // Add click handler for Menu button in modal (non-index pages)
+  const menuBtn = panel.querySelector("#modal-menu-btn");
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      closeHamburgerPanel(panel, overlay, hamburgerButton);
+      // Re-open hamburger after a short delay
+      setTimeout(() => {
+        if (hamburgerButton) {
+          toggleHamburgerMenu(hamburgerButton);
+        }
+      }, 300);
+    });
+  }
+
+  // Animate panel and overlay opening
   requestAnimationFrame(() => {
+    overlay.classList.add("open");
     panel.classList.add("open");
     hamburgerButton.classList.add("active");
   });
+}
+
+/**
+ * Close hamburger panel with animation
+ */
+function closeHamburgerPanel(panel, overlay, hamburgerButton) {
+  const menuBorder = document.querySelector(".mobile-menu__border");
+
+  panel.classList.remove("open");
+  hamburgerButton.classList.remove("active");
+  // Remove hamburger-active attribute
+  document
+    .querySelector(".mobile-menu")
+    ?.removeAttribute("data-hamburger-active");
+  // Animate hamburger icon back to lines
+  animateHamburgerIcon(hamburgerButton, false);
+  // Close overlay
+  if (overlay) {
+    overlay.classList.remove("open");
+  }
+
+  setTimeout(() => {
+    if (panel.parentNode) {
+      panel.parentNode.removeChild(panel);
+    }
+    if (overlay && overlay.parentNode) {
+      overlay.parentNode.removeChild(overlay);
+    }
+  }, 400);
 }
 
 /**
@@ -390,8 +610,36 @@ function initMobileMenu() {
   const currentItem = getCurrentItem();
   const currentIndex = navItems.findIndex(item => item.id === currentItem);
 
+  // Check if current page is not index
+  const path = window.location.pathname;
+  const isIndex =
+    path === "/" ||
+    path === "/index.html" ||
+    path === "/es" ||
+    path === "/es/" ||
+    path === "/es/index.html" ||
+    path === "/en" ||
+    path === "/en/" ||
+    path === "/en/index.html";
+  const isNotIndex = !isIndex;
+
+  // Add "Regresar" item at the beginning for non-index pages
+  const bottomNavItems = [];
+  if (isNotIndex) {
+    // On non-index pages, only show Regresar and hamburger
+    const regresarItem = {
+      id: "regresar",
+      href: "/",
+      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
+    };
+    bottomNavItems.push(regresarItem);
+  } else {
+    // On index page, show all nav items
+    bottomNavItems.push(...navItems);
+  }
+
   // Create menu items
-  navItems.forEach((item, index) => {
+  bottomNavItems.forEach((item, index) => {
     const isActive =
       index === currentIndex || (currentIndex === -1 && index === 0);
     const menuItem = createMenuItem(item, index, isActive);
