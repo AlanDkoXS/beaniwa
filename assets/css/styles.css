@@ -394,16 +394,13 @@ section {
 
 /* Hamburger to X transformation */
 .mobile-menu__item[data-hamburger="true"].active .icon {
-  /* Transform hamburger lines to X - override the stroke animation */
-  stroke-dasharray: 0 !important;
-  stroke-dashoffset: 0 !important;
-  animation: none !important;
+  /* Transform hamburger to X with rotation */
+  transform: rotate(180deg);
 }
 
-.mobile-menu__item[data-hamburger="true"] .icon path {
-  transition:
-    transform 0.3s ease,
-    d 0.3s ease;
+.mobile-menu__item[data-hamburger="true"] .icon {
+  transition: transform 0.4s ease;
+  transform-origin: center center;
 }
 
 /* Show border when hamburger is active */

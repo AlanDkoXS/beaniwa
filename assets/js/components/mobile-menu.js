@@ -207,42 +207,16 @@ function animateHamburgerIcon(hamburgerButton, toActive) {
   const iconElement = hamburgerButton.querySelector(".icon");
   if (!iconElement) return;
 
-  const newIcon = toActive ? hamburgerItem.iconActive : hamburgerItem.icon;
-  const paths = iconElement.querySelectorAll("path");
-  const animationDuration = "0.7s";
+  // Apply the same animation style as the example (0.4s transition)
+  iconElement.style.transition = "transform 0.4s ease";
 
-  // Apply stroke animation to fade out
-  paths.forEach(path => {
-    path.style.strokeDasharray = "400";
-    path.style.strokeDashoffset = "0";
-    path.style.transition = `stroke-dashoffset ${animationDuration} ease`;
-  });
-
-  // Animate out, then swap icon, then animate in
-  requestAnimationFrame(() => {
-    paths.forEach(path => {
-      path.style.strokeDashoffset = "400";
-    });
-
-    setTimeout(() => {
-      // Swap the icon content
-      iconElement.innerHTML = newIcon;
-
-      // Animate the new icon in
-      const newPaths = iconElement.querySelectorAll("path");
-      newPaths.forEach(path => {
-        path.style.strokeDasharray = "400";
-        path.style.strokeDashoffset = "400";
-        path.style.transition = `stroke-dashoffset ${animationDuration} ease`;
-      });
-
-      requestAnimationFrame(() => {
-        newPaths.forEach(path => {
-          path.style.strokeDashoffset = "0";
-        });
-      });
-    }, 700);
-  });
+  if (toActive) {
+    // Transform to X: rotate 180deg
+    iconElement.style.transform = "rotate(180deg)";
+  } else {
+    // Back to hamburger: rotate back to 0
+    iconElement.style.transform = "rotate(0deg)";
+  }
 }
 
 function toggleHamburgerMenu(hamburgerButton) {
