@@ -15,6 +15,13 @@
       property="og:description"
       content="Aumenta las ventas de tu negocio" />
     <meta property="og:image" content="https://placehold.co/1200x630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Preconnect to external origins for faster resource loading -->
+    <link rel="preconnect" href="https://placehold.co" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- DNS-Prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -27,13 +34,15 @@
     <link rel="canonical" href="https://beaniwa.com/" />
 
     <!-- Preload important sources -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.min.css" />
     <link rel="prefetch" href="assets/js/main.js" as="script" />
     <link
       rel="prefetch"
       href="https://placehold.co/150x150.svg?text=Logo+here?font=antonio"
       as="image"
-      type="image/svg+xml" />
+      type="image/svg+xml"
+      width="150"
+      height="150" />
 
     <!-- Scripts -->
     <script src="assets/js/main.js" type="module"></script>
@@ -65,11 +74,15 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="https://placehold.co/32x32.png?text=fav" />
+      href="https://placehold.co/32x32.png?text=fav"
+      width="32"
+      height="32" />
     <link
       rel="shortcut icon"
       href="https://placehold.co/32x32.png?text=fav"
-      type="image/x-icon" />
+      type="image/x-icon"
+      width="32"
+      height="32" />
   </head>
   <body>
     <!-- Header -->
@@ -93,7 +106,7 @@
         Consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
         et dolore magna aliqua.
       </p>
-      <a href="/pages/contacto.html" class="hero-cta">Lorem ipsum</a>
+      <a href="/pages/contacto.html" class="hero-cta">Contáctanos</a>
     </section>
 
     <!-- Services Section -->
@@ -130,7 +143,9 @@
           </p>
         </article>
       </div>
-      <a href="/pages/servicios.html" class="servicios-link">Lorem ipsum</a>
+      <a href="/pages/servicios.html" class="servicios-link"
+        >Ver todos los servicios</a
+      >
     </section>
 
     <!-- Portfolio Section -->
@@ -151,7 +166,7 @@
           <p>Dolor sit amet, consectetur adipiscing elit</p>
         </article>
       </div>
-      <a href="/pages/portafolio.html" class="portafolio-link">Lorem ipsum</a>
+      <a href="/pages/portafolio.html" class="portafolio-link">Ver proyectos</a>
     </section>
 
     <!-- About Us Section -->
@@ -180,7 +195,9 @@
           <p>Dolor sit amet, consectetur adipiscing elit</p>
         </article>
       </div>
-      <a href="/pages/nosotros.html" class="nosotros-link">Lorem ipsum</a>
+      <a href="/pages/nosotros.html" class="nosotros-link"
+        >Conoce más sobre nosotros</a
+      >
     </section>
 
     <!-- Contact Section -->

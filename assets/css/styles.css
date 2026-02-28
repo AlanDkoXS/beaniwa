@@ -34,10 +34,10 @@
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /* Colors */
+  /* Colors - Improved contrast for accessibility (WCAG AA compliant) */
   --color-primary: #ff8000;
   --color-text: #242424;
-  --color-text-light: #666666;
+  --color-text-light: #595959;
   --color-bg: #ffffff;
   --color-bg-alt: #dbdbdb;
 }
@@ -148,7 +148,7 @@ a {
 }
 
 a:hover {
-  color: #cc6600;
+  color: #b35900;
 }
 
 /* Desktop heading sizes */
@@ -299,7 +299,7 @@ section {
   font-size: 1.2em;
   margin: 0;
   width: 100%;
-  --bgColorItem: #ff8000;
+  --bgColorItem: #e67300;
   /* Improve touch response on mobile */
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -567,32 +567,32 @@ section {
 
   .nav-menu li:nth-child(1) a:hover,
   .nav-menu li:nth-child(1) a.active {
-    color: #ff8000;
-    background-color: rgba(255, 139, 23, 0.15);
+    color: #ffa500;
+    background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(2) a:hover,
   .nav-menu li:nth-child(2) a.active {
-    color: #ff8b17;
-    background-color: rgba(255, 107, 139, 0.15);
+    color: #ffa500;
+    background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(3) a:hover,
   .nav-menu li:nth-child(3) a.active {
-    color: #ffad5c;
-    background-color: rgba(139, 139, 255, 0.15);
+    color: #ffa500;
+    background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(4) a:hover,
   .nav-menu li:nth-child(4) a.active {
-    color: #ffc48a;
-    background-color: rgba(255, 210, 139, 0.15);
+    color: #ffa500;
+    background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(5) a:hover,
   .nav-menu li:nth-child(5) a.active {
-    color: #ffdbb8;
-    background-color: rgba(139, 255, 212, 0.15);
+    color: #ffa500;
+    background-color: rgba(255, 139, 23, 0.2);
   }
 }
 
@@ -632,7 +632,7 @@ section {
 }
 
 .hero-cta:hover {
-  background-color: #cc6600;
+  background-color: #8a3500;
   color: white;
   transform: translateY(-2px);
 }
@@ -717,7 +717,7 @@ section {
 }
 
 .servicios-link:hover {
-  background-color: #cc6600;
+  background-color: #8a3500;
   color: white;
 }
 
@@ -795,7 +795,7 @@ section {
 }
 
 .portafolio-link:hover {
-  background-color: #cc6600;
+  background-color: #8a3500;
   color: white;
 }
 
@@ -874,7 +874,7 @@ section {
 }
 
 .nosotros-link:hover {
-  background-color: #cc6600;
+  background-color: #8a3500;
   color: white;
 }
 
