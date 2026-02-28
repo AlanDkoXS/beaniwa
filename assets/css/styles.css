@@ -1148,6 +1148,7 @@ footer {
 
 .footer-social {
   display: flex;
+  justify-content: center;
   gap: var(--space-md);
   margin-top: var(--space-md);
 }
@@ -1232,6 +1233,10 @@ footer {
 
   .footer-brand {
     text-align: left;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
   }
 
   .footer-links {
