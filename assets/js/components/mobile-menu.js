@@ -170,6 +170,7 @@ function handleItemClick(clickedItem, href) {
   const hamburgerButton = document.querySelector(
     '.mobile-menu__item[data-hamburger="true"]',
   );
+  const overlay = document.querySelector(".mobile-menu__overlay");
 
   // Close hamburger panel if open (animate but don't wait)
   if (hamburgerPanel && hamburgerPanel.classList.contains("open")) {
@@ -187,12 +188,30 @@ function handleItemClick(clickedItem, href) {
     if (menuBorder) {
       menuBorder.style.opacity = "1";
     }
+    // Close overlay to remove blur
+    if (overlay) {
+      overlay.classList.remove("open");
+      // Remove overlay from DOM after animation completes
+      setTimeout(() => {
+        if (overlay && overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+      }, 400);
+    }
     // Remove panel after animation completes (don't wait for navigation)
     setTimeout(() => {
       if (hamburgerPanel.parentNode) {
         hamburgerPanel.parentNode.removeChild(hamburgerPanel);
       }
-    }, 700);
+    }, 400);
+  } else if (overlay && overlay.classList.contains("open")) {
+    // Also close overlay if it's open but panel was already removed
+    overlay.classList.remove("open");
+    setTimeout(() => {
+      if (overlay && overlay.parentNode) {
+        overlay.parentNode.removeChild(overlay);
+      }
+    }, 400);
   }
 
   // Remove active from current item
@@ -375,6 +394,24 @@ function toggleHamburgerMenu(hamburgerButton) {
   const otherLang = currentLang === "en" ? "es" : "en";
   const otherLangHref = otherLang === "en" ? "/en" : "";
 
+  // Section IDs by language
+  const sectionIds =
+    currentLang === "en"
+      ? {
+          inicio: "home",
+          servicios: "services",
+          portafolio: "portfolio",
+          nosotros: "about",
+          contacto: "contact",
+        }
+      : {
+          inicio: "inicio",
+          servicios: "servicios",
+          portafolio: "portafolio",
+          nosotros: "nosotros",
+          contacto: "contacto",
+        };
+
   // Navigation items with icons for modal
   // navItems indices: 0=inicio, 1=servicios, 2=portafolio, 3=nosotros, 4=contacto
   const navItemsWithIcons = [
@@ -386,31 +423,31 @@ function toggleHamburgerMenu(hamburgerButton) {
     },
     {
       id: "inicio",
-      href: hrefLang + "/#inicio",
+      href: hrefLang + "/#" + sectionIds.inicio,
       icon: navItems[0].icon,
       label: currentLabels.inicio,
     },
     {
       id: "nosotros",
-      href: hrefLang + "/#nosotros",
+      href: hrefLang + "/#" + sectionIds.nosotros,
       icon: navItems[3].icon,
       label: currentLabels.nosotros,
     },
     {
       id: "servicios",
-      href: hrefLang + "/#servicios",
+      href: hrefLang + "/#" + sectionIds.servicios,
       icon: navItems[1].icon,
       label: currentLabels.servicios,
     },
     {
       id: "portafolio",
-      href: hrefLang + "/#portafolio",
+      href: hrefLang + "/#" + sectionIds.portafolio,
       icon: navItems[2].icon,
       label: currentLabels.portafolio,
     },
     {
       id: "contacto",
-      href: hrefLang + "/#contacto",
+      href: hrefLang + "/#" + sectionIds.contacto,
       icon: navItems[4].icon,
       label: currentLabels.contacto,
     },
@@ -505,11 +542,28 @@ function toggleHamburgerMenu(hamburgerButton) {
     item.addEventListener("click", e => {
       e.preventDefault();
       const href = item.getAttribute("href");
+
+      // Close hamburger panel first (this removes the blur)
       closeHamburgerPanel(panel, overlay, hamburgerButton);
-      // Navigate after modal closes
+
+      // Navigate after modal closes - use SPA navigation
       setTimeout(() => {
-        window.location.href = href;
-      }, 400);
+        // Check if it's a hash navigation (SPA) or page navigation
+        if (href.includes("#")) {
+          const hash = href.split("#")[1];
+          const targetSection = document.getElementById(hash);
+          if (targetSection) {
+            // Scroll to section on current page
+            targetSection.scrollIntoView({ behavior: "smooth" });
+          } else {
+            // Section not found, navigate to page with hash
+            window.location.hash = hash;
+          }
+        } else {
+          // Full page navigation
+          window.location.href = href;
+        }
+      }, 450);
     });
   });
 
@@ -566,17 +620,20 @@ function closeHamburgerPanel(panel, overlay, hamburgerButton) {
     ?.removeAttribute("data-hamburger-active");
   // Animate hamburger icon back to lines
   animateHamburgerIcon(hamburgerButton, false);
-  // Close overlay
+  // Close overlay immediately to remove blur
   if (overlay) {
     overlay.classList.remove("open");
+    // Remove overlay from DOM after animation completes
+    setTimeout(() => {
+      if (overlay && overlay.parentNode) {
+        overlay.parentNode.removeChild(overlay);
+      }
+    }, 400);
   }
 
   setTimeout(() => {
-    if (panel.parentNode) {
+    if (panel && panel.parentNode) {
       panel.parentNode.removeChild(panel);
-    }
-    if (overlay && overlay.parentNode) {
-      overlay.parentNode.removeChild(overlay);
     }
   }, 400);
 }
