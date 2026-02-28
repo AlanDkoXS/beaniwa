@@ -1,282 +1,49 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Alan Quintana" />
+    <title>Aniwa | Digital Marketing</title>
     <meta
       name="description"
-      content="Aniwa - Agencia de marketing digital en Chihuahua. Aumenta tus ventas con desarrollo web, estrategias de redes sociales, SEO y publicidad digital. Más de 10 años de experiencia." />
-    <meta name="keywords" content="web, marketing, social media, ads" />
+      content="Digital marketing, web development and strategies that grow your business. Contact us to triple your sales." />
+    <link rel="canonical" href="https://www.beaniwa.com/" />
+    <link rel="alternate" hreflang="es" href="https://www.beaniwa.com/es/" />
+    <link rel="alternate" hreflang="en" href="https://www.beaniwa.com/en/" />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.beaniwa.com/" />
-    <meta property="og:title" content="Aniwa | Marketing" />
-    <meta
-      property="og:description"
-      content="Agencia de marketing digital en Chihuahua. Desarrollo web, redes sociales, SEO y publicidad para hacer crecer tu negocio." />
-    <meta property="og:image" content="https://placehold.co/1200x630" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <!-- Preconnect to external origins for faster resource loading -->
-    <link rel="preconnect" href="https://placehold.co" crossorigin />
-
-    <!-- DNS-Prefetch -->
-    <link rel="dns-prefetch" href="https://placehold.co" />
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-
-    <!-- Head -->
-    <title>Aniwa | Digital Marketing</title>
-    <link rel="canonical" href="https://beaniwa.com/" />
-
-    <!-- Preload fonts -->
-    <link
-      rel="preload"
-      href="assets/fonts/Antonio-VariableFont_wght.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin />
-    <link
-      rel="preload"
-      href="assets/fonts/NotoSans-VariableFont_wdth,wght.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin />
-
-    <!-- Preload important sources -->
-    <link rel="stylesheet" href="assets/css/styles.css" fetchpriority="high" />
-    <link
-      rel="prefetch"
-      href="https://placehold.co/150x150.svg?text=Logo+here?font=antonio"
-      as="image"
-      type="image/svg+xml"
-      width="150"
-      height="150" />
-
-    <!-- Scripts -->
-    <script src="assets/js/main.js" type="module" defer></script>
-
-    <!-- Icons -->
-    <!--     <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-    media="print"
-    onload="this.media = 'all'" />
-    <noscript>
-      <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet" />
-    </noscript> -->
-
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://placehold.co/32x32.png?text=fav"
-      width="32"
-      height="32" />
-    <link
-      rel="shortcut icon"
-      href="https://placehold.co/32x32.png?text=fav"
-      type="image/x-icon"
-      width="32"
-      height="32" />
-    <!-- Google Tag Manager -->
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-K7RJQWPC");
+      // Language detection and redirect
+      (function () {
+        var userLang = navigator.language || navigator.userLanguage;
+        var lang = userLang.split("-")[0];
+
+        // Check if user prefers Spanish
+        if (lang === "es") {
+          window.location.href = "/es/";
+        } else {
+          window.location.href = "/en/";
+        }
+      })();
     </script>
-    <!-- End Google Tag Manager -->
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-K7RJQWPC"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- Header -->
-    <header class="header" id="header" style="view-transition-name: header">
-      <nav class="nav">
-        <a href="/" class="logo">Aniwa</a>
-        <ul class="nav-menu">
-          <li><a href="/#inicio">Inicio</a></li>
-          <li><a href="/#servicios">Servicios</a></li>
-          <li><a href="/#portafolio">Portafolio</a></li>
-          <li><a href="/#nosotros">Nosotros</a></li>
-          <li><a href="/#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-    </header>
+    <p>
+      Redirecting to
+      <a id="redirect-link" href="/en/">your language version</a>...
+    </p>
+    <script>
+      // Fallback link in case JavaScript doesn't redirect
+      (function () {
+        var userLang = navigator.language || navigator.userLanguage;
+        var lang = userLang.split("-")[0];
+        var link = document.getElementById("redirect-link");
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-      <h1 class="hero-title">Aumenta tus ventas hasta un 300%</h1>
-      <p class="hero-subtitle">
-        Marketing digital, desarrollo web y estrategias que hacen crecer tu
-        negocio.
-      </p>
-      <a href="/pages/contacto.html" class="hero-cta">Contáctanos</a>
-    </section>
-
-    <!-- Services Section -->
-    <section class="servicios" id="servicios">
-      <h2>Nuestros Servicios</h2>
-      <p>Todo lo que necesitas para hacer crecer tu negocio</p>
-      <div class="servicios-grid">
-        <article class="servicio-card">
-          <h3>Desarrollo web</h3>
-          <p>Creamos sitios web modernos y optimizados para conversiones.</p>
-        </article>
-        <article class="servicio-card">
-          <h3>Redes sociales</h3>
-          <p>Gestionamos contenido estratégico para aumentar tu alcance.</p>
-        </article>
-        <article class="servicio-card">
-          <h3>SEO</h3>
-          <p>Mejoramos tu posicionamiento en búsquedas orgánicas.</p>
-        </article>
-        <article class="servicio-card">
-          <h3>Desarrollo de apps</h3>
-          <p>Aplicaciones móviles y web personalizadas para tu empresa.</p>
-        </article>
-      </div>
-      <a href="/pages/servicios.html" class="servicios-link"
-        >Ver todos los servicios</a
-      >
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portafolio" id="portafolio">
-      <h2>Portafolio</h2>
-      <p>Proyectos que hablan por nosotros</p>
-      <div class="portafolio-grid">
-        <article class="proyecto-card">
-          <h3>mercadoregional.com.mx</h3>
-          <p>Plataforma de comercio electrónico</p>
-        </article>
-        <article class="proyecto-card">
-          <h3>forjanorte.com.mx</h3>
-          <p>Sitio web corporativo</p>
-        </article>
-        <article class="proyecto-card">
-          <h3>alanquintana.pro</h3>
-          <p>Portafolio profesional</p>
-        </article>
-      </div>
-      <a href="/pages/portafolio.html" class="portafolio-link">Ver proyectos</a>
-    </section>
-
-    <!-- About Us Section -->
-    <section class="nosotros" id="nosotros">
-      <h2>Quiénes Somos</h2>
-      <p>Conoce nuestra historia y propósito</p>
-      <div class="nosotros-content">
-        <p>
-          Empresa con más de 10 años, encargadas de campañas publicitarias para
-          empresas, pequeños negocios, políticos, así como desarrollo de sitios
-          web, y expande tu imaginación.
-        </p>
-      </div>
-      <div class="nosotros-values">
-        <article class="value-card">
-          <h3>Experiencia</h3>
-          <p>Más de 10 años en el mercado</p>
-        </article>
-        <article class="value-card">
-          <h3>Creatividad</h3>
-          <p>Soluciones innovadoras para cada cliente</p>
-        </article>
-        <article class="value-card">
-          <h3>Resultados</h3>
-          <p>Enfocados en hacer crecer tu negocio</p>
-        </article>
-      </div>
-      <a href="/pages/nosotros.html" class="nosotros-link"
-        >Conoce más sobre nosotros</a
-      >
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contacto" id="contacto">
-      <h2>Contacto</h2>
-      <p>Estamos listos para ayudarte</p>
-      <div class="contacto-content">
-        <div class="contacto-info">
-          <p>
-            ¿Tienes un proyecto en mente? Escríbenos y respondemos en menos de
-            24 horas.
-          </p>
-          <address>
-            <p>Email: hola@beaniwa.com</p>
-            <p>Teléfono: +52 614 123 4567</p>
-            <p>Dirección: Chihuahua, México</p>
-          </address>
-        </div>
-        <form class="contacto-form">
-          <label for="name">Nombre</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Introduzca su nombre"
-            autocomplete="name" />
-          <label for="email">Correo Electrónico</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Introduzca correo válido"
-            autocomplete="email" />
-          <label for="message">Mensaje</label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Servicio a cotizar"
-            rows="5"></textarea>
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer" style="view-transition-name: footer">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <a href="/" class="logo">Aniwa</a>
-          <p>Creando experiencias digitales únicas</p>
-        </div>
-        <nav class="footer-links">
-          <h4>Mapa del Sitio</h4>
-          <ul>
-            <li><a href="/#inicio">Inicio</a></li>
-            <li><a href="/#servicios">Servicios</a></li>
-            <li><a href="/#portafolio">Portafolio</a></li>
-            <li><a href="/#nosotros">Nosotros</a></li>
-            <li><a href="/#contacto">Contacto</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="footer-bottom">
-        <span> Hecho con ❤️ y mucho ☕. </span>
-        <span class="footer__year"></span>
-        <span class="footer__copyright">Derechos Reservados</span>
-      </div>
-    </footer>
+        if (lang === "es") {
+          link.href = "/es/";
+        } else {
+          link.href = "/en/";
+        }
+      })();
+    </script>
   </body>
 </html>
