@@ -5,13 +5,27 @@
 
 // Import modules
 import { initHeader } from "./components/header.js";
+import { initSecondaryMobileMenu } from "./components/mobile-menu-secondary.js";
 import { initMobileMenu } from "./components/mobile-menu.js";
 import { initScrollAnimations } from "./components/scroll-animations.js";
 import { initNavigation } from "./navigation.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
-// View Transitions disabled due to CORS issues on local servers
-// import { initViewTransitions } from "./view-transitions.js";
+
+// Check if current page is index
+function isIndexPage() {
+  const path = window.location.pathname;
+  return (
+    path === "/" ||
+    path === "/index.html" ||
+    path === "/es" ||
+    path === "/es/" ||
+    path === "/es/index.html" ||
+    path === "/en" ||
+    path === "/en/" ||
+    path === "/en/index.html"
+  );
+}
 
 /**
  * Initialize all application modules
@@ -25,7 +39,14 @@ function initApp() {
   // initViewTransitions();
   initScroll();
   initHeader();
-  initMobileMenu();
+
+  // Initialize appropriate mobile menu based on page
+  if (isIndexPage()) {
+    initMobileMenu(); // Full navigation menu
+  } else {
+    initSecondaryMobileMenu(); // Only Regresar + hamburger
+  }
+
   initScrollAnimations();
   // Initialize utils
   updateDateYear();
