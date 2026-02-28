@@ -394,13 +394,17 @@ section {
 
 /* Hamburger to X transformation */
 .mobile-menu__item[data-hamburger="true"].active .icon {
-  /* Transform hamburger to X with rotation */
+  /* Transform to X with rotation and stroke animation */
   transform: rotate(180deg);
 }
 
 .mobile-menu__item[data-hamburger="true"] .icon {
   transition: transform 0.4s ease;
   transform-origin: center center;
+}
+
+.mobile-menu__item[data-hamburger="true"] .icon path {
+  transition: stroke-dashoffset 0.4s ease;
 }
 
 /* Show border when hamburger is active */
@@ -479,7 +483,7 @@ section {
 /* Mobile Menu Hamburger Panel */
 .mobile-menu__panel {
   position: fixed;
-  bottom: 4.5em;
+  bottom: 5em;
   left: 0;
   right: 0;
   /* Glassmorphism effect with dark color */

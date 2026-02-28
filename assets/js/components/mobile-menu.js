@@ -207,16 +207,13 @@ function animateHamburgerIcon(hamburgerButton, toActive) {
   const iconElement = hamburgerButton.querySelector(".icon");
   if (!iconElement) return;
 
-  // Apply the same animation style as the example (0.4s transition)
-  iconElement.style.transition = "transform 0.4s ease";
+  // Directly swap the icon and apply rotation animation
+  const newIcon = toActive ? hamburgerItem.iconActive : hamburgerItem.icon;
+  iconElement.innerHTML = newIcon;
 
-  if (toActive) {
-    // Transform to X: rotate 180deg
-    iconElement.style.transform = "rotate(180deg)";
-  } else {
-    // Back to hamburger: rotate back to 0
-    iconElement.style.transform = "rotate(0deg)";
-  }
+  // Apply rotation with transition
+  iconElement.style.transition = "transform 0.4s ease";
+  iconElement.style.transform = toActive ? "rotate(180deg)" : "rotate(0deg)";
 }
 
 function toggleHamburgerMenu(hamburgerButton) {
