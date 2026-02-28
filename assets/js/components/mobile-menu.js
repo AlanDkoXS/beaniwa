@@ -95,6 +95,7 @@ function createMenuItem(item, index, isActive) {
   const button = document.createElement("button");
   button.className = `mobile-menu__item${isActive ? " active" : ""}`;
   button.setAttribute("data-index", index);
+  button.setAttribute("data-id", item.id);
   button.setAttribute("aria-label", item.label);
 
   // Set the button color
@@ -337,8 +338,8 @@ function initMobileMenu() {
       const currentItem = getCurrentItem();
       const menuItems = mobileMenu.querySelectorAll(".mobile-menu__item");
 
-      menuItems.forEach((item, index) => {
-        const itemId = navItems[index].id;
+      menuItems.forEach(item => {
+        const itemId = item.dataset.id;
         if (itemId === currentItem) {
           if (!item.classList.contains("active")) {
             item.classList.add("active");
