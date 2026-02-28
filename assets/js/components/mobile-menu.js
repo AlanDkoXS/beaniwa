@@ -37,6 +37,13 @@ const navItems = [
   },
 ];
 
+// Hamburger menu item
+const hamburgerItem = {
+  id: "hamburger",
+  label: "Más",
+  icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>`,
+};
+
 /**
  * Get current active item based on URL hash or scroll position
  */
@@ -96,8 +103,17 @@ function createMenuItem(item, index, isActive) {
   // Add icon
   button.appendChild(createIcon(item.icon));
 
-  // Add click handler
-  button.addEventListener("click", () => handleItemClick(button, item.href));
+  // Check if this is the hamburger button
+  if (item.id === "hamburger") {
+    button.setAttribute("data-hamburger", "true");
+    button.addEventListener("click", e => {
+      e.preventDefault();
+      toggleHamburgerMenu(button);
+    });
+  } else {
+    // Add click handler
+    button.addEventListener("click", () => handleItemClick(button, item.href));
+  }
 
   return button;
 }
@@ -108,6 +124,28 @@ function createMenuItem(item, index, isActive) {
 function handleItemClick(clickedItem, href) {
   const menuItems = document.querySelectorAll(".mobile-menu__item");
   const menuBorder = document.querySelector(".mobile-menu__border");
+  const hamburgerPanel = document.querySelector(".mobile-menu__panel");
+  const hamburgerButton = document.querySelector(
+    '.mobile-menu__item[data-hamburger="true"]',
+  );
+
+  // Close hamburger panel if open (animate but don't wait)
+  if (hamburgerPanel && hamburgerPanel.classList.contains("open")) {
+    hamburgerPanel.classList.remove("open");
+    if (hamburgerButton) {
+      hamburgerButton.classList.remove("active");
+    }
+    // Show menu border
+    if (menuBorder) {
+      menuBorder.style.opacity = "1";
+    }
+    // Remove panel after animation completes (don't wait for navigation)
+    setTimeout(() => {
+      if (hamburgerPanel.parentNode) {
+        hamburgerPanel.parentNode.removeChild(hamburgerPanel);
+      }
+    }, 700);
+  }
 
   // Remove active from current item
   menuItems.forEach(item => item.classList.remove("active"));
@@ -118,7 +156,7 @@ function handleItemClick(clickedItem, href) {
   // Update border position
   offsetMenuBorder(clickedItem, menuBorder);
 
-  // Navigate to the link
+  // Navigate to the link immediately (simultaneously with panel closing)
   window.location.href = href;
 }
 
@@ -139,6 +177,83 @@ function offsetMenuBorder(element, menuBorder) {
     ) + "px";
 
   menuBorder.style.transform = `translate3d(${left}, 0, 0)`;
+}
+
+/**
+ * Toggle hamburger menu panel
+ */
+function toggleHamburgerMenu(hamburgerButton) {
+  let panel = document.querySelector(".mobile-menu__panel");
+  const menuBorder = document.querySelector(".mobile-menu__border");
+
+  // Toggle panel visibility
+  if (panel) {
+    if (panel.classList.contains("open")) {
+      panel.classList.remove("open");
+      hamburgerButton.classList.remove("active");
+      // Show menu border again
+      if (menuBorder) {
+        menuBorder.style.opacity = "1";
+      }
+      setTimeout(() => {
+        if (panel.parentNode) {
+          panel.parentNode.removeChild(panel);
+        }
+      }, 700);
+    }
+    return;
+  }
+
+  // Deactivate all other menu items when hamburger is active
+  const menuItems = document.querySelectorAll(".mobile-menu__item");
+  menuItems.forEach(item => {
+    if (item !== hamburgerButton) {
+      item.classList.remove("active");
+    }
+  });
+
+  // Hide menu border when hamburger is active
+  if (menuBorder) {
+    menuBorder.style.opacity = "0";
+  }
+
+  // Create new panel
+  panel = document.createElement("div");
+  panel.className = "mobile-menu__panel";
+
+  // Add panel content
+  panel.innerHTML = `
+    <div class="mobile-menu__panel-content">
+      <a href="/" class="mobile-menu__panel-item">Inicio</a>
+      <a href="/pages/nosotros.html" class="mobile-menu__panel-item">Nosotros</a>
+      <a href="/pages/servicios.html" class="mobile-menu__panel-item">Servicios</a>
+      <a href="/pages/portafolio.html" class="mobile-menu__panel-item">Portafolio</a>
+      <a href="/pages/contacto.html" class="mobile-menu__panel-item">Contacto</a>
+    </div>
+  `;
+
+  // Insert panel before the mobile menu
+  const mobileMenu = document.querySelector(".mobile-menu");
+  mobileMenu.parentNode.insertBefore(panel, mobileMenu);
+
+  // Add click handlers to panel items
+  panel.querySelectorAll(".mobile-menu__panel-item").forEach(item => {
+    item.addEventListener("click", () => {
+      panel.classList.remove("open");
+      hamburgerButton.classList.remove("active");
+      setTimeout(() => {
+        if (panel.parentNode) {
+          panel.parentNode.removeChild(panel);
+        }
+      }, 700);
+    });
+  });
+
+  // Animate panel opening with wave effect
+  requestAnimationFrame(() => {
+    panel.classList.add("open");
+    hamburgerButton.classList.add("active");
+  });
 }
 
 /**
@@ -173,6 +288,11 @@ function initMobileMenu() {
     const menuItem = createMenuItem(item, index, isActive);
     mobileMenu.appendChild(menuItem);
   });
+
+  // Create hamburger button at the end
+  const hamburgerButton = createMenuItem(hamburgerItem, navItems.length, false);
+  hamburgerButton.setAttribute("data-hamburger", "true");
+  mobileMenu.appendChild(hamburgerButton);
 
   // Create border element
   const menuBorder = document.createElement("div");
