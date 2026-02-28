@@ -18,47 +18,68 @@ function getTranslatedPageHref() {
   const currentLang = getCurrentLanguageSecondary();
   const targetLang = currentLang === "en" ? "es" : "en";
 
-  // Page mapping: Spanish -> English
-  const pageMapping = {
-    "/": targetLang === "en" ? "/en/" : "/",
-    "/index.html": targetLang === "en" ? "/en/index.html" : "/index.html",
-    "/nosotros.html": targetLang === "en" ? "/en/about.html" : "/nosotros.html",
-    "/servicios.html":
-      targetLang === "en" ? "/en/services.html" : "/servicios.html",
-    "/portafolio.html":
-      targetLang === "en" ? "/en/portfolio.html" : "/portafolio.html",
-    "/contacto.html":
-      targetLang === "en" ? "/en/contact.html" : "/contacto.html",
-    "/politica-privacidad.html":
-      targetLang === "en"
-        ? "/en/privacy-policy.html"
-        : "/politica-privacidad.html",
-  };
-
-  // English pages
-  const enPageMapping = {
-    "/en/": "/es/",
-    "/en": "/es/",
-    "/en.html": "/index.html",
-    "/en/index.html": "/index.html",
-    "/en/about.html": "/es/nosotros.html",
-    "/en/services.html": "/es/servicios.html",
-    "/en/portfolio.html": "/es/portafolio.html",
-    "/en/contact.html": "/es/contacto.html",
-    "/en/privacy-policy.html": "/es/politica-privacidad.html",
-  };
-
-  const mapping = currentLang === "en" ? enPageMapping : pageMapping;
-
-  // Check for exact match or remove trailing slash
-  const normalizedPath =
-    path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
-
-  return (
-    mapping[path] ||
-    mapping[normalizedPath] ||
-    (targetLang === "en" ? "/en/" : "/")
+  console.log(
+    "getTranslatedPageHref - path:",
+    path,
+    "currentLang:",
+    currentLang,
+    "targetLang:",
+    targetLang,
   );
+
+  // Page name translations (Spanish -> English)
+  const esToEn = {
+    "nosotros.html": "about.html",
+    "servicios.html": "services.html",
+    "portafolio.html": "portfolio.html",
+    "contacto.html": "contact.html",
+    "politica-privacidad.html": "privacy-policy.html",
+  };
+
+  // Page name translations (English -> Spanish)
+  const enToEs = {
+    "about.html": "nosotros.html",
+    "services.html": "servicios.html",
+    "portfolio.html": "portafolio.html",
+    "contact.html": "contacto.html",
+    "privacy-policy.html": "politica-privacidad.html",
+  };
+
+  // Get the mapping based on current language
+  const translationMap = currentLang === "en" ? enToEs : esToEn;
+
+  // Get the page filename
+  const filename = path.split("/").pop();
+
+  console.log("getTranslatedPageHref - filename:", filename);
+
+  // Check if we have a translation for this page
+  if (translationMap[filename]) {
+    const targetPrefix = targetLang === "en" ? "/en" : "/es";
+    const result = targetPrefix + "/" + translationMap[filename];
+    console.log("getTranslatedPageHref - result:", result);
+    return result;
+  }
+
+  // Handle root/index pages
+  if (
+    path === "/" ||
+    path === "/index.html" ||
+    path === "/es/" ||
+    path === "/es/index.html"
+  ) {
+    return targetLang === "en" ? "/en/" : "/es/";
+  }
+  if (path === "/en/" || path === "/en/index.html") {
+    return "/es/";
+  }
+
+  console.log(
+    "getTranslatedPageHref - fallback:",
+    targetLang === "en" ? "/en/" : "/es/",
+  );
+  // Default fallback
+  return targetLang === "en" ? "/en/" : "/es/";
 }
 
 // Navigation labels by language
@@ -250,7 +271,7 @@ function toggleHamburgerMenuSecondary(hamburgerButton) {
   panel = document.createElement("div");
   panel.className = "mobile-menu__panel";
 
-  const hrefLang = currentLang === "en" ? "/en" : "";
+  const hrefLang = currentLang === "en" ? "/en" : "/es";
 
   // Modal content - same as main menu (icons defined inline)
   // For non-index pages, link directly to HTML pages
@@ -377,11 +398,16 @@ function toggleHamburgerMenuSecondary(hamburgerButton) {
   });
 
   // Add click handler to language switcher
-  const langBtn = panel.querySelector(".mobile-menu__lang-btn");
-  if (langBtn) {
-    langBtn.addEventListener("click", e => {
+  const langCard = panel.querySelector(".mobile-menu__lang-card");
+  if (langCard) {
+    langCard.addEventListener("click", e => {
       e.preventDefault();
+      const href = langCard.getAttribute("href");
       closeHamburgerPanelSecondary(panel, overlay, hamburgerButton);
+      // Navigate after modal closes
+      setTimeout(() => {
+        window.location.href = href;
+      }, 450);
     });
   }
 
@@ -498,10 +524,8 @@ function initSecondaryMobileMenu() {
   // Add to body
   document.body.appendChild(mobileMenu);
 
-  // Show menu with animation
-  setTimeout(() => {
-    showSecondaryMobileMenu(mobileMenu, menuBorder);
-  }, 2000);
+  // Show menu immediately
+  showSecondaryMobileMenu(mobileMenu, menuBorder);
 
   // Update active item on scroll
   window.addEventListener("scroll", () => {

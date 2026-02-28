@@ -12,6 +12,37 @@ function getCurrentLanguage() {
   return "es";
 }
 
+// Get the equivalent page in the other language
+function getTranslatedPageHref() {
+  const path = window.location.pathname;
+  const currentLang = getCurrentLanguage();
+  const targetLang = currentLang === "en" ? "es" : "en";
+
+  // Page mapping for main menu (index pages)
+  const pageMapping = {
+    "/": targetLang === "en" ? "/en/" : "/",
+    "/index.html": targetLang === "en" ? "/en/index.html" : "/index.html",
+    "/es/": targetLang === "en" ? "/en/" : "/es/",
+    "/es": targetLang === "en" ? "/en/" : "/es/",
+    "/es.html": targetLang === "en" ? "/en/" : "/es/",
+    "/es/index.html": targetLang === "en" ? "/en/index.html" : "/es/index.html",
+    "/en/": "/es/",
+    "/en": "/es/",
+    "/en.html": "/index.html",
+    "/en/index.html": "/index.html",
+  };
+
+  // Check for exact match or remove trailing slash
+  const normalizedPath =
+    path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
+
+  return (
+    pageMapping[path] ||
+    pageMapping[normalizedPath] ||
+    (targetLang === "en" ? "/en/" : "/")
+  );
+}
+
 // Navigation labels by language
 const labels = {
   es: {
@@ -487,7 +518,7 @@ function toggleHamburgerMenu(hamburgerButton) {
 
   // Build language switcher HTML
   const langButtonText = currentLang === "en" ? "Español" : "English";
-  const langButtonHref = otherLang === "en" ? "/en/" : "/";
+  const langButtonHref = getTranslatedPageHref();
 
   // Build navigation HTML - always show all nav items in modal
   const navHtml = navItemsWithIcons
@@ -576,11 +607,16 @@ function toggleHamburgerMenu(hamburgerButton) {
   });
 
   // Add click handler to language switcher
-  const langBtn = panel.querySelector(".mobile-menu__lang-btn");
-  if (langBtn) {
-    langBtn.addEventListener("click", e => {
+  const langCard = panel.querySelector(".mobile-menu__lang-card");
+  if (langCard) {
+    langCard.addEventListener("click", e => {
       e.preventDefault();
+      const href = langCard.getAttribute("href");
       closeHamburgerPanel(panel, overlay, hamburgerButton);
+      // Navigate after modal closes
+      setTimeout(() => {
+        window.location.href = href;
+      }, 450);
     });
   }
 
