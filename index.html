@@ -19,7 +19,7 @@
     <meta property="og:image:height" content="630" />
 
     <!-- Preconnect to external origins for faster resource loading -->
-    <link rel="preconnect" href="https://placehold.co" />
+    <link rel="preconnect" href="https://placehold.co" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -34,8 +34,7 @@
     <link rel="canonical" href="https://beaniwa.com/" />
 
     <!-- Preload important sources -->
-    <link rel="stylesheet" href="assets/css/styles.min.css" />
-    <link rel="prefetch" href="assets/js/main.js" as="script" />
+    <link rel="stylesheet" href="assets/css/styles.css" fetchpriority="high" />
     <link
       rel="prefetch"
       href="https://placehold.co/150x150.svg?text=Logo+here?font=antonio"
@@ -45,11 +44,9 @@
       height="150" />
 
     <!-- Scripts -->
-    <script src="assets/js/main.js" type="module"></script>
+    <script src="assets/js/main.js" type="module" defer></script>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Antonio:wght@100;200;300;400;500;600;700&display=swap"
       rel="stylesheet" />
