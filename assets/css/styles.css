@@ -6,6 +6,40 @@
    Reset & Base Styles
    =================================== */
 
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Disable smooth scroll on mobile devices to prevent interference with mobile menu */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html *,
+html *::before,
+html *::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+}
+
+/* Add padding for mobile menu on small screens */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 4.5em;
+  }
+}
+
 /* ===================================
    Typography
    =================================== */
@@ -19,13 +53,232 @@
    =================================== */
 
 /* ===================================
+   Header & Navigation
+   =================================== */
+
+/* Mobile Menu - Animated Tab Bar */
+.mobile-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1em;
+  height: 4.5em;
+  background-color: #242424;
+  font-size: 1.2em;
+  margin: 0;
+  width: 100%;
+  --bgColorItem: #ff8000;
+  /* Improve touch response on mobile */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-menu__item {
+  all: unset;
+  flex-grow: 1;
+  z-index: 100;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  align-items: center;
+  will-change: transform;
+  justify-content: center;
+  padding: 0.55em 0 0.85em;
+  transition: transform var(--timeOut, 0.7s);
+  text-decoration: none;
+}
+
+.mobile-menu__item::before {
+  content: "";
+  z-index: -1;
+  width: 4.2em;
+  height: 4.2em;
+  border-radius: 50%;
+  position: absolute;
+  transform: scale(0);
+  transition:
+    background-color 0.7s,
+    transform 0.7s;
+}
+
+.mobile-menu__item.active {
+  transform: translate3d(0, -0.8em, 0);
+}
+
+.mobile-menu__item.active::before {
+  transform: scale(1);
+  background-color: var(--bgColorItem);
+}
+
+.mobile-menu__item .icon {
+  width: 2.6em;
+  height: 2.6em;
+  stroke: white;
+  fill: transparent;
+  stroke-width: 1pt;
+  stroke-miterlimit: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 400;
+}
+
+.mobile-menu__item.active .icon {
+  animation: stroke-animation 1.5s reverse;
+}
+
+@keyframes stroke-animation {
+  100% {
+    stroke-dashoffset: 400;
+  }
+}
+
+.mobile-menu__border {
+  position: absolute;
+  left: 0;
+  bottom: 99%;
+  width: 10.9em;
+  height: 2.4em;
+  clip-path: url(#mobile-menu-clip);
+  will-change: transform;
+  background-color: #242424;
+  transition: transform var(--timeOut, 0.7s);
+}
+
+.mobile-menu .svg-container {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Hide mobile menu on desktop */
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* Mobile Menu Wave Effect */
+.mobile-menu__wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 128, 0, 0.4) 0%,
+    rgba(255, 128, 0, 0.2) 30%,
+    transparent 70%
+  );
+  animation: wave-ripple 0.8s ease-out forwards;
+  pointer-events: none;
+  z-index: 50;
+}
+
+@keyframes wave-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Hide desktop nav-menu on mobile */
+@media (max-width: 767px) {
+  .nav,
+  .nav-menu {
+    display: none;
+  }
+}
+
+/* Desktop Navigation with colors */
+@media (min-width: 768px) {
+  .nav-menu {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-menu li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-menu li:nth-child(1) a:hover,
+  .nav-menu li:nth-child(1) a.active {
+    color: #ff8000;
+    background-color: rgba(255, 139, 23, 0.15);
+  }
+
+  .nav-menu li:nth-child(2) a:hover,
+  .nav-menu li:nth-child(2) a.active {
+    color: #ff8b17;
+    background-color: rgba(255, 107, 139, 0.15);
+  }
+
+  .nav-menu li:nth-child(3) a:hover,
+  .nav-menu li:nth-child(3) a.active {
+    color: #ffad5c;
+    background-color: rgba(139, 139, 255, 0.15);
+  }
+
+  .nav-menu li:nth-child(4) a:hover,
+  .nav-menu li:nth-child(4) a.active {
+    color: #ffc48a;
+    background-color: rgba(255, 210, 139, 0.15);
+  }
+
+  .nav-menu li:nth-child(5) a:hover,
+  .nav-menu li:nth-child(5) a.active {
+    color: #ffdbb8;
+    background-color: rgba(139, 255, 212, 0.15);
+  }
+}
+
+/* ===================================
    Hero Section
    =================================== */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: calc(100vh);
+  padding: 2rem;
+}
+
+/* En desktop, restaurar comportamiento normal */
+@media (min-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 4rem 2rem;
+  }
+}
 
 /* ===================================
    Services Section
    =================================== */
-
+.servicios {
+  background-color: #dbdbdb;
+}
 /* ===================================
    Portfolio Section
    =================================== */
@@ -33,7 +286,9 @@
 /* ===================================
    About Us Section
    =================================== */
-
+.nosotros {
+  background-color: #dbdbdb;
+}
 /* ===================================
    Contact Section
    =================================== */
@@ -41,7 +296,10 @@
 /* ===================================
    Footer
    =================================== */
-
+footer {
+  background-color: #242424;
+  padding-bottom: 8rem;
+}
 /* ===================================
    Animations & Transitions
    =================================== */
@@ -102,11 +360,7 @@
   }
 }
 
-/* Content sections with view-transition */
-main,
-section {
-  view-transition-name: content;
-}
+/* Content sections - using root transition */
 
 /* Persistent elements (header, footer) */
 ::view-transition-group(header) {
