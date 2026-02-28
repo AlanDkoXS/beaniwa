@@ -126,8 +126,11 @@ h6,
 .hero-title,
 .servicios h2,
 .portafolio h2,
+.portfolio h2,
 .nosotros h2,
+.about h2,
 .contacto h2,
+.contact h2,
 .footer h4 {
   font-family: var(--font-title);
   font-weight: 700;
@@ -701,46 +704,54 @@ section {
 /* ===================================
    Services Section
    =================================== */
-.servicios {
+.servicios,
+.services {
   background-color: var(--color-bg-alt);
 }
 
-.servicios h2 {
+.servicios h2,
+.services h2 {
   text-align: center;
   margin-bottom: var(--space-sm);
 }
 
-.servicios > p {
+.servicios > p,
+.services > p {
   text-align: center;
   margin-bottom: var(--space-xl);
   color: var(--color-text-light);
 }
 
-.servicios-grid {
+.servicios-grid,
+.services-grid {
   display: grid;
   gap: var(--space-md);
   grid-template-columns: 1fr;
   margin-bottom: var(--space-lg);
 }
 
-.servicio-card {
+.servicio-card,
+.service-card {
   background: white;
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.servicio-card h3 {
+.servicio-card h3,
+.service-card h3 {
   margin-bottom: var(--space-sm);
 }
 
-.servicio-card p {
+.servicio-card p,
+.service-card p {
   margin-bottom: 0;
   color: var(--color-text-light);
   font-size: 0.9rem;
 }
 
-.servicios-link {
+.servicios-link,
+.services-link {
   display: block;
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
@@ -752,24 +763,28 @@ section {
   margin: 0 auto;
 }
 
-.servicios-link:hover {
+.servicios-link:hover,
+.services-link:hover {
   background-color: #8a3500;
   color: white;
 }
 
 @media (min-width: 576px) {
-  .servicios-grid {
+  .servicios-grid,
+  .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
-  .servicios-grid {
+  .servicios-grid,
+  .services-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);
   }
 
-  .servicios-link {
+  .servicios-link,
+  .services-link {
     max-width: 220px;
   }
 }
@@ -778,17 +793,20 @@ section {
    Portfolio Section
    =================================== */
 
+.portfolio h2,
 .portafolio h2 {
   text-align: center;
   margin-bottom: var(--space-sm);
 }
 
+.portfolio > p,
 .portafolio > p {
   text-align: center;
   margin-bottom: var(--space-xl);
   color: var(--color-text-light);
 }
 
+.portfolio-grid,
 .portafolio-grid {
   display: grid;
   gap: var(--space-md);
@@ -796,7 +814,8 @@ section {
   margin-bottom: var(--space-lg);
 }
 
-.proyecto-card {
+.proyecto-card,
+.project-card {
   background: var(--color-bg-alt);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
@@ -808,16 +827,19 @@ section {
   text-align: center;
 }
 
-.proyecto-card h3 {
+.proyecto-card h3,
+.project-card h3 {
   margin-bottom: var(--space-sm);
 }
 
-.proyecto-card p {
+.proyecto-card p,
+.project-card p {
   margin-bottom: 0;
   color: var(--color-text-light);
   font-size: 0.9rem;
 }
 
+.portfolio-link,
 .portafolio-link {
   display: block;
   text-align: center;
@@ -830,18 +852,21 @@ section {
   margin: 0 auto;
 }
 
+.portfolio-link:hover,
 .portafolio-link:hover {
   background-color: #8a3500;
   color: white;
 }
 
 @media (min-width: 576px) {
+  .portfolio-grid,
   .portafolio-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
+  .portfolio-grid,
   .portafolio-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
@@ -851,28 +876,33 @@ section {
 /* ===================================
    About Us Section
    =================================== */
-.nosotros {
+.nosotros,
+.about {
   background-color: var(--color-bg-alt);
 }
 
-.nosotros h2 {
+.nosotros h2,
+.about h2 {
   text-align: center;
   margin-bottom: var(--space-sm);
 }
 
-.nosotros > p {
+.nosotros > p,
+.about > p {
   text-align: center;
   margin-bottom: var(--space-xl);
   color: var(--color-text-light);
 }
 
-.nosotros-content {
+.nosotros-content,
+.about-content {
   max-width: 700px;
   margin: 0 auto var(--space-xl);
   text-align: center;
 }
 
-.nosotros-values {
+.nosotros-values,
+.about-values {
   display: grid;
   gap: var(--space-md);
   grid-template-columns: 1fr;
@@ -897,7 +927,8 @@ section {
   font-size: 0.9rem;
 }
 
-.nosotros-link {
+.nosotros-link,
+.about-link {
   display: block;
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
@@ -909,19 +940,22 @@ section {
   margin: 0 auto;
 }
 
-.nosotros-link:hover {
+.nosotros-link:hover,
+.about-link:hover {
   background-color: #8a3500;
   color: white;
 }
 
 @media (min-width: 576px) {
-  .nosotros-values {
+  .nosotros-values,
+  .about-values {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
-  .nosotros-values {
+  .nosotros-values,
+  .about-values {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
   }
@@ -931,18 +965,21 @@ section {
    Contact Section
    =================================== */
 
-.contacto h2 {
+.contacto h2,
+.contact h2 {
   text-align: center;
   margin-bottom: var(--space-sm);
 }
 
-.contacto > p {
+.contacto > p,
+.contact > p {
   text-align: center;
   margin-bottom: var(--space-xl);
   color: var(--color-text-light);
 }
 
-.contacto-content {
+.contacto-content,
+.contact-content {
   display: grid;
   gap: var(--space-xl);
   grid-template-columns: 1fr;
@@ -950,36 +987,44 @@ section {
   margin: 0 auto;
 }
 
-.contacto-info {
+.contacto-info,
+.contact-info {
   padding: var(--space-md);
 }
 
-.contacto-info p {
+.contacto-info p,
+.contact-info p {
   margin-bottom: var(--space-md);
 }
 
-.contacto-info address {
+.contacto-info address,
+.contact-info address {
   font-style: normal;
 }
 
-.contacto-info address p {
+.contacto-info address p,
+.contact-info address p {
   margin-bottom: var(--space-sm);
   color: var(--color-text-light);
 }
 
-.contacto-form {
+.contacto-form,
+.contact-form {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
 }
 
-.contacto-form label {
+.contacto-form label,
+.contact-form label {
   font-weight: 600;
   font-size: 0.9rem;
 }
 
 .contacto-form input,
-.contacto-form textarea {
+.contacto-form textarea,
+.contact-form input,
+.contact-form textarea {
   width: 100%;
   padding: var(--space-sm) var(--space-md);
   border: 1px solid #ccc;
@@ -990,17 +1035,21 @@ section {
 }
 
 .contacto-form input:focus,
-.contacto-form textarea:focus {
+.contacto-form textarea:focus,
+.contact-form input:focus,
+.contact-form textarea:focus {
   outline: none;
   border-color: var(--color-primary);
 }
 
-.contacto-form textarea {
+.contacto-form textarea,
+.contact-form textarea {
   resize: vertical;
   min-height: 120px;
 }
 
-.contacto-form button {
+.contacto-form button,
+.contact-form button {
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
   color: white;
@@ -1011,18 +1060,22 @@ section {
   transition: background-color 0.3s ease;
 }
 
-.contacto-form button:hover {
+.contacto-form button:hover,
+.contact-form button:hover {
   background-color: #cc6600;
 }
 
 @media (min-width: 768px) {
-  .contacto-content {
+  .contacto-content,
+  .contact-content {
     grid-template-columns: 1fr 1fr;
     max-width: 900px;
   }
 
   .contacto-form input,
-  .contacto-form textarea {
+  .contacto-form textarea,
+  .contact-form input,
+  .contact-form textarea {
     padding: var(--space-md);
   }
 }
