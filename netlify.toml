@@ -1,6 +1,13 @@
 [build]
   publish = "."
 
+# SPA redirect for client-side routing (only for pages not found)
+[[redirects]]
+  from = "/pages/*"
+  to = "/pages/:splat"
+  status = 200
+
+# Redirect root to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"

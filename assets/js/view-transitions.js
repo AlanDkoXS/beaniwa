@@ -44,6 +44,10 @@ function isInternalLink(href) {
  * Check if link is just an anchor on current page
  */
 function isAnchorLink(href) {
+  // Check if it's an anchor link (starts with #)
+  if (href.startsWith("#")) return true;
+
+  // Check if it's a link to current page with hash
   const url = new URL(href, window.location.origin);
   return url.pathname === window.location.pathname && url.hash;
 }

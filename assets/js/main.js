@@ -10,7 +10,8 @@ import { initScrollAnimations } from "./components/scroll-animations.js";
 import { initNavigation } from "./navigation.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
-import { initViewTransitions } from "./view-transitions.js";
+// View Transitions disabled due to CORS issues on local servers
+// import { initViewTransitions } from "./view-transitions.js";
 
 /**
  * Initialize all application modules
@@ -20,7 +21,8 @@ function initApp() {
 
   // Initialize all modules
   initNavigation();
-  initViewTransitions();
+  // View Transitions disabled - causes CORB errors on local development
+  // initViewTransitions();
   initScroll();
   initHeader();
   initMobileMenu();
