@@ -42,6 +42,7 @@ const hamburgerItem = {
   id: "hamburger",
   label: "Más",
   icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>`,
+  iconActive: `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>`,
 };
 
 /**
@@ -106,8 +107,12 @@ function createMenuItem(item, index, isActive) {
   // Set the button color
   button.style.setProperty("--bgColorItem", "#ff8000");
 
-  // Add icon
-  button.appendChild(createIcon(item.icon));
+  // Add icon - use active icon for hamburger when active
+  if (item.id === "hamburger" && item.iconActive) {
+    button.appendChild(createIcon(isActive ? item.iconActive : item.icon));
+  } else {
+    button.appendChild(createIcon(item.icon));
+  }
 
   // Check if this is the hamburger button
   if (item.id === "hamburger") {
@@ -140,7 +145,13 @@ function handleItemClick(clickedItem, href) {
     hamburgerPanel.classList.remove("open");
     if (hamburgerButton) {
       hamburgerButton.classList.remove("active");
+      // Animate hamburger icon back to lines
+      animateHamburgerIcon(hamburgerButton, false);
     }
+    // Remove hamburger-active attribute
+    document
+      .querySelector(".mobile-menu")
+      ?.removeAttribute("data-hamburger-active");
     // Show menu border
     if (menuBorder) {
       menuBorder.style.opacity = "1";
@@ -188,6 +199,52 @@ function offsetMenuBorder(element, menuBorder) {
 /**
  * Toggle hamburger menu panel
  */
+
+/**
+ * Animate hamburger icon transition to X and vice versa
+ */
+function animateHamburgerIcon(hamburgerButton, toActive) {
+  const iconElement = hamburgerButton.querySelector(".icon");
+  if (!iconElement) return;
+
+  const newIcon = toActive ? hamburgerItem.iconActive : hamburgerItem.icon;
+  const paths = iconElement.querySelectorAll("path");
+  const animationDuration = "0.7s";
+
+  // Apply stroke animation to fade out
+  paths.forEach(path => {
+    path.style.strokeDasharray = "400";
+    path.style.strokeDashoffset = "0";
+    path.style.transition = `stroke-dashoffset ${animationDuration} ease`;
+  });
+
+  // Animate out, then swap icon, then animate in
+  requestAnimationFrame(() => {
+    paths.forEach(path => {
+      path.style.strokeDashoffset = "400";
+    });
+
+    setTimeout(() => {
+      // Swap the icon content
+      iconElement.innerHTML = newIcon;
+
+      // Animate the new icon in
+      const newPaths = iconElement.querySelectorAll("path");
+      newPaths.forEach(path => {
+        path.style.strokeDasharray = "400";
+        path.style.strokeDashoffset = "400";
+        path.style.transition = `stroke-dashoffset ${animationDuration} ease`;
+      });
+
+      requestAnimationFrame(() => {
+        newPaths.forEach(path => {
+          path.style.strokeDashoffset = "0";
+        });
+      });
+    }, 700);
+  });
+}
+
 function toggleHamburgerMenu(hamburgerButton) {
   let panel = document.querySelector(".mobile-menu__panel");
   const menuBorder = document.querySelector(".mobile-menu__border");
@@ -197,10 +254,16 @@ function toggleHamburgerMenu(hamburgerButton) {
     if (panel.classList.contains("open")) {
       panel.classList.remove("open");
       hamburgerButton.classList.remove("active");
+      // Remove hamburger-active attribute
+      document
+        .querySelector(".mobile-menu")
+        ?.removeAttribute("data-hamburger-active");
       // Show menu border again
       if (menuBorder) {
         menuBorder.style.opacity = "1";
       }
+      // Animate hamburger icon back to lines
+      animateHamburgerIcon(hamburgerButton, false);
       setTimeout(() => {
         if (panel.parentNode) {
           panel.parentNode.removeChild(panel);
@@ -218,10 +281,20 @@ function toggleHamburgerMenu(hamburgerButton) {
     }
   });
 
-  // Hide menu border when hamburger is active
+  // Add hamburger-active attribute to show border
+  document
+    .querySelector(".mobile-menu")
+    ?.setAttribute("data-hamburger-active", "true");
+
+  // Position the border under hamburger button
   if (menuBorder) {
-    menuBorder.style.opacity = "0";
+    requestAnimationFrame(() => {
+      offsetMenuBorder(hamburgerButton, menuBorder);
+    });
   }
+
+  // Animate hamburger icon to X
+  animateHamburgerIcon(hamburgerButton, true);
 
   // Create new panel
   panel = document.createElement("div");
@@ -247,6 +320,12 @@ function toggleHamburgerMenu(hamburgerButton) {
     item.addEventListener("click", () => {
       panel.classList.remove("open");
       hamburgerButton.classList.remove("active");
+      // Animate hamburger icon back to lines
+      animateHamburgerIcon(hamburgerButton, false);
+      // Remove hamburger-active attribute
+      document
+        .querySelector(".mobile-menu")
+        ?.removeAttribute("data-hamburger-active");
       setTimeout(() => {
         if (panel.parentNode) {
           panel.parentNode.removeChild(panel);
