@@ -70,7 +70,7 @@ const navItems = [
   {
     id: "inicio",
     href: "/#inicio",
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819"/>`,
+    icon: `<polygon stroke-linecap="round" stroke-linejoin="round" points="12.1 23 15.5 11.1 8.6 9 9.3 23.1 7.4 23.2 0.1 0.2 0.1 0.1 23.9 3.6 14.2 23.3 12.1 23"/>`,
   },
   {
     id: "servicios",
@@ -768,11 +768,25 @@ function initMobileMenu() {
   if (document.readyState === "complete") {
     setTimeout(() => {
       showMobileMenuWithWave(mobileMenu, menuBorder);
+      // Setup scroll observer to select hamburger when reaching footer
+      setupFooterScrollObserverMain(
+        mobileMenu,
+        hamburgerButton,
+        menuBorder,
+        bottomNavItems.length,
+      );
     }, 2000);
   } else {
     window.addEventListener("load", () => {
       setTimeout(() => {
         showMobileMenuWithWave(mobileMenu, menuBorder);
+        // Setup scroll observer to select hamburger when reaching footer
+        setupFooterScrollObserverMain(
+          mobileMenu,
+          hamburgerButton,
+          menuBorder,
+          bottomNavItems.length,
+        );
       }, 2000);
     });
   }
@@ -856,6 +870,75 @@ function closeMenu() {
  */
 function toggleMenu() {
   // No-op for this implementation
+}
+
+/**
+ * Setup scroll observer to select hamburger when reaching footer (main menu)
+ */
+function setupFooterScrollObserverMain(
+  mobileMenu,
+  hamburgerButton,
+  menuBorder,
+  bottomNavItemsCount,
+) {
+  const footer = document.querySelector("footer");
+
+  if (!footer) {
+    return;
+  }
+
+  const hamburgerIndex = bottomNavItemsCount;
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Footer is visible - select hamburger
+          setActiveMenuItemMain(
+            mobileMenu,
+            hamburgerButton,
+            hamburgerIndex,
+            menuBorder,
+          );
+        } else {
+          // Footer not visible - select first item
+          const firstItem = mobileMenu.querySelector(
+            '.mobile-menu__item[data-index="0"]',
+          );
+          if (firstItem) {
+            setActiveMenuItemMain(mobileMenu, firstItem, 0, menuBorder);
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    },
+  );
+
+  observer.observe(footer);
+}
+
+/**
+ * Set active menu item (main menu)
+ */
+function setActiveMenuItemMain(mobileMenu, item, index, menuBorder) {
+  const items = mobileMenu.querySelectorAll(".mobile-menu__item");
+
+  items.forEach((el, i) => {
+    if (i === index) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+
+  // Update border position
+  if (menuBorder) {
+    requestAnimationFrame(() => {
+      offsetMenuBorder(item, menuBorder);
+    });
+  }
 }
 
 // Export functions

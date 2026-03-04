@@ -52,11 +52,12 @@
   --radius-full: 9999px;
 
   /* Colors - Improved contrast for accessibility (WCAG AA compliant) */
-  --color-primary: #ff8000;
-  --color-text: #242424;
+  --color-primary: #fa6e02;
+  --color-secondary: EC4700;
+  --color-text: #111111;
   --color-text-light: #595959;
-  --color-bg: #ffffff;
-  --color-bg-alt: #dbdbdb;
+  --color-bg: #f5f5f5;
+  --color-bg-alt: #a5c4d4;
 }
 
 /* Desktop overrides for spacing */
