@@ -53,7 +53,7 @@
 
   /* Colors - Improved contrast for accessibility (WCAG AA compliant) */
   --color-primary: #fa6e02;
-  --color-on-primary: var(--color-on-primary);
+  --color-on-primary: #ec4700;
   --color-secondary: EC4700;
   --color-text: #111111;
   --color-text-light: #595959;
@@ -1240,7 +1240,8 @@ section {
 }
 
 .contacto-form button,
-.contact-form button {
+.contact-form button,
+.submit-button {
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
   color: var(--color-bg);
@@ -1252,8 +1253,9 @@ section {
 }
 
 .contacto-form button:hover,
-.contact-form button:hover {
-  background-color: #cc6600;
+.contact-form button:hover,
+.submit-button:hover {
+  background-color: var(--color-on-primary);
 }
 
 @media (min-width: 768px) {
