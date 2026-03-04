@@ -1,0 +1,44 @@
+# Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Kilo
+.kilocode/
+.kilo/
+plans/
+
+# Examples
+.examples/
+
+# Old files
+.archive/
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# Prettier
+.prettierrc
+
+# Eslint Config
+eslint.config.mjs
+
+# OpenCode
+opencode.json
+
+# Public Key
+config.js
+
+# Node Modules
+package-lock.json
+package.json
+
+# Git Ignore
+.gitignore
+.commits_list
