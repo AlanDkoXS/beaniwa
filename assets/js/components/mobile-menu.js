@@ -739,8 +739,12 @@ function initMobileMenu() {
     mobileMenu.appendChild(menuItem);
   });
 
-  // Create hamburger button at the end
-  const hamburgerButton = createMenuItem(hamburgerItem, navItems.length, false);
+  // Create hamburger button at the end - use bottomNavItems.length for correct index
+  const hamburgerButton = createMenuItem(
+    hamburgerItem,
+    bottomNavItems.length,
+    false,
+  );
   hamburgerButton.setAttribute("data-hamburger", "true");
   mobileMenu.appendChild(hamburgerButton);
 
@@ -768,25 +772,11 @@ function initMobileMenu() {
   if (document.readyState === "complete") {
     setTimeout(() => {
       showMobileMenuWithWave(mobileMenu, menuBorder);
-      // Setup scroll observer to select hamburger when reaching footer
-      setupFooterScrollObserverMain(
-        mobileMenu,
-        hamburgerButton,
-        menuBorder,
-        bottomNavItems.length,
-      );
     }, 2000);
   } else {
     window.addEventListener("load", () => {
       setTimeout(() => {
         showMobileMenuWithWave(mobileMenu, menuBorder);
-        // Setup scroll observer to select hamburger when reaching footer
-        setupFooterScrollObserverMain(
-          mobileMenu,
-          hamburgerButton,
-          menuBorder,
-          bottomNavItems.length,
-        );
       }, 2000);
     });
   }
@@ -794,6 +784,26 @@ function initMobileMenu() {
   // Update active item on scroll
   let scrollTimeout;
   window.addEventListener("scroll", () => {
+    // Check if at bottom of page first
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+    const isAtBottom = scrollTop + windowHeight >= docHeight - 50;
+
+    if (isAtBottom) {
+      // At bottom - select hamburger
+      const hamburgerIndex = bottomNavItems.length;
+      setActiveMenuItemMain(
+        mobileMenu,
+        hamburgerButton,
+        hamburgerIndex,
+        menuBorder,
+      );
+      return;
+    }
+
+    // Not at bottom - continue with normal scroll behavior
+
     // Throttle scroll events for performance
     if (scrollTimeout) return;
     scrollTimeout = setTimeout(() => {
@@ -874,49 +884,10 @@ function toggleMenu() {
 
 /**
  * Setup scroll observer to select hamburger when reaching footer (main menu)
+ * NOTE: This logic is now integrated directly into the scroll handler
  */
-function setupFooterScrollObserverMain(
-  mobileMenu,
-  hamburgerButton,
-  menuBorder,
-  bottomNavItemsCount,
-) {
-  const footer = document.querySelector("footer");
-
-  if (!footer) {
-    return;
-  }
-
-  const hamburgerIndex = bottomNavItemsCount;
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Footer is visible - select hamburger
-          setActiveMenuItemMain(
-            mobileMenu,
-            hamburgerButton,
-            hamburgerIndex,
-            menuBorder,
-          );
-        } else {
-          // Footer not visible - select first item
-          const firstItem = mobileMenu.querySelector(
-            '.mobile-menu__item[data-index="0"]',
-          );
-          if (firstItem) {
-            setActiveMenuItemMain(mobileMenu, firstItem, 0, menuBorder);
-          }
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-    },
-  );
-
-  observer.observe(footer);
+function setupFooterScrollObserverMain() {
+  // No-op - logic is in the scroll event handler in initMobileMenu
 }
 
 /**

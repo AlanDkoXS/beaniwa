@@ -527,6 +527,14 @@ function initSecondaryMobileMenu() {
   // Show menu immediately
   showSecondaryMobileMenu(mobileMenu, menuBorder);
 
+  // Setup scroll observer to select hamburger when reaching footer
+  setupFooterScrollObserverSecondary(
+    mobileMenu,
+    hamburgerButton,
+    menuBorder,
+    1, // Regresar is index 0, hamburger is index 1
+  );
+
   // Update active item on scroll
   window.addEventListener("scroll", () => {
     const activeItem = mobileMenu.querySelector(".mobile-menu__item.active");
@@ -559,6 +567,73 @@ function showSecondaryMobileMenu(mobileMenu, menuBorder) {
       offsetMenuBorderSecondary(activeItem, menuBorder);
     }
   }, 100);
+}
+
+/**
+ * Setup scroll observer to select hamburger when reaching footer (secondary menu)
+ */
+function setupFooterScrollObserverSecondary(
+  mobileMenu,
+  hamburgerButton,
+  menuBorder,
+  hamburgerIndex,
+) {
+  const footer = document.querySelector("footer");
+
+  if (!footer) {
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Footer is visible - select hamburger
+          setActiveMenuItemSecondary(
+            mobileMenu,
+            hamburgerButton,
+            hamburgerIndex,
+            menuBorder,
+          );
+        } else {
+          // Footer not visible - select first item (Regresar)
+          const firstItem = mobileMenu.querySelector(
+            '.mobile-menu__item[data-index="0"]',
+          );
+          if (firstItem) {
+            setActiveMenuItemSecondary(mobileMenu, firstItem, 0, menuBorder);
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    },
+  );
+
+  observer.observe(footer);
+}
+
+/**
+ * Set active menu item (secondary menu)
+ */
+function setActiveMenuItemSecondary(mobileMenu, item, index, menuBorder) {
+  const items = mobileMenu.querySelectorAll(".mobile-menu__item");
+
+  items.forEach((el, i) => {
+    if (i === index) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+
+  // Update border position
+  if (menuBorder) {
+    requestAnimationFrame(() => {
+      offsetMenuBorderSecondary(item, menuBorder);
+    });
+  }
 }
 
 // Export functions
