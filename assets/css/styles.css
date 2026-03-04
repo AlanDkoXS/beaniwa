@@ -53,6 +53,7 @@
 
   /* Colors - Improved contrast for accessibility (WCAG AA compliant) */
   --color-primary: #fa6e02;
+  --color-on-primary: var(--color-on-primary);
   --color-secondary: EC4700;
   --color-text: #111111;
   --color-text-light: #595959;
@@ -291,7 +292,7 @@ section {
   font-family: var(--font-title);
   font-size: 1.5rem;
   font-weight: 700;
-  color: white;
+  color: var(--color-bg);
   text-decoration: none;
 }
 
@@ -337,7 +338,7 @@ section {
   font-size: 1em;
   margin: 0;
   width: 100%;
-  --bgColorItem: #e67300;
+  --bgColorItem: #fa6e02;
   /* Improve touch response on mobile */
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -384,7 +385,7 @@ section {
 .mobile-menu__item .icon {
   width: 1.4em;
   height: 1.4em;
-  stroke: white;
+  stroke: var(--color-bg);
   fill: transparent;
   stroke-width: 1pt;
   stroke-miterlimit: 10;
@@ -496,14 +497,14 @@ section {
   width: 3.2em;
   height: 3.2em;
   border-radius: 50%;
-  background-color: var(--bgColorItem, #ff8000);
+  background-color: var(--bgColorItem, --color-on-primary);
   transform: scale(1);
   transition: transform 0.7s ease-out;
   z-index: -1;
 }
 
 .mobile-menu__item[data-hamburger="true"].active .icon {
-  stroke: white;
+  stroke: var(--color-bg);
   animation: stroke-animation 1.5s reverse;
 }
 
@@ -611,7 +612,7 @@ section {
   border-radius: 16px;
   padding: 1em 0.5em;
   text-decoration: none;
-  color: white;
+  color: var(--color-bg);
   transition: all 0.3s ease;
   min-height: 90px;
 }
@@ -633,7 +634,7 @@ section {
   border-radius: 16px;
   padding: 1em 0.5em;
   text-decoration: none;
-  color: white;
+  color: var(--color-bg);
   transition: all 0.3s ease;
   min-height: 90px;
 }
@@ -657,7 +658,7 @@ section {
 .mobile-menu__nav-card-icon .icon {
   width: 28px;
   height: 28px;
-  stroke: #ff8000;
+  stroke: var(--color-bg);
   fill: transparent;
   stroke-width: 1.5;
   stroke-linecap: round;
@@ -692,7 +693,7 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   text-decoration: none;
-  color: white;
+  color: var(--color-bg);
   transition: all 0.3s ease;
 }
 
@@ -707,7 +708,7 @@ section {
 .mobile-menu__social-item .social-icon {
   width: 22px;
   height: 22px;
-  stroke: white;
+  stroke: var(--color-bg);
   fill: transparent;
   stroke-width: 1.5;
   stroke-linecap: round;
@@ -737,7 +738,7 @@ section {
   border-radius: 12px;
   padding: 1.2em;
   text-decoration: none;
-  color: white;
+  color: var(--color-bg);
   font-weight: 500;
   font-size: 1.1em;
   transition: all 0.3s ease;
@@ -787,7 +788,7 @@ section {
   }
 
   .nav-menu li a {
-    color: white;
+    color: var(--color-bg);
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 1rem;
@@ -854,15 +855,15 @@ section {
   display: inline-block;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-bg);
   border-radius: var(--radius-md);
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .hero-cta:hover {
-  background-color: #8a3500;
-  color: white;
+  background-color: var(--color-on-primary);
+  color: var(--color-bg);
   transform: translateY(-2px);
 }
 
@@ -922,7 +923,7 @@ section {
 
 .servicio-card,
 .service-card {
-  background: white;
+  background: var(--color-bg);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -946,7 +947,7 @@ section {
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-bg);
   border-radius: var(--radius-md);
   font-weight: 600;
   max-width: 200px;
@@ -955,8 +956,8 @@ section {
 
 .servicios-link:hover,
 .services-link:hover {
-  background-color: #8a3500;
-  color: white;
+  background-color: var(--color-on-primary);
+  color: var(--color-bg);
 }
 
 @media (min-width: 576px) {
@@ -1035,7 +1036,7 @@ section {
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-bg);
   border-radius: var(--radius-md);
   font-weight: 600;
   max-width: 200px;
@@ -1044,8 +1045,8 @@ section {
 
 .portfolio-link:hover,
 .portafolio-link:hover {
-  background-color: #8a3500;
-  color: white;
+  background-color: var(--color-on-primary);
+  color: var(--color-bg);
 }
 
 @media (min-width: 576px) {
@@ -1100,7 +1101,7 @@ section {
 }
 
 .value-card {
-  background: white;
+  background: var(--color-bg);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   text-align: center;
@@ -1123,7 +1124,7 @@ section {
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-bg);
   border-radius: var(--radius-md);
   font-weight: 600;
   max-width: 200px;
@@ -1132,8 +1133,8 @@ section {
 
 .nosotros-link:hover,
 .about-link:hover {
-  background-color: #8a3500;
-  color: white;
+  background-color: var(--color-on-primary);
+  color: var(--color-bg);
 }
 
 @media (min-width: 576px) {
@@ -1242,7 +1243,7 @@ section {
 .contact-form button {
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-bg);
   border: none;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -1312,7 +1313,7 @@ footer {
 }
 
 .footer-links h4 {
-  color: white;
+  color: var(--color-bg);
   margin-bottom: var(--space-md);
 }
 
@@ -1371,7 +1372,7 @@ footer {
 }
 
 .footer-language h4 {
-  color: white;
+  color: var(--color-bg);
   margin-bottom: var(--space-md);
 }
 
