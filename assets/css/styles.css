@@ -305,13 +305,6 @@ section {
   font-weight: 700;
   color: var(--color-bg);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  height: 2.5rem;
-  width: auto;
 }
 
 /* Desktop header */
@@ -819,7 +812,8 @@ section {
     padding: 0;
     position: absolute;
     right: 1rem;
-    top: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .nav-menu li a {
