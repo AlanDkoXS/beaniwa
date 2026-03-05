@@ -294,18 +294,24 @@ section {
   font-weight: 700;
   color: var(--color-bg);
   text-decoration: none;
+  position: relative;
+  top: 0.25rem;
 }
 
 /* Desktop header */
 @media (min-width: 768px) {
   .header {
     padding: var(--space-md) var(--space-xl);
+    background-color: transparent;
+    backdrop-filter: none;
   }
 }
 
 @media (min-width: 1024px) {
   .header {
-    padding: var(--space-lg) var(--space-2xl);
+    padding: var(--space-sm) var(--space-2xl);
+    background-color: transparent;
+    backdrop-filter: none;
   }
 }
 
@@ -781,19 +787,23 @@ section {
 @media (min-width: 768px) {
   .nav-menu {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     list-style: none;
     margin: 0;
     padding: 0;
+    position: absolute;
+    right: 1rem;
+    top: 1.5rem;
   }
 
   .nav-menu li a {
     color: var(--color-bg);
     text-decoration: none;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    padding: 0.35rem 0.6rem;
     border-radius: 4px;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
   }
 
   .nav-menu li:nth-child(1) a:hover,
@@ -890,6 +900,13 @@ section {
   width: 32px;
   height: 32px;
   color: var(--color-bg);
+}
+
+/* Hide scroll indicator on desktop */
+@media (min-width: 768px) {
+  .hero-scroll-indicator {
+    display: none;
+  }
 }
 
 @keyframes fadeIn {
