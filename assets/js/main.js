@@ -28,6 +28,22 @@ function isIndexPage() {
 }
 
 /**
+ * Freeze video on last frame when it ends
+ */
+function initHeroVideoFreeze() {
+  const heroVideo = document.querySelector(".hero-video");
+
+  if (!heroVideo) {
+    return;
+  }
+
+  heroVideo.addEventListener("ended", function () {
+    this.pause();
+    this.controls = false;
+  });
+}
+
+/**
  * Initialize all application modules
  */
 function initApp() {
@@ -50,6 +66,8 @@ function initApp() {
   initScrollAnimations();
   // Initialize utils
   updateDateYear();
+  // Freeze video on last frame
+  initHeroVideoFreeze();
 
   console.log("Aniwa initialized successfully");
 }
