@@ -51,16 +51,14 @@ function initApp() {
 
   // Initialize all modules
   initNavigation();
-  // View Transitions disabled - causes CORB errors on local development
-  // initViewTransitions();
   initScroll();
   initHeader();
 
   // Initialize appropriate mobile menu based on page
   if (isIndexPage()) {
-    initMobileMenu(); // Full navigation menu
+    initMobileMenu();
   } else {
-    initSecondaryMobileMenu(); // Only Regresar + hamburger
+    initSecondaryMobileMenu();
   }
 
   initScrollAnimations();

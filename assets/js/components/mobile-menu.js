@@ -784,14 +784,14 @@ function initMobileMenu() {
   // Update active item on scroll
   let scrollTimeout;
   window.addEventListener("scroll", () => {
-    // Check if at bottom of page first
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight;
-    const windowHeight = window.innerHeight;
-    const isAtBottom = scrollTop + windowHeight >= docHeight - 50;
+    // Check if footer is in viewport
+    const footer = document.querySelector("footer");
+    const isAtFooter = footer
+      ? footer.getBoundingClientRect().top <= window.innerHeight
+      : false;
 
-    if (isAtBottom) {
-      // At bottom - select hamburger
+    if (isAtFooter) {
+      // At footer - select hamburger
       const hamburgerIndex = bottomNavItems.length;
       setActiveMenuItemMain(
         mobileMenu,
@@ -801,8 +801,6 @@ function initMobileMenu() {
       );
       return;
     }
-
-    // Not at bottom - continue with normal scroll behavior
 
     // Throttle scroll events for performance
     if (scrollTimeout) return;
