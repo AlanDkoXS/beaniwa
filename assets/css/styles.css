@@ -55,10 +55,10 @@
   --color-primary: #fa6e02;
   --color-on-primary: #ec4700;
   --color-secondary: #ec4700;
-  --color-text: #111111;
-  --color-text-light: #595959;
-  --color-bg: #f5f5f5;
-  --color-bg-alt: #a5c4d4;
+  --color-dark: #111111;
+  --color-neutral: #595959;
+  --color-light: #f5f5f5;
+  --color-light-alt: #a5c4d4;
 }
 
 /* Desktop overrides for spacing */
@@ -118,8 +118,8 @@ body {
 body {
   font-family: var(--font-body);
   line-height: 1.6;
-  color: var(--color-text);
-  background-color: var(--color-bg);
+  color: var(--color-dark);
+  background-color: var(--color-light);
 }
 
 /* Headings - Antonio font */
@@ -303,7 +303,7 @@ section {
   font-family: var(--font-title);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-bg);
+  color: var(--color-light);
   text-decoration: none;
 }
 
@@ -417,7 +417,7 @@ section {
 .mobile-menu__item .icon {
   width: 1.4em;
   height: 1.4em;
-  stroke: var(--color-bg);
+  stroke: var(--color-light);
   fill: transparent;
   stroke-width: 1pt;
   stroke-miterlimit: 10;
@@ -536,7 +536,7 @@ section {
 }
 
 .mobile-menu__item[data-hamburger="true"].active .icon {
-  stroke: var(--color-bg);
+  stroke: var(--color-light);
   animation: stroke-animation 1.5s reverse;
 }
 
@@ -644,7 +644,7 @@ section {
   border-radius: 16px;
   padding: 1em 0.5em;
   text-decoration: none;
-  color: var(--color-bg);
+  color: var(--color-light);
   transition: all 0.3s ease;
   min-height: 90px;
 }
@@ -666,7 +666,7 @@ section {
   border-radius: 16px;
   padding: 1em 0.5em;
   text-decoration: none;
-  color: var(--color-bg);
+  color: var(--color-light);
   transition: all 0.3s ease;
   min-height: 90px;
 }
@@ -690,7 +690,7 @@ section {
 .mobile-menu__nav-card-icon .icon {
   width: 28px;
   height: 28px;
-  stroke: var(--color-bg);
+  stroke: var(--color-light);
   fill: transparent;
   stroke-width: 1.5;
   stroke-linecap: round;
@@ -725,7 +725,7 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   text-decoration: none;
-  color: var(--color-bg);
+  color: var(--color-light);
   transition: all 0.3s ease;
 }
 
@@ -740,7 +740,7 @@ section {
 .mobile-menu__social-item .social-icon {
   width: 22px;
   height: 22px;
-  stroke: var(--color-bg);
+  stroke: var(--color-light);
   fill: transparent;
   stroke-width: 1.5;
   stroke-linecap: round;
@@ -770,7 +770,7 @@ section {
   border-radius: 12px;
   padding: 1.2em;
   text-decoration: none;
-  color: var(--color-bg);
+  color: var(--color-light);
   font-weight: 500;
   font-size: 1.1em;
   transition: all 0.3s ease;
@@ -824,7 +824,7 @@ section {
   }
 
   .nav-menu li a {
-    color: var(--color-bg);
+    color: var(--color-light);
     text-decoration: none;
     font-weight: 500;
     padding: 0.35rem 0.6rem;
@@ -835,31 +835,31 @@ section {
 
   .nav-menu li:nth-child(1) a:hover,
   .nav-menu li:nth-child(1) a.active {
-    color: #ffa500;
+    color: var(--color-primary);
     background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(2) a:hover,
   .nav-menu li:nth-child(2) a.active {
-    color: #ffa500;
+    color: var(--color-primary);
     background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(3) a:hover,
   .nav-menu li:nth-child(3) a.active {
-    color: #ffa500;
+    color: var(--color-primary);
     background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(4) a:hover,
   .nav-menu li:nth-child(4) a.active {
-    color: #ffa500;
+    color: var(--color-primary);
     background-color: rgba(255, 139, 23, 0.2);
   }
 
   .nav-menu li:nth-child(5) a:hover,
   .nav-menu li:nth-child(5) a.active {
-    color: #ffa500;
+    color: var(--color-primary);
     background-color: rgba(255, 139, 23, 0.2);
   }
 }
@@ -899,7 +899,7 @@ section {
 
 .hero-title,
 .hero-subtitle {
-  color: var(--color-bg);
+  color: var(--color-light);
 }
 /* Scroll Indicator - Appears at 6s */
 .hero-scroll-indicator {
@@ -926,7 +926,7 @@ section {
 .hero-scroll-indicator svg {
   width: 32px;
   height: 32px;
-  color: var(--color-bg);
+  color: var(--color-light);
 }
 
 /* Hide scroll indicator on desktop */
@@ -959,7 +959,7 @@ section {
   display: inline-block;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
   border-radius: var(--radius-md);
   font-weight: 600;
   transition: all 0.3s ease;
@@ -967,7 +967,7 @@ section {
 
 .hero-cta:hover {
   background-color: var(--color-on-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
   transform: translateY(-2px);
 }
 
@@ -1001,7 +1001,7 @@ section {
    =================================== */
 .servicios,
 .services {
-  background-color: var(--color-bg-alt);
+  background-color: var(--color-light-alt);
 }
 
 .servicios h2,
@@ -1014,7 +1014,7 @@ section {
 .services > p {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-text-light);
+  color: var(--color-neutral);
 }
 
 .servicios-grid,
@@ -1027,7 +1027,7 @@ section {
 
 .servicio-card,
 .service-card {
-  background: var(--color-bg);
+  background: var(--color-light);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -1041,7 +1041,7 @@ section {
 .servicio-card p,
 .service-card p {
   margin-bottom: 0;
-  color: var(--color-text-light);
+  color: var(--color-neutral);
   font-size: 0.9rem;
 }
 
@@ -1051,7 +1051,7 @@ section {
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
   border-radius: var(--radius-md);
   font-weight: 600;
   max-width: 200px;
@@ -1061,7 +1061,7 @@ section {
 .servicios-link:hover,
 .services-link:hover {
   background-color: var(--color-on-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
 }
 
 @media (min-width: 576px) {
@@ -1098,7 +1098,7 @@ section {
 .portafolio > p {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-text-light);
+  color: var(--color-neutral);
 }
 
 .portfolio-grid,
@@ -1111,7 +1111,7 @@ section {
 
 .proyecto-card,
 .project-card {
-  background: var(--color-bg-alt);
+  background: var(--color-light-alt);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   min-height: 150px;
@@ -1130,7 +1130,7 @@ section {
 .proyecto-card p,
 .project-card p {
   margin-bottom: 0;
-  color: var(--color-text-light);
+  color: var(--color-neutral);
   font-size: 0.9rem;
 }
 
@@ -1140,7 +1140,7 @@ section {
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
   border-radius: var(--radius-md);
   font-weight: 600;
   max-width: 200px;
@@ -1150,7 +1150,7 @@ section {
 .portfolio-link:hover,
 .portafolio-link:hover {
   background-color: var(--color-on-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
 }
 
 @media (min-width: 576px) {
@@ -1173,7 +1173,7 @@ section {
    =================================== */
 .nosotros,
 .about {
-  background-color: var(--color-bg-alt);
+  background-color: var(--color-light-alt);
 }
 
 .nosotros h2,
@@ -1186,7 +1186,7 @@ section {
 .about > p {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-text-light);
+  color: var(--color-neutral);
 }
 
 .nosotros-content,
@@ -1205,7 +1205,7 @@ section {
 }
 
 .value-card {
-  background: var(--color-bg);
+  background: var(--color-light);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   text-align: center;
@@ -1218,7 +1218,7 @@ section {
 
 .value-card p {
   margin-bottom: 0;
-  color: var(--color-text-light);
+  color: var(--color-neutral);
   font-size: 0.9rem;
 }
 
@@ -1228,7 +1228,7 @@ section {
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
   border-radius: var(--radius-md);
   font-weight: 600;
   max-width: 200px;
@@ -1238,7 +1238,7 @@ section {
 .nosotros-link:hover,
 .about-link:hover {
   background-color: var(--color-on-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
 }
 
 @media (min-width: 576px) {
@@ -1270,7 +1270,7 @@ section {
 .contact > p {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-text-light);
+  color: var(--color-neutral);
 }
 
 .contacto-content,
@@ -1300,7 +1300,7 @@ section {
 .contacto-info address p,
 .contact-info address p {
   margin-bottom: var(--space-sm);
-  color: var(--color-text-light);
+  color: var(--color-neutral);
 }
 
 .contacto-form,
@@ -1348,7 +1348,7 @@ section {
 .submit-button {
   padding: var(--space-sm) var(--space-lg);
   background-color: var(--color-primary);
-  color: var(--color-bg);
+  color: var(--color-light);
   border: none;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -1382,7 +1382,7 @@ section {
    =================================== */
 
 footer {
-  background-color: var(--color-text);
+  background-color: var(--color-dark);
   padding-top: var(--space-2xl);
   padding-bottom: var(--space-3xl);
   padding-left: var(--space-md);
@@ -1436,7 +1436,7 @@ footer {
 }
 
 .footer-links h4 {
-  color: var(--color-bg);
+  color: var(--color-light);
   margin-bottom: var(--space-md);
 }
 
@@ -1495,7 +1495,7 @@ footer {
 }
 
 .footer-language h4 {
-  color: var(--color-bg);
+  color: var(--color-light);
   margin-bottom: var(--space-md);
 }
 
