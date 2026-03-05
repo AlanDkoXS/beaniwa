@@ -277,7 +277,18 @@ section {
   padding: var(--space-md) var(--space-md);
   background-color: rgba(36, 36, 36, 0.95);
   backdrop-filter: blur(10px);
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+.header.scrolled {
+  background-color: rgba(36, 36, 36, 0.95);
+  backdrop-filter: blur(10px);
 }
 
 .nav {
@@ -294,24 +305,39 @@ section {
   font-weight: 700;
   color: var(--color-bg);
   text-decoration: none;
-  position: relative;
-  top: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 2.5rem;
+  width: auto;
 }
 
 /* Desktop header */
 @media (min-width: 768px) {
   .header {
-    padding: var(--space-md) var(--space-xl);
+    padding: var(--space-lg) var(--space-xl);
     background-color: transparent;
     backdrop-filter: none;
+  }
+
+  .header.scrolled {
+    background-color: rgba(36, 36, 36, 0.95);
+    backdrop-filter: blur(10px);
   }
 }
 
 @media (min-width: 1024px) {
   .header {
-    padding: var(--space-sm) var(--space-2xl);
+    padding: var(--space-lg) var(--space-2xl);
     background-color: transparent;
     backdrop-filter: none;
+  }
+
+  .header.scrolled {
+    background-color: rgba(36, 36, 36, 0.95);
+    backdrop-filter: blur(10px);
   }
 }
 
