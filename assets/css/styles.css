@@ -307,6 +307,13 @@ section {
   text-decoration: none;
 }
 
+/* Hide logo on desktop */
+@media (min-width: 768px) {
+  .logo {
+    display: none;
+  }
+}
+
 /* Desktop header */
 @media (min-width: 768px) {
   .header {
