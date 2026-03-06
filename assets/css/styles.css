@@ -1347,20 +1347,72 @@ section {
    =================================== */
 .nosotros,
 .about {
-  background-color: var(--color-light-alt);
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated gradient background for about */
+.nosotros::before,
+.about::before,
+.nosotros::after,
+.about::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+/* Texture overlay */
+.nosotros,
+.about {
+  background-image: url("../img/textures/temporal-gradient.png");
+  background-blend-mode: normal;
+  background-size: 250px;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+/* Upper right gradient */
+.nosotros::before,
+.about::before {
+  top: 30%;
+  right: -100px;
+  width: 200px;
+  height: 200px;
+  background: var(--color-primary);
+  animation: gradient-pulse-1 6s ease-in-out infinite;
+}
+
+/* Middle left gradient */
+.nosotros::after,
+.about::after {
+  top: 60%;
+  left: -200px;
+  background: var(--color-on-primary);
+  animation: gradient-pulse-2 8s ease-in-out infinite;
 }
 
 .nosotros h2,
 .about h2 {
   text-align: center;
   margin-bottom: var(--space-sm);
+  color: var(--color-light);
+  position: relative;
+  z-index: 1;
 }
 
 .nosotros > p,
 .about > p {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-neutral);
+  color: var(--color-light);
+  opacity: 0.85;
 }
 
 .nosotros-content,
@@ -1368,6 +1420,8 @@ section {
   max-width: 700px;
   margin: 0 auto var(--space-xl);
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .nosotros-values,
@@ -1376,23 +1430,36 @@ section {
   gap: var(--space-md);
   grid-template-columns: 1fr;
   margin-bottom: var(--space-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .value-card {
-  background: var(--color-light);
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  background: rgba(10, 10, 10, 0.85);
 }
 
 .value-card h3 {
   margin-bottom: var(--space-sm);
+  color: var(--color-light);
 }
 
 .value-card p {
   margin-bottom: 0;
-  color: var(--color-neutral);
+  color: var(--color-light);
+  opacity: 0.85;
   font-size: 0.9rem;
 }
 
@@ -1407,6 +1474,8 @@ section {
   font-weight: 600;
   max-width: 200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .nosotros-link:hover,
