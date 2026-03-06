@@ -1027,9 +1027,9 @@ section {
 .services {
   background-image: url("../img/textures/temporal-gradient.png");
   background-blend-mode: normal;
-  background-size: 200px;
+  background-size: 250px;
   background-position: top left;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
 }
 
 /* Upper right gradient */
