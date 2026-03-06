@@ -30,8 +30,14 @@ const PAGE_MAPPING = {
  */
 function getCurrentLanguage() {
   const path = window.location.pathname;
-  if (path.includes("/es/")) return "es";
-  if (path.includes("/en/")) return "en";
+  if (path.includes("/es/") || path.startsWith("/es/") || path === "/es") return "es";
+  if (path.includes("/en/") || path.startsWith("/en/") || path === "/en") return "en";
+  
+  // Fallback to html lang attribute
+  const htmlLang = document.documentElement.lang;
+  if (htmlLang === "es") return "es";
+  if (htmlLang === "en") return "en";
+  
   return "en"; // Default
 }
 

@@ -175,6 +175,9 @@ function handleItemClick(clickedItem, href) {
       // Animate hamburger icon back to lines
       animateHamburgerIcon(hamburgerButton, false);
     }
+    // Restore body scroll
+    document.body.style.overflow = "";
+
     // Remove hamburger-active attribute
     document
       .querySelector(".mobile-menu")
@@ -333,6 +336,9 @@ function toggleHamburgerMenu(hamburgerButton) {
     }
     // Animate hamburger icon back to lines
     animateHamburgerIcon(hamburgerButton, false);
+    // Restore body scroll
+    document.body.style.overflow = "";
+
     // Close overlay
     if (overlay) {
       overlay.classList.remove("open");
@@ -363,6 +369,9 @@ function toggleHamburgerMenu(hamburgerButton) {
     .querySelector(".mobile-menu")
     ?.setAttribute("data-hamburger-active", "true");
 
+  // Lock body scroll
+  document.body.style.overflow = "hidden";
+
   // Position the border under hamburger button
   if (menuBorder) {
     requestAnimationFrame(() => {
@@ -388,9 +397,9 @@ function toggleHamburgerMenu(hamburgerButton) {
   panel.className = "mobile-menu__panel";
 
   // Determine href paths based on language
-  const hrefLang = currentLang === "en" ? "/en" : "";
+  const hrefLang = currentLang === "en" ? "/en" : "/es";
   const otherLang = currentLang === "en" ? "es" : "en";
-  const otherLangHref = otherLang === "en" ? "/en" : "";
+  const langButtonHref = getEquivalentUrl(otherLang);
 
   // Section IDs by language
   const sectionIds =
@@ -454,24 +463,6 @@ function toggleHamburgerMenu(hamburgerButton) {
   // Use absolute paths for icons to work from any directory
   const iconBasePath = "/assets/icons";
 
-  // Check if current page is not the index page
-  function isNotIndexPage() {
-    const path = window.location.pathname;
-    // Check if it's index page (root, /index.html, /es/, /es/index.html, /en/, /en/index.html)
-    const isIndex =
-      path === "/" ||
-      path === "/index.html" ||
-      path === "/es" ||
-      path === "/es/" ||
-      path === "/es/index.html" ||
-      path === "/en" ||
-      path === "/en/" ||
-      path === "/en/index.html";
-    return !isIndex;
-  }
-
-  const isNotIndex = isNotIndexPage();
-
   // Build social networks HTML
   const socialHtml = socialNetworks
     .map(
@@ -483,9 +474,7 @@ function toggleHamburgerMenu(hamburgerButton) {
     )
     .join("");
 
-  // Build language switcher HTML
   const langButtonText = currentLang === "en" ? "Español" : "English";
-  const langButtonHref = getEquivalentUrl(otherLang);
 
   // Build navigation HTML - always show all nav items in modal
   const navHtml = navItemsWithIcons
@@ -617,6 +606,8 @@ function closeHamburgerPanel(panel, overlay, hamburgerButton) {
 
   panel.classList.remove("open");
   hamburgerButton.classList.remove("active");
+  // Restore body scroll
+  document.body.style.overflow = "";
   // Remove hamburger-active attribute
   document
     .querySelector(".mobile-menu")
@@ -651,6 +642,7 @@ function initMobileMenu() {
   }
 
   const currentLang = getCurrentLanguage();
+  const langPrefix = currentLang === "en" ? "/en" : "/es";
   const ariaLabel =
     currentLang === "en" ? "Main navigation" : "Navegación principal";
 
@@ -689,13 +681,17 @@ function initMobileMenu() {
     // On non-index pages, only show Regresar and hamburger
     const regresarItem = {
       id: "regresar",
-      href: "/",
+      href: langPrefix + "/",
       icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
     };
     bottomNavItems.push(regresarItem);
   } else {
-    // On index page, show all nav items
-    bottomNavItems.push(...navItems);
+    // On index page, show all nav items with correct language prefix
+    const prefixedNavItems = navItems.map(item => ({
+      ...item,
+      href: langPrefix + item.href,
+    }));
+    bottomNavItems.push(...prefixedNavItems);
   }
 
   // Create menu items

@@ -8,6 +8,7 @@ import { initHeader } from "./components/header.js";
 import { initSecondaryMobileMenu } from "./components/mobile-menu-secondary.js";
 import { initMobileMenu } from "./components/mobile-menu.js";
 import { initScrollAnimations } from "./components/scroll-animations.js";
+import { initContactForm } from "./components/contact-form.js";
 import { initNavigation } from "./navigation.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
@@ -64,6 +65,7 @@ function initApp() {
   }
 
   initScrollAnimations();
+  initContactForm();
   // Initialize utils
   updateDateYear();
   // Freeze video on last frame

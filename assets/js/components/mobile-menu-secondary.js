@@ -144,7 +144,31 @@ function toggleHamburgerMenuSecondary(hamburgerButton) {
 
   // Toggle panel visibility
   if (panel && panel.classList.contains("open")) {
-    // ... (código de cierre existente)
+    panel.classList.remove("open");
+    hamburgerButton.classList.remove("active");
+    // Remove hamburger-active attribute
+    document
+      .querySelector(".mobile-menu")
+      ?.removeAttribute("data-hamburger-active");
+    // Animate hamburger icon back to lines
+    animateHamburgerIconSecondary(hamburgerButton, false);
+    // Restore body scroll
+    document.body.style.overflow = "";
+
+    // Close overlay
+    if (overlay) {
+      overlay.classList.remove("open");
+      setTimeout(() => {
+        if (overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+      }, 400);
+    }
+    setTimeout(() => {
+      if (panel.parentNode) {
+        panel.parentNode.removeChild(panel);
+      }
+    }, 400);
     return;
   }
 
@@ -159,6 +183,9 @@ function toggleHamburgerMenuSecondary(hamburgerButton) {
   document
     .querySelector(".mobile-menu")
     ?.setAttribute("data-hamburger-active", "true");
+
+  // Lock body scroll
+  document.body.style.overflow = "hidden";
 
   if (menuBorder) {
     requestAnimationFrame(() => {
@@ -324,6 +351,8 @@ function closeHamburgerPanelSecondary(panel, overlay, hamburgerButton) {
 
   panel.classList.remove("open");
   hamburgerButton.classList.remove("active");
+  // Restore body scroll
+  document.body.style.overflow = "";
   document
     .querySelector(".mobile-menu")
     ?.removeAttribute("data-hamburger-active");
@@ -390,6 +419,8 @@ function initSecondaryMobileMenu() {
     "opacity 0.6s ease-out, transform 0.6s ease-out";
 
   // Create Regresar item
+  const langPrefix = currentLang === "en" ? "/en/" : "/es/";
+  regresarItem.href = langPrefix;
   const regresarBtn = createMenuItemSecondary(regresarItem, 0, true);
   mobileMenu.appendChild(regresarBtn);
 
