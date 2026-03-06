@@ -12,6 +12,7 @@
   padding: 75% var(--space-md) var(--space-3xl);
   position: relative;
   overflow: hidden;
+  background-color: var(--color-dark);
 }
 
 /* Video Background */
@@ -82,8 +83,7 @@
 /* Desktop hero */
 @media (min-width: 768px) {
   .hero {
-    min-height: calc(100vh - 4.5rem);
-    margin-top: 4.5rem;
+    min-height: 100vh;
     padding: var(--space-3xl) var(--space-xl);
   }
 
