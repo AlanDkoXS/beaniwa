@@ -2,7 +2,6 @@
    About Us Section
    =================================== */
 
-.nosotros,
 .about {
   background-color: var(--color-dark);
   color: var(--color-light);
@@ -15,9 +14,7 @@
   background-repeat: no-repeat;
 }
 
-.nosotros::before,
 .about::before,
-.nosotros::after,
 .about::after {
   content: "";
   position: absolute;
@@ -29,7 +26,6 @@
   will-change: opacity, transform;
 }
 
-.nosotros::before,
 .about::before {
   top: 30%;
   right: -100px;
@@ -39,7 +35,6 @@
   animation: gradient-pulse-1 6s ease-in-out infinite;
 }
 
-.nosotros::after,
 .about::after {
   top: 60%;
   left: -200px;
@@ -47,7 +42,6 @@
   animation: gradient-pulse-2 8s ease-in-out infinite;
 }
 
-.nosotros-content,
 .about-content {
   max-width: 700px;
   margin: 0 auto var(--space-xl);
@@ -56,7 +50,6 @@
   z-index: 1;
 }
 
-.nosotros-values,
 .about-values {
   display: grid;
   gap: var(--space-md);
@@ -67,14 +60,12 @@
 }
 
 @media (min-width: 576px) {
-  .nosotros-values,
   .about-values {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
-  .nosotros-values,
   .about-values {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);

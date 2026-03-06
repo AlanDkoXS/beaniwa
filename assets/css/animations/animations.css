@@ -48,16 +48,16 @@
     animation: none !important;
   }
 
-  .servicios::before, .services::before,
-  .servicios::after, .services::after,
-  .nosotros::before, .about::before,
-  .nosotros::after, .about::after {
+  .services::before,
+  .services::after,
+  .about::before,
+  .about::after {
     animation: none;
     opacity: 0.35;
     transform: none;
   }
 
-  .servicio-card, .service-card, .servicios-link, .services-link {
+  .service-card, .services-link {
     transition: none;
   }
 }

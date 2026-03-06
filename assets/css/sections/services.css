@@ -2,7 +2,6 @@
    Services Section
    =================================== */
 
-.servicios,
 .services {
   background-color: var(--color-dark);
   color: var(--color-light);
@@ -16,9 +15,7 @@
 }
 
 /* Animated gradient backgrounds */
-.servicios::before,
 .services::before,
-.servicios::after,
 .services::after {
   content: "";
   position: absolute;
@@ -30,7 +27,6 @@
   will-change: opacity, transform;
 }
 
-.servicios::before,
 .services::before {
   top: 30%;
   right: -100px;
@@ -40,7 +36,6 @@
   animation: gradient-pulse-1 6s ease-in-out infinite;
 }
 
-.servicios::after,
 .services::after {
   top: 60%;
   left: -200px;
@@ -48,16 +43,13 @@
   animation: gradient-pulse-2 8s ease-in-out infinite;
 }
 
-.servicios h2,
 .services h2,
-.servicios > p,
 .services > p {
   text-align: center;
   position: relative;
   z-index: 1;
 }
 
-.servicios-grid,
 .services-grid {
   display: grid;
   gap: var(--space-md);
@@ -68,14 +60,12 @@
 }
 
 @media (min-width: 576px) {
-  .servicios-grid,
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
-  .servicios-grid,
   .services-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);

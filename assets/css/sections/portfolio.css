@@ -2,8 +2,7 @@
    Portfolio Section
    =================================== */
 
-.portfolio,
-.portafolio {
+.portfolio {
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -33,8 +32,7 @@
   pointer-events: none;
 }
 
-.portfolio h2,
-.portafolio h2 {
+.portfolio h2 {
   position: relative;
   z-index: 2;
   text-align: center;
@@ -42,8 +40,7 @@
   color: var(--color-dark);
 }
 
-.portfolio-header,
-.portafolio-header {
+.portfolio-header {
   background: var(--color-light);
   padding: var(--space-md) var(--space-lg);
   border-radius: var(--radius-md);
@@ -54,26 +51,22 @@
   z-index: 2;
 }
 
-.portfolio-header h2,
-.portafolio-header h2 {
+.portfolio-header h2 {
   margin-bottom: var(--space-xs);
 }
 
-.portfolio-header p,
-.portafolio-header p {
+.portfolio-header p {
   color: var(--color-dark);
   margin-bottom: 0;
 }
 
-.portfolio > p,
-.portafolio > p {
+.portfolio > p {
   text-align: center;
   margin-bottom: var(--space-xl);
   color: var(--color-dark);
 }
 
-.portfolio-grid,
-.portafolio-grid {
+.portfolio-grid {
   display: grid;
   gap: var(--space-md);
   grid-template-columns: 1fr;
@@ -81,15 +74,13 @@
 }
 
 @media (min-width: 576px) {
-  .portfolio-grid,
-  .portafolio-grid {
+  .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
-  .portfolio-grid,
-  .portafolio-grid {
+  .portfolio-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
   }

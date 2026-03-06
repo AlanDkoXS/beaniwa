@@ -3,13 +3,9 @@
    =================================== */
 
 .hero-cta,
-.servicios-link,
 .services-link,
 .portfolio-link,
-.portafolio-link,
-.nosotros-link,
 .about-link,
-.contacto-form button,
 .contact-form button,
 .submit-button {
   display: inline-block;
@@ -26,13 +22,9 @@
 }
 
 .hero-cta:hover,
-.servicios-link:hover,
 .services-link:hover,
 .portfolio-link:hover,
-.portafolio-link:hover,
-.nosotros-link:hover,
 .about-link:hover,
-.contacto-form button:hover,
 .contact-form button:hover,
 .submit-button:hover {
   background-color: var(--color-on-primary);
@@ -41,11 +33,8 @@
 }
 
 /* Specific button styles */
-.servicios-link,
 .services-link,
 .portfolio-link,
-.portafolio-link,
-.nosotros-link,
 .about-link {
   display: block;
   max-width: 200px;
@@ -54,13 +43,11 @@
   z-index: 1;
 }
 
-.portfolio-link:hover,
-.portafolio-link:hover {
+.portfolio-link:hover {
   background-color: var(--color-on-secondary);
 }
 
 @media (min-width: 992px) {
-  .servicios-link,
   .services-link {
     max-width: 220px;
   }

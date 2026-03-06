@@ -17,12 +17,9 @@ h4,
 h5,
 h6,
 .hero-title,
-.servicios h2,
-.portafolio h2,
+.services h2,
 .portfolio h2,
-.nosotros h2,
 .about h2,
-.contacto h2,
 .contact h2,
 .footer h4 {
   font-family: var(--font-title);
