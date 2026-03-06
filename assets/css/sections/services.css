@@ -1,0 +1,83 @@
+/* ===================================
+   Services Section
+   =================================== */
+
+.servicios,
+.services {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  position: relative;
+  overflow: hidden;
+  background-image: url("../img/textures/temporal-gradient.png");
+  background-blend-mode: normal;
+  background-size: 250px;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+/* Animated gradient backgrounds */
+.servicios::before,
+.services::before,
+.servicios::after,
+.services::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.servicios::before,
+.services::before {
+  top: 30%;
+  right: -100px;
+  width: 200px;
+  height: 200px;
+  background: var(--color-primary);
+  animation: gradient-pulse-1 6s ease-in-out infinite;
+}
+
+.servicios::after,
+.services::after {
+  top: 60%;
+  left: -200px;
+  background: var(--color-on-primary);
+  animation: gradient-pulse-2 8s ease-in-out infinite;
+}
+
+.servicios h2,
+.services h2,
+.servicios > p,
+.services > p {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.servicios-grid,
+.services-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 576px) {
+  .servicios-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .servicios-grid,
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+}

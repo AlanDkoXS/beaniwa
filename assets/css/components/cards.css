@@ -1,0 +1,97 @@
+/* ===================================
+   Cards
+   =================================== */
+
+/* Service Cards */
+.servicio-card,
+.service-card {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.servicio-card:hover,
+.service-card:hover {
+  transform: translateY(-4px);
+  background: rgba(10, 10, 10, 0.85);
+}
+
+.servicio-card h3,
+.service-card h3 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-light);
+}
+
+.servicio-card p,
+.service-card p {
+  margin-bottom: 0;
+  color: var(--color-light);
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+
+/* Project Cards */
+.proyecto-card,
+.project-card {
+  background: var(--color-light);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.proyecto-card h3,
+.project-card h3 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-dark);
+}
+
+.proyecto-card p,
+.project-card p {
+  margin-bottom: 0;
+  color: var(--color-dark);
+  font-size: 0.9rem;
+}
+
+/* Value Cards */
+.value-card {
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+  position: relative;
+}
+
+.value-card:hover,
+.value-card.selected {
+  transform: translateY(-4px);
+  background: rgba(10, 10, 10, 0.85);
+}
+
+.value-card h3 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-light);
+}
+
+.value-card p {
+  margin-bottom: 0;
+  color: var(--color-light);
+  opacity: 0.85;
+  font-size: 0.9rem;
+}

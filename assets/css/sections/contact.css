@@ -1,0 +1,41 @@
+/* ===================================
+   Contact Section
+   =================================== */
+
+.contacto-content,
+.contact-content {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: 1fr;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contacto-info,
+.contact-info {
+  padding: var(--space-md);
+}
+
+.contacto-info p,
+.contact-info p {
+  margin-bottom: var(--space-md);
+}
+
+.contacto-info address,
+.contact-info address {
+  font-style: normal;
+}
+
+.contacto-info address p,
+.contact-info address p {
+  margin-bottom: var(--space-sm);
+  color: var(--color-neutral);
+}
+
+@media (min-width: 768px) {
+  .contacto-content,
+  .contact-content {
+    grid-template-columns: 1fr 1fr;
+    max-width: 900px;
+  }
+}

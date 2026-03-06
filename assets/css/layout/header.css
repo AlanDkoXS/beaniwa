@@ -1,0 +1,115 @@
+/* ===================================
+   Header & Navigation
+   =================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--space-md) var(--space-md);
+  background-color: rgba(36, 36, 36, 0.95);
+  backdrop-filter: blur(10px);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+.header.scrolled {
+  background-color: rgba(36, 36, 36, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-lg);
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-light);
+  text-decoration: none;
+}
+
+/* Hide logo on desktop */
+@media (min-width: 768px) {
+  .logo {
+    display: none;
+  }
+}
+
+/* Desktop header */
+@media (min-width: 768px) {
+  .header {
+    padding: var(--space-lg) var(--space-xl);
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+
+  .header.scrolled {
+    background-color: rgba(36, 36, 36, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .nav-menu li a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.35rem 0.6rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .nav-menu li:nth-child(n) a:hover,
+  .nav-menu li:nth-child(n) a.active {
+    color: var(--color-primary);
+    background-color: rgba(255, 139, 23, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: var(--space-lg) var(--space-2xl);
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+
+  .header.scrolled {
+    background-color: rgba(36, 36, 36, 0.95);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Hide header on mobile */
+@media (max-width: 767px) {
+  .header {
+    display: none;
+  }
+  .nav,
+  .nav-menu {
+    display: none;
+  }
+}

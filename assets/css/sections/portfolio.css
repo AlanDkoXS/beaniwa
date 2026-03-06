@@ -1,0 +1,68 @@
+/* ===================================
+   Portfolio Section
+   =================================== */
+
+.portfolio,
+.portafolio {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--color-on-primary);
+  background-image:
+    linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2)),
+    radial-gradient(
+      circle at 50% 0%,
+      var(--color-primary) 0%,
+      var(--color-on-primary) 70%
+    );
+  padding: var(--space-xl) var(--space-md);
+}
+
+.liquid-cheese-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../img/textures/liquid-cheese.svg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.portfolio-header,
+.portafolio-header {
+  background: var(--color-light);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto var(--space-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio-grid,
+.portafolio-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 576px) {
+  .portfolio-grid,
+  .portafolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .portfolio-grid,
+  .portafolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+}

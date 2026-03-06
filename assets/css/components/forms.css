@@ -1,0 +1,52 @@
+/* ===================================
+   Forms
+   =================================== */
+
+.contacto-form,
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.contacto-form label,
+.contact-form label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.contacto-form input,
+.contacto-form textarea,
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid #ccc;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus,
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.contacto-form textarea,
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+@media (min-width: 768px) {
+  .contacto-form input,
+  .contacto-form textarea,
+  .contact-form input,
+  .contact-form textarea {
+    padding: var(--space-md);
+  }
+}

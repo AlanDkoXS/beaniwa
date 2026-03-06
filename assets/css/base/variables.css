@@ -1,0 +1,68 @@
+/* ===================================
+   CSS Variables - Design Tokens
+   =================================== */
+
+:root {
+  /* Electric Border Colors */
+  --electric-border-color: #dd8448;
+  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  --gradient-color: oklch(
+    from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4
+  );
+
+  /* Font Families */
+  --font-title: "Antonio", system-ui, sans-serif;
+  --font-body: "Noto Sans", system-ui, sans-serif;
+
+  /* Spacing - Mobile First (small screens first) */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
+
+  /* Container widths */
+  --container-xs: 100%;
+  --container-sm: 540px;
+  --container-md: 720px;
+  --container-lg: 960px;
+  --container-xl: 1140px;
+  --container-2xl: 1320px;
+
+  /* Section vertical padding - mobile */
+  --section-padding-y: var(--space-2xl);
+  --section-padding-x: var(--space-md);
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Colors - See the palette here -> https://coolors.co/fa6e02-ec4700-a5c4d4-111111-595959-f5f5f5*/
+  --color-primary: #fa6e02;
+  --color-on-primary: #ec4700;
+  --color-secondary: #ec4700;
+  --color-dark: #111111;
+  --color-neutral: #595959;
+  --color-light: #f5f5f5;
+  --color-light-alt: #a5c4d4;
+  --color-on-secondary: #d35400; /* Added fallback/derived color if needed */
+}
+
+/* Desktop overrides for spacing */
+@media (min-width: 768px) {
+  :root {
+    --section-padding-y: var(--space-3xl);
+    --section-padding-x: var(--space-xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-padding-y: var(--space-3xl);
+    --section-padding-x: var(--space-2xl);
+  }
+}

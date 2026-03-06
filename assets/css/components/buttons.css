@@ -1,0 +1,67 @@
+/* ===================================
+   Buttons & CTAs
+   =================================== */
+
+.hero-cta,
+.servicios-link,
+.services-link,
+.portfolio-link,
+.portafolio-link,
+.nosotros-link,
+.about-link,
+.contacto-form button,
+.contact-form button,
+.submit-button {
+  display: inline-block;
+  text-align: center;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border-radius: var(--radius-md);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.hero-cta:hover,
+.servicios-link:hover,
+.services-link:hover,
+.portfolio-link:hover,
+.portafolio-link:hover,
+.nosotros-link:hover,
+.about-link:hover,
+.contacto-form button:hover,
+.contact-form button:hover,
+.submit-button:hover {
+  background-color: var(--color-on-primary);
+  color: var(--color-light);
+  transform: translateY(-2px);
+}
+
+/* Specific button styles */
+.servicios-link,
+.services-link,
+.portfolio-link,
+.portafolio-link,
+.nosotros-link,
+.about-link {
+  display: block;
+  max-width: 200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-link:hover,
+.portafolio-link:hover {
+  background-color: var(--color-on-secondary);
+}
+
+@media (min-width: 992px) {
+  .servicios-link,
+  .services-link {
+    max-width: 220px;
+  }
+}

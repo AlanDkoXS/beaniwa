@@ -1,0 +1,63 @@
+/* ===================================
+   Animations & Transitions
+   =================================== */
+
+/* View Transitions API styles */
+@view-transition {
+  navigation: auto;
+}
+
+/* Root transition - fade and slide */
+::view-transition-old(root) {
+  animation:
+    250ms ease-out both fade-out,
+    slide-out;
+}
+
+::view-transition-new(root) {
+  animation:
+    250ms ease-in both fade-in,
+    slide-in;
+}
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes slide-in { from { transform: translateX(30px); } to { transform: translateX(0); } }
+@keyframes slide-out { from { transform: translateX(0); } to { transform: translateX(-30px); } }
+
+/* Persistent elements (header, footer) */
+::view-transition-group(header) { animation: none; }
+::view-transition-old(header), ::view-transition-new(header) { mix-blend-mode: normal; }
+::view-transition-group(footer) { animation: none; }
+
+@keyframes gradient-pulse-1 {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes gradient-pulse-2 {
+  0%, 100% { opacity: 0.25; transform: scale(0.9); }
+  50% { opacity: 0.45; transform: scale(1.1); }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .servicios::before, .services::before,
+  .servicios::after, .services::after,
+  .nosotros::before, .about::before,
+  .nosotros::after, .about::after {
+    animation: none;
+    opacity: 0.35;
+    transform: none;
+  }
+
+  .servicio-card, .service-card, .servicios-link, .services-link {
+    transition: none;
+  }
+}
