@@ -1215,17 +1215,32 @@ section {
    Portfolio Section
    =================================== */
 
+.portfolio,
+.portafolio {
+  background-color: var(--color-on-primary);
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    var(--color-primary) 0%,
+    var(--color-on-primary) 70%
+  );
+  padding: var(--space-xl) var(--space-md);
+  box-shadow:
+    inset 0 10px 20px -10px rgba(0, 0, 0, 0.3),
+    0 10px 20px -10px rgba(0, 0, 0, 0.3);
+}
+
 .portfolio h2,
 .portafolio h2 {
   text-align: center;
   margin-bottom: var(--space-sm);
+  color: var(--color-dark);
 }
 
 .portfolio > p,
 .portafolio > p {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-neutral);
+  color: var(--color-dark);
 }
 
 .portfolio-grid,
@@ -1238,7 +1253,7 @@ section {
 
 .proyecto-card,
 .project-card {
-  background: var(--color-light-alt);
+  background: var(--color-light);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   min-height: 150px;
@@ -1252,12 +1267,13 @@ section {
 .proyecto-card h3,
 .project-card h3 {
   margin-bottom: var(--space-sm);
+  color: var(--color-dark);
 }
 
 .proyecto-card p,
 .project-card p {
   margin-bottom: 0;
-  color: var(--color-neutral);
+  color: var(--color-dark);
   font-size: 0.9rem;
 }
 
@@ -1266,7 +1282,7 @@ section {
   display: block;
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
-  background-color: var(--color-primary);
+  background-color: var(--color-dark);
   color: var(--color-light);
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -1276,7 +1292,7 @@ section {
 
 .portfolio-link:hover,
 .portafolio-link:hover {
-  background-color: var(--color-on-primary);
+  background-color: var(--color-primary);
   color: var(--color-light);
 }
 
