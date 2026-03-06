@@ -3,45 +3,7 @@
  * Creates a bottom navigation bar with animated icons
  */
 
-// Detect current language based on URL path
-function getCurrentLanguage() {
-  const path = window.location.pathname;
-  if (path.startsWith("/en/") || path === "/en" || path === "/en.html") {
-    return "en";
-  }
-  return "es";
-}
-
-// Get the equivalent page in the other language
-function getTranslatedPageHref() {
-  const path = window.location.pathname;
-  const currentLang = getCurrentLanguage();
-  const targetLang = currentLang === "en" ? "es" : "en";
-
-  // Page mapping for main menu (index pages)
-  const pageMapping = {
-    "/": targetLang === "en" ? "/en/" : "/",
-    "/index.html": targetLang === "en" ? "/en/index.html" : "/index.html",
-    "/es/": targetLang === "en" ? "/en/" : "/es/",
-    "/es": targetLang === "en" ? "/en/" : "/es/",
-    "/es.html": targetLang === "en" ? "/en/" : "/es/",
-    "/es/index.html": targetLang === "en" ? "/en/index.html" : "/es/index.html",
-    "/en/": "/es/",
-    "/en": "/es/",
-    "/en.html": "/index.html",
-    "/en/index.html": "/index.html",
-  };
-
-  // Check for exact match or remove trailing slash
-  const normalizedPath =
-    path.endsWith("/") && path.length > 1 ? path.slice(0, -1) : path;
-
-  return (
-    pageMapping[path] ||
-    pageMapping[normalizedPath] ||
-    (targetLang === "en" ? "/en/" : "/")
-  );
-}
+import { getEquivalentUrl, getCurrentLanguage } from "../router.js";
 
 // Navigation labels by language
 const labels = {
@@ -523,7 +485,7 @@ function toggleHamburgerMenu(hamburgerButton) {
 
   // Build language switcher HTML
   const langButtonText = currentLang === "en" ? "Español" : "English";
-  const langButtonHref = getTranslatedPageHref();
+  const langButtonHref = getEquivalentUrl(otherLang);
 
   // Build navigation HTML - always show all nav items in modal
   const navHtml = navItemsWithIcons

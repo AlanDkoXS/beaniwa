@@ -11,6 +11,7 @@ import { initScrollAnimations } from "./components/scroll-animations.js";
 import { initNavigation } from "./navigation.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
+import { initRouter } from "./router.js";
 
 // Check if current page is index
 function isIndexPage() {
@@ -50,6 +51,7 @@ function initApp() {
   console.log("Initializing Aniwa...");
 
   // Initialize all modules
+  initRouter();
   initNavigation();
   initScroll();
   initHeader();

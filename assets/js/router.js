@@ -1,64 +1,110 @@
 /**
- * Router - SPA Routing System
- * Handles navigation between pages and sections
+ * Router - Multi-language Routing System
+ * Handles page mapping and hash synchronization between languages
  */
 
 /**
- * Get current route from URL
+ * Page mapping between English and Spanish
  */
-function getRoute() {
-  const hash = window.location.hash;
-  if (hash && hash.startsWith("#")) {
-    return hash.slice(1);
-  }
-  return "/";
+const PAGE_MAPPING = {
+  en: {
+    "index.html": "index.html",
+    "about.html": "nosotros.html",
+    "contact.html": "contacto.html",
+    "portfolio.html": "portafolio.html",
+    "services.html": "servicios.html",
+    "privacy-policy.html": "politica-privacidad.html",
+  },
+  es: {
+    "index.html": "index.html",
+    "nosotros.html": "about.html",
+    "contacto.html": "contact.html",
+    "portafolio.html": "portfolio.html",
+    "servicios.html": "services.html",
+    "politica-privacidad.html": "privacy-policy.html",
+  },
+};
+
+/**
+ * Get the current language (en or es) from the path
+ */
+function getCurrentLanguage() {
+  const path = window.location.pathname;
+  if (path.includes("/es/")) return "es";
+  if (path.includes("/en/")) return "en";
+  return "en"; // Default
 }
 
 /**
- * Navigate to a specific route
+ * Get the current page name from the path
  */
-function navigateTo(route) {
-  if (route.startsWith("#")) {
-    window.location.hash = route.slice(1);
-  } else if (route.startsWith("/")) {
-    window.location.hash = route;
+function getCurrentPage() {
+  const path = window.location.pathname;
+  if (path.endsWith("/") || path === "") {
+    return "index.html";
+  }
+  const parts = path.split("/");
+  return parts[parts.length - 1];
+}
+
+/**
+ * Get the equivalent URL in the target language
+ */
+function getEquivalentUrl(targetLang) {
+  const currentLang = getCurrentLanguage();
+  if (currentLang === targetLang) return window.location.href;
+
+  const currentPage = getCurrentPage();
+  console.log("ROUTER: currentLang:", currentLang, "targetLang:", targetLang, "currentPage:", currentPage);
+
+  const mapping = PAGE_MAPPING[currentLang];
+  let targetPage = "index.html";
+
+  if (mapping && mapping[currentPage]) {
+    targetPage = mapping[currentPage];
   } else {
-    window.location.href = route;
-  }
-}
-
-/**
- * Handle hash change
- */
-function onHashChange() {
-  const route = getRoute();
-  console.log("Navigating to:", route);
-
-  // Handle different routes
-  if (route === "/" || route === "") {
-    // Home page
-    window.location.href = "/";
-  } else if (route.startsWith("#")) {
-    // Section navigation - smooth scroll
-    const sectionId = route.slice(1);
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+    // Intenta buscar sin .html por si acaso
+    const pageWithoutExt = currentPage.replace(".html", "");
+    if (mapping && mapping[pageWithoutExt + ".html"]) {
+      targetPage = mapping[pageWithoutExt + ".html"];
     }
   }
+
+  const hash = window.location.hash;
+  const result = `/${targetLang}/${targetPage}${hash}`;
+  console.log("ROUTER: generated URL:", result);
+  return result;
+}
+
+/**
+ * Updates language switcher links to be dynamic
+ */
+function updateLanguageLinks() {
+  const langLinks = document.querySelectorAll('a[hreflang]');
+  
+  langLinks.forEach(link => {
+    const targetLang = link.getAttribute('hreflang');
+    if (targetLang === 'en' || targetLang === 'es') {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetUrl = getEquivalentUrl(targetLang);
+        window.location.href = targetUrl;
+      });
+    }
+  });
 }
 
 /**
  * Initialize router
  */
 function initRouter() {
-  window.addEventListener("hashchange", onHashChange);
-
-  // Handle initial route
-  if (window.location.hash) {
-    onHashChange();
-  }
+  updateLanguageLinks();
+  
+  // Also handle hash changes if needed for SPA-like feel
+  window.addEventListener("hashchange", () => {
+    console.log("Hash changed to:", window.location.hash);
+  });
 }
 
 // Export functions
-export { getRoute, initRouter, navigateTo };
+export { initRouter, getEquivalentUrl, getCurrentLanguage };
