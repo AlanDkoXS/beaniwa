@@ -1,6 +1,8 @@
 /* ===================================
    Font Faces - Local Fonts
    =================================== */
+@import url("dripping-paint.css");
+
 @font-face {
   font-family: "Antonio";
   src: url("../fonts/Antonio-VariableFont_wght.ttf") format("truetype");
@@ -1217,6 +1219,8 @@ section {
 
 .portfolio,
 .portafolio {
+  position: relative;
+  z-index: 1;
   background-color: var(--color-on-primary);
   background-image: radial-gradient(
     circle at 50% 0%,
@@ -1231,6 +1235,8 @@ section {
 
 .portfolio h2,
 .portafolio h2 {
+  position: relative;
+  z-index: 2;
   text-align: center;
   margin-bottom: var(--space-sm);
   color: var(--color-dark);
