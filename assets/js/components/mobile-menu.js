@@ -167,7 +167,7 @@ function createMenuItem(item, index, isActive) {
   button.setAttribute("aria-label", itemLabel);
 
   // Set the button color
-  button.style.setProperty("--bgColorItem", "#ff8000");
+  button.style.setProperty("--bgColorItem", "#ec4700");
 
   // Add icon - use active icon for hamburger when active
   if (item.id === "hamburger" && item.iconActive) {
@@ -181,6 +181,8 @@ function createMenuItem(item, index, isActive) {
     button.setAttribute("data-hamburger", "true");
     button.addEventListener("click", e => {
       e.preventDefault();
+      // Trigger wave effect on click
+      triggerWaveEffect(button);
       toggleHamburgerMenu(button);
     });
   } else {
@@ -250,6 +252,9 @@ function handleItemClick(clickedItem, href) {
 
   // Add active to clicked item
   clickedItem.classList.add("active");
+
+  // Trigger wave effect on click
+  triggerWaveEffect(clickedItem);
 
   // Update border position
   offsetMenuBorder(clickedItem, menuBorder);
@@ -768,21 +773,23 @@ function initMobileMenu() {
   // Add to body
   document.body.appendChild(mobileMenu);
 
-  // Wait for page load complete, then show menu after 2 seconds with wave effect
+  // Wait for page load complete, then show menu after 2 seconds
   if (document.readyState === "complete") {
     setTimeout(() => {
-      showMobileMenuWithWave(mobileMenu, menuBorder);
+      showMobileMenu(mobileMenu, menuBorder);
     }, 2000);
   } else {
     window.addEventListener("load", () => {
       setTimeout(() => {
-        showMobileMenuWithWave(mobileMenu, menuBorder);
+        showMobileMenu(mobileMenu, menuBorder);
       }, 2000);
     });
   }
 
   // Update active item on scroll
   let scrollTimeout;
+  let wasAtFooter = false;
+
   window.addEventListener("scroll", () => {
     // Check if footer is in viewport
     const footer = document.querySelector("footer");
@@ -791,7 +798,7 @@ function initMobileMenu() {
       : false;
 
     if (isAtFooter) {
-      // At footer - select hamburger
+      // At footer - select hamburger without wave effect
       const hamburgerIndex = bottomNavItems.length;
       setActiveMenuItemMain(
         mobileMenu,
@@ -799,7 +806,13 @@ function initMobileMenu() {
         hamburgerIndex,
         menuBorder,
       );
+      wasAtFooter = true;
       return;
+    }
+
+    // Track when we leave the footer
+    if (wasAtFooter && !isAtFooter) {
+      wasAtFooter = false;
     }
 
     // Throttle scroll events for performance
@@ -835,27 +848,12 @@ function initMobileMenu() {
 }
 
 /**
- * Show mobile menu with wave ripple effect
+ * Show mobile menu without wave effect (for initial load)
  */
-function showMobileMenuWithWave(mobileMenu, menuBorder) {
-  // Create wave effect element
-  const waveOverlay = document.createElement("div");
-  waveOverlay.className = "mobile-menu__wave";
-  mobileMenu.appendChild(waveOverlay);
-
-  // Force reflow to enable animation
-  mobileMenu.offsetHeight;
-
+function showMobileMenu(mobileMenu, menuBorder) {
   // Show the menu with animation
   mobileMenu.style.opacity = "1";
   mobileMenu.style.transform = "translateY(0)";
-
-  // Remove wave overlay after animation completes
-  setTimeout(() => {
-    if (waveOverlay.parentNode) {
-      waveOverlay.parentNode.removeChild(waveOverlay);
-    }
-  }, 800);
 
   // Set initial border position after render
   setTimeout(() => {
@@ -864,6 +862,25 @@ function showMobileMenuWithWave(mobileMenu, menuBorder) {
       offsetMenuBorder(activeItem, menuBorder);
     }
   }, 100);
+}
+
+/**
+ * Trigger wave ripple effect on a specific element within the menu
+ */
+function triggerWaveEffect(targetElement) {
+  if (!targetElement) return;
+
+  // Create wave effect element
+  const waveOverlay = document.createElement("div");
+  waveOverlay.className = "mobile-menu__wave";
+  targetElement.appendChild(waveOverlay);
+
+  // Remove wave overlay after animation completes
+  setTimeout(() => {
+    if (waveOverlay.parentNode) {
+      waveOverlay.parentNode.removeChild(waveOverlay);
+    }
+  }, 800);
 }
 
 /**
@@ -890,6 +907,11 @@ function setupFooterScrollObserverMain() {
 
 /**
  * Set active menu item (main menu)
+ * @param {HTMLElement} mobileMenu - The mobile menu container
+ * @param {HTMLElement} item - The item to set as active
+ * @param {number} index - The index of the item
+ * @param {HTMLElement} menuBorder - The border element
+ * @param {boolean} triggerWave - Whether to trigger the wave effect (default: false)
  */
 function setActiveMenuItemMain(mobileMenu, item, index, menuBorder) {
   const items = mobileMenu.querySelectorAll(".mobile-menu__item");

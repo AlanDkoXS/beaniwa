@@ -492,19 +492,40 @@ section {
 /* Mobile Menu Wave Effect */
 .mobile-menu__wave {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  top: 0;
+  border-radius: 50%;
   background: radial-gradient(
-    circle at center,
-    rgba(255, 128, 0, 0.4) 0%,
-    rgba(255, 128, 0, 0.2) 30%,
-    transparent 70%
+    circle at center bottom,
+    rgba(236, 71, 0, 0.8) 0%,
+    rgba(236, 71, 0, 0.5) 30%,
+    rgba(236, 71, 0, 0.2) 60%,
+    transparent 80%
   );
   animation: wave-ripple 0.8s ease-out forwards;
   pointer-events: none;
   z-index: 50;
+}
+
+/* Circular wave for secondary menu */
+.mobile-menu__wave--circular {
+  width: 3.2em;
+  height: 3.2em;
+  left: 50%;
+  top: 50%;
+  margin-left: -1.6em;
+  margin-top: -1.6em;
+  bottom: auto;
+  right: auto;
+  background: radial-gradient(
+    circle,
+    rgba(236, 71, 0, 0.8) 0%,
+    rgba(236, 71, 0, 0.5) 30%,
+    rgba(236, 71, 0, 0.2) 60%,
+    transparent 80%
+  );
 }
 
 @keyframes wave-ripple {

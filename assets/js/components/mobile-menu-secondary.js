@@ -18,15 +18,6 @@ function getTranslatedPageHref() {
   const currentLang = getCurrentLanguageSecondary();
   const targetLang = currentLang === "en" ? "es" : "en";
 
-  console.log(
-    "getTranslatedPageHref - path:",
-    path,
-    "currentLang:",
-    currentLang,
-    "targetLang:",
-    targetLang,
-  );
-
   // Page name translations (Spanish -> English)
   const esToEn = {
     "nosotros.html": "about.html",
@@ -51,13 +42,10 @@ function getTranslatedPageHref() {
   // Get the page filename
   const filename = path.split("/").pop();
 
-  console.log("getTranslatedPageHref - filename:", filename);
-
   // Check if we have a translation for this page
   if (translationMap[filename]) {
     const targetPrefix = targetLang === "en" ? "/en" : "/es";
     const result = targetPrefix + "/" + translationMap[filename];
-    console.log("getTranslatedPageHref - result:", result);
     return result;
   }
 
@@ -74,10 +62,6 @@ function getTranslatedPageHref() {
     return "/es/";
   }
 
-  console.log(
-    "getTranslatedPageHref - fallback:",
-    targetLang === "en" ? "/en/" : "/es/",
-  );
   // Default fallback
   return targetLang === "en" ? "/en/" : "/es/";
 }
@@ -132,7 +116,7 @@ function createMenuItemSecondary(item, index, isActive) {
   button.setAttribute("data-id", item.id);
   button.setAttribute("aria-label", itemLabel);
 
-  button.style.setProperty("--bgColorItem", "#ff8000");
+  button.style.setProperty("--bgColorItem", "#ec4700");
 
   // Add icon
   if (item.id === "hamburger" && item.iconActive) {
@@ -147,10 +131,14 @@ function createMenuItemSecondary(item, index, isActive) {
     button.setAttribute("data-hamburger", "true");
     button.addEventListener("click", e => {
       e.preventDefault();
+      // Trigger wave effect on click
+      triggerWaveEffectSecondary(button);
       toggleHamburgerMenuSecondary(button);
     });
   } else {
-    button.addEventListener("click", () => handleItemClickSecondary(item.href));
+    button.addEventListener("click", e =>
+      handleItemClickSecondary(item.href, button),
+    );
   }
 
   return button;
@@ -159,31 +147,28 @@ function createMenuItemSecondary(item, index, isActive) {
 /**
  * Handle menu item click
  */
-function handleItemClickSecondary(href) {
-  // Close overlay if it's open (remove blur)
-  const overlay = document.querySelector(".mobile-menu__overlay");
-  if (overlay && overlay.classList.contains("open")) {
-    overlay.classList.remove("open");
-    setTimeout(() => {
-      if (overlay && overlay.parentNode) {
-        overlay.parentNode.removeChild(overlay);
-      }
-    }, 400);
+function handleItemClickSecondary(href, clickedItem) {
+  // Trigger wave effect on click
+  if (clickedItem) {
+    triggerWaveEffectSecondary(clickedItem);
   }
 
-  if (href.includes("#")) {
-    const [path, hash] = href.split("#");
-    const targetId = hash || path;
-    const targetSection = document.getElementById(targetId);
+  // Delay navigation to allow wave effect to be visible
+  setTimeout(() => {
+    if (href.includes("#")) {
+      const [path, hash] = href.split("#");
+      const targetId = hash || path;
+      const targetSection = document.getElementById(targetId);
 
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth" });
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.location.href = href;
+      }
     } else {
       window.location.href = href;
     }
-  } else {
-    window.location.href = href;
-  }
+  }, 300);
 }
 
 /**
@@ -550,8 +535,6 @@ function initSecondaryMobileMenu() {
       offsetMenuBorderSecondary(activeItem, menuBorder);
     }
   });
-
-  console.log("Secondary mobile menu initialized");
 }
 
 /**
@@ -567,6 +550,25 @@ function showSecondaryMobileMenu(mobileMenu, menuBorder) {
       offsetMenuBorderSecondary(activeItem, menuBorder);
     }
   }, 100);
+}
+
+/**
+ * Trigger wave ripple effect on a specific element within the secondary menu
+ */
+function triggerWaveEffectSecondary(targetElement) {
+  if (!targetElement) return;
+
+  // Create wave effect element
+  const waveOverlay = document.createElement("div");
+  waveOverlay.className = "mobile-menu__wave mobile-menu__wave--circular";
+  targetElement.appendChild(waveOverlay);
+
+  // Remove wave overlay after animation completes
+  setTimeout(() => {
+    if (waveOverlay.parentNode) {
+      waveOverlay.parentNode.removeChild(waveOverlay);
+    }
+  }, 800);
 }
 
 /**
@@ -588,7 +590,7 @@ function setupFooterScrollObserverSecondary(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Footer is visible - select hamburger
+          // Footer is visible - select hamburger without wave effect
           setActiveMenuItemSecondary(
             mobileMenu,
             hamburgerButton,
@@ -616,6 +618,11 @@ function setupFooterScrollObserverSecondary(
 
 /**
  * Set active menu item (secondary menu)
+ * @param {HTMLElement} mobileMenu - The mobile menu container
+ * @param {HTMLElement} item - The item to set as active
+ * @param {number} index - The index of the item
+ * @param {HTMLElement} menuBorder - The border element
+ * @param {boolean} triggerWave - Whether to trigger the wave effect (default: false)
  */
 function setActiveMenuItemSecondary(mobileMenu, item, index, menuBorder) {
   const items = mobileMenu.querySelectorAll(".mobile-menu__item");
