@@ -1026,7 +1026,7 @@ section {
 .servicios,
 .services {
   background-image: url("../img/textures/temporal-gradient.png");
-  background-blend-mode: overlay;
+  background-blend-mode: normal;
   background-size: 200px;
   background-position: top left;
   background-repeat: repeat;
