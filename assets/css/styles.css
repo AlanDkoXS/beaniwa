@@ -1001,20 +1001,98 @@ section {
    =================================== */
 .servicios,
 .services {
-  background-color: var(--color-light-alt);
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated gradient background */
+.servicios::before,
+.services::before,
+.servicios::after,
+.services::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+/* Texture overlay */
+.servicios,
+.services {
+  background-image: url("../img/textures/temporal-gradient.png");
+  background-blend-mode: overlay;
+  background-size: 200px;
+  background-position: top left;
+  background-repeat: repeat;
+}
+
+/* Upper right gradient */
+.servicios::before,
+.services::before {
+  top: 30%;
+  right: -100px;
+  width: 200px;
+  height: 200px;
+  background: var(--color-primary);
+  animation: gradient-pulse-1 6s ease-in-out infinite;
+}
+
+/* Middle left gradient */
+.servicios::after,
+.services::after {
+  top: 60%;
+  left: -200px;
+  background: var(--color-on-primary);
+  animation: gradient-pulse-2 8s ease-in-out infinite;
+}
+
+@keyframes gradient-pulse-1 {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradient-pulse-2 {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.1);
+  }
 }
 
 .servicios h2,
 .services h2 {
   text-align: center;
   margin-bottom: var(--space-sm);
+  color: var(--color-light);
+  position: relative;
+  z-index: 1;
 }
 
 .servicios > p,
 .services > p {
   text-align: center;
   margin-bottom: var(--space-xl);
-  color: var(--color-neutral);
+  color: var(--color-light);
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
 }
 
 .servicios-grid,
@@ -1023,25 +1101,39 @@ section {
   gap: var(--space-md);
   grid-template-columns: 1fr;
   margin-bottom: var(--space-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .servicio-card,
 .service-card {
-  background: var(--color-light);
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.servicio-card:hover,
+.service-card:hover {
+  transform: translateY(-4px);
+  background: rgba(10, 10, 10, 0.85);
 }
 
 .servicio-card h3,
 .service-card h3 {
   margin-bottom: var(--space-sm);
+  color: var(--color-light);
 }
 
 .servicio-card p,
 .service-card p {
   margin-bottom: 0;
-  color: var(--color-neutral);
+  color: var(--color-light);
+  opacity: 0.85;
   font-size: 0.9rem;
 }
 
@@ -1056,12 +1148,18 @@ section {
   font-weight: 600;
   max-width: 200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .servicios-link:hover,
 .services-link:hover {
   background-color: var(--color-on-primary);
   color: var(--color-light);
+  transform: scale(1.02);
 }
 
 @media (min-width: 576px) {
@@ -1656,6 +1754,24 @@ footer {
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation: none !important;
+  }
+
+  /* Disable gradient animations */
+  .servicios::before,
+  .services::before,
+  .servicios::after,
+  .services::after {
+    animation: none;
+    opacity: 0.35;
+    transform: none;
+  }
+
+  /* Disable card and button transitions */
+  .servicio-card,
+  .service-card,
+  .servicios-link,
+  .services-link {
+    transition: none;
   }
 }
 
