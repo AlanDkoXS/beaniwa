@@ -1244,7 +1244,9 @@ section {
 
 .portfolio-header,
 .portafolio-header {
-  background: var(--color-light);
+  background:
+    linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2)),
+    var(--color-light);
   padding: var(--space-md) var(--space-lg);
   border-radius: var(--radius-md);
   text-align: center;
@@ -1311,8 +1313,8 @@ section {
   display: block;
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   border-radius: var(--radius-md);
   font-weight: 600;
   max-width: 200px;
