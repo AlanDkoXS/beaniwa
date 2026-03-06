@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portafolio | Aniwa</title>
+    <meta
+      name="description"
+      content="Explora nuestro portafolio de proyectos web y marketing digital. Trabajos realizados para empresas de comercio electrónico, industria y profesionales en Chihuahua." />
+    <meta
+      property="og:image"
+      content="https://beaniwa.com/assets/img/opengraph.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://beaniwa.com/es/portafolio.html" />
+    <meta property="og:title" content="Portafolio | Aniwa" />
+    <meta
+      property="og:description"
+      content="Explora nuestro portafolio de proyectos web y marketing digital." />
+    <meta property="og:site_name" content="Aniwa" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portafolio | Aniwa" />
+    <meta
+      name="twitter:description"
+      content="Explora nuestro portafolio de proyectos web y marketing digital." />
+    <meta
+      name="twitter:image"
+      content="https://beaniwa.com/assets/img/opengraph.jpg" />
+    <link rel="canonical" href="https://beaniwa.com/es/portafolio.html" />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://beaniwa.com/en/portfolio.html" />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://beaniwa.com/es/portafolio.html" />
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
+
+    <!-- Preload fonts -->
+    <link
+      rel="preload"
+      href="../assets/fonts/Antonio-VariableFont_wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin />
+    <link
+      rel="preload"
+      href="../assets/fonts/NotoSans-VariableFont_wdth,wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin />
+
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-K7RJQWPC");
+    </script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K7RJQWPC"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Header -->
+    <header class="header" id="header" style="view-transition-name: header">
+      <nav class="nav">
+        <a href="/es/" class="logo"></a>
+        <ul class="nav-menu">
+          <li><a href="/es/#inicio">Inicio</a></li>
+          <li><a href="/es/#servicios">Servicios</a></li>
+          <li><a href="/es/#portafolio">Portafolio</a></li>
+          <li><a href="/es/#nosotros">Nosotros</a></li>
+          <li><a href="/es/#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+      <!-- Portfolio Section -->
+      <section class="portafolio" id="portafolio">
+        <!-- Dripping Paint Effect -->
+        <div class="dripping-effect" aria-hidden="true">
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+        </div>
+        <!-- SVG Filter for goo effect -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          style="display: none">
+          <defs>
+            <filter id="drip-goo">
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="10"
+                result="blur" />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                result="goo" />
+              <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+          </defs>
+        </svg>
+        <div class="portafolio-header">
+          <h2>Portafolio</h2>
+          <p>Proyectos que hablan por nosotros</p>
+        </div>
+        <div class="portafolio-grid">
+          <article class="proyecto-card">
+            <h3>mercadoregional.com.mx</h3>
+            <p>Plataforma de comercio electrónico para productos regionales.</p>
+          </article>
+
+          <article class="proyecto-card">
+            <h3>forjanorte.com.mx</h3>
+            <p>Sitio web corporativo para empresa de forja industrial.</p>
+          </article>
+
+          <article class="proyecto-card">
+            <h3>alanquintana.pro</h3>
+            <p>Portafolio personal profesional.</p>
+          </article>
+        </div>
+        <a href="/es/#contacto" class="portafolio-link">Contáctanos</a>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="view-transition-name: footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <img
+              src="../assets/img/logo_landscape.svg"
+              alt="Aniwa"
+              class="footer-logo" />
+          </a>
+          <p>Creando experiencias digitales únicas</p>
+        </div>
+        <nav class="footer-links">
+          <h4>Enlaces</h4>
+          <ul>
+            <li><a href="/es/servicios.html">Servicios</a></li>
+            <li><a href="/es/portafolio.html">Portafolio</a></li>
+            <li><a href="/es/nosotros.html">Nosotros</a></li>
+            <li><a href="/es/contacto.html">Contacto</a></li>
+            <li><a href="/en/portfolio.html" hreflang="en">English</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Aniwa. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js" type="module" defer></script>
+  </body>
+</html>
