@@ -1221,6 +1221,7 @@ section {
 .portafolio {
   position: relative;
   z-index: 1;
+  overflow: hidden;
   background-color: var(--color-on-primary);
   background-image:
     linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2)),
@@ -1247,11 +1248,7 @@ section {
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
-  .liquid-cheese-bg {
-    min-height: 100dvh;
-  }
-}
+/* Mobile: don't force full viewport height */
 
 .portfolio h2,
 .portafolio h2 {
