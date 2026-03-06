@@ -57,7 +57,7 @@
     transform: none;
   }
 
-  .service-card, .services-link {
+  .service-card, .btn {
     transition: none;
   }
 }

@@ -2,12 +2,7 @@
    Buttons & CTAs
    =================================== */
 
-.hero-cta,
-.services-link,
-.portfolio-link,
-.about-link,
-.contact-form button,
-.submit-button {
+.btn {
   display: inline-block;
   text-align: center;
   padding: var(--space-sm) var(--space-lg);
@@ -19,23 +14,18 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 
-.hero-cta:hover,
-.services-link:hover,
-.portfolio-link:hover,
-.about-link:hover,
-.contact-form button:hover,
-.submit-button:hover {
+.btn:hover {
   background-color: var(--color-on-primary);
   color: var(--color-light);
   transform: translateY(-2px);
 }
 
-/* Specific button styles */
-.services-link,
-.portfolio-link,
-.about-link {
+/* Modifier for section CTA buttons (centered block) */
+.btn--block {
   display: block;
   max-width: 200px;
   margin: 0 auto;
@@ -43,12 +33,8 @@
   z-index: 1;
 }
 
-.portfolio-link:hover {
-  background-color: var(--color-on-secondary);
-}
-
 @media (min-width: 992px) {
-  .services-link {
+  .btn--block {
     max-width: 220px;
   }
 }
