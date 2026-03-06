@@ -33,6 +33,15 @@
   font-style: normal;
 }
 
+.contact-item {
+  margin-bottom: var(--space-md);
+}
+
+.contact-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-xs);
+}
+
 .contact-info address p {
   margin-bottom: var(--space-sm);
   color: var(--color-neutral);
