@@ -22,6 +22,13 @@
    =================================== */
 
 :root {
+  /* Electric Border Colors */
+  --electric-border-color: #dd8448;
+  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  --gradient-color: oklch(
+    from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4
+  );
+
   /* Font Families */
   --font-title: "Antonio", system-ui, sans-serif;
   --font-body: "Noto Sans", system-ui, sans-serif;
@@ -1480,7 +1487,7 @@ section {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 2px solid #dd8448;
+  border: 2px solid var(--electric-border-color);
   pointer-events: none;
   filter: url(#electric-border);
   opacity: 0;
@@ -1496,7 +1503,7 @@ section {
   border-radius: inherit;
   background: linear-gradient(
     135deg,
-    #dd8448,
+    var(--electric-border-color),
     transparent 20%,
     transparent 80%,
     #dd8448
@@ -1511,6 +1518,7 @@ section {
   box-shadow:
     0 0 12px rgba(221, 132, 72, 0.6),
     0 0 24px rgba(221, 132, 72, 0.3),
+    0 0 48px rgba(221, 132, 72, 0.2),
     inset 0 0 12px rgba(221, 132, 72, 0.4);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -2213,3 +2221,118 @@ footer {
 /* ===================================
    Responsive - Mobile First
    =================================== */
+
+/* ===================================
+   Electric Border Example Styles
+   (From .examples/elecrict border/)
+   =================================== */
+
+/* Border layers */
+.border-outer {
+  border: 2px solid rgba(221, 132, 72, 0.5);
+  border-radius: 24px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+}
+
+.main-card {
+  border-radius: 24px;
+  border: 2px solid var(--electric-border-color);
+  margin-top: -4px;
+  margin-left: -4px;
+  filter: url(#turbulent-displace);
+}
+
+/* Glow effects */
+.glow-layer-1 {
+  border: 2px solid rgba(221, 132, 72, 0.6);
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(1px);
+}
+
+.glow-layer-2 {
+  border: 2px solid var(--electric-light-color);
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(4px);
+}
+
+/* Overlay effects */
+.overlay-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  transform: scale(1.1);
+  filter: blur(16px);
+  background: linear-gradient(
+    -30deg,
+    white,
+    transparent 30%,
+    transparent 70%,
+    white
+  );
+}
+
+.overlay-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  transform: scale(1.1);
+  filter: blur(16px);
+  background: linear-gradient(
+    -30deg,
+    white,
+    transparent 30%,
+    transparent 70%,
+    white
+  );
+}
+
+/* Background glow */
+.background-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  filter: blur(32px);
+  transform: scale(1.1);
+  opacity: 0.3;
+  z-index: -1;
+  background: linear-gradient(
+    -30deg,
+    var(--electric-light-color),
+    transparent,
+    var(--electric-border-color)
+  );
+}
