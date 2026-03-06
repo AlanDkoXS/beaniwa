@@ -1463,9 +1463,54 @@ section {
   transition:
     transform 0.3s ease,
     background 0.3s ease;
+  position: relative;
 }
 
-.value-card:hover {
+/* Electric Border Effect */
+.electric-border-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Border with filter - only visible on hover/selected */
+.value-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid #dd8448;
+  pointer-events: none;
+  filter: url(#electric-border);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Glow layer */
+.value-card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid rgba(221, 132, 72, 0.6);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Hover and selected states - show electric border */
+.value-card:hover::before,
+.value-card.selected::before,
+.value-card:hover::after,
+.value-card.selected::after {
+  opacity: 1;
+}
+
+.value-card:hover,
+.value-card.selected {
   transform: translateY(-4px);
   background: rgba(10, 10, 10, 0.85);
 }
