@@ -1,0 +1,34 @@
+User-agent: *
+
+# Allow Home pages
+Allow: /
+Allow: /en/
+Allow: /en/index.html
+Allow: /es/
+Allow: /es/index.html
+
+# Allow About pages
+Allow: /en/about.html
+Allow: /es/nosotros.html
+
+# Allow Service pages
+Allow: /en/services.html
+Allow: /es/servicios.html
+
+# Allow Portfolio pages
+Allow: /en/portfolio.html
+Allow: /es/portafolio.html
+
+# Allow Contact pages
+Allow: /en/contact.html
+Allow: /es/contacto.html
+
+# Allow assets for correct rendering (CSS, JS, Images)
+Allow: /assets/
+
+# Disallow Privacy Policy pages
+Disallow: /en/privacy-policy.html
+Disallow: /es/politica-privacidad.html
+
+# Disallow everything else
+Disallow: /
