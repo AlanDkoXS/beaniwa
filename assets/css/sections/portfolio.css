@@ -32,12 +32,12 @@
   pointer-events: none;
 }
 
-.portfolio h2 {
+.portfolio h1 {
   position: relative;
   z-index: 2;
   text-align: center;
+  margin-inline: auto;
   margin-bottom: var(--space-sm);
-  color: var(--color-dark);
 }
 
 .portfolio-header {
@@ -51,7 +51,8 @@
   z-index: 2;
 }
 
-.portfolio-header h2 {
+.portfolio-header h1 {
+  margin-inline: auto;
   margin-bottom: var(--space-xs);
 }
 

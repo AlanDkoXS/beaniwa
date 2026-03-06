@@ -11,8 +11,9 @@
   );
 
   /* Font Families */
-  --font-title: "Antonio", system-ui, sans-serif;
-  --font-body: "Noto Sans", system-ui, sans-serif;
+  --font-h1: "Poppins", system-ui, sans-serif;
+  --font-body: "Poppins", system-ui, sans-serif;
+  --font-headings: "Antonio", system-ui, sans-serif;
 
   /* Spacing - Mobile First (small screens first) */
   --space-xs: 0.25rem; /* 4px */
@@ -50,6 +51,14 @@
   --color-light: #f5f5f5;
   --color-light-alt: #a5c4d4;
   --color-on-secondary: #d35400; /* Added fallback/derived color if needed */
+
+  /* Header Gradient */
+  --header-gradient: linear-gradient(
+    53deg,
+    rgba(194, 58, 0, 1) 0%,
+    rgba(250, 110, 2, 1) 50%,
+    rgba(214, 107, 26, 1) 100%
+  );
 }
 
 /* Desktop overrides for spacing */

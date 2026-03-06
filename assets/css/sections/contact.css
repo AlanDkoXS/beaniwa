@@ -2,13 +2,15 @@
    Contact Section
    =================================== */
 
-.contact h2 {
+.contact h1 {
   text-align: center;
+  margin-inline: auto;
   margin-bottom: var(--space-sm);
 }
 
 .contact > p {
   text-align: center;
+  margin-inline: auto;
   margin-bottom: var(--space-xl);
   color: var(--color-neutral);
 }
@@ -37,7 +39,7 @@
   margin-bottom: var(--space-md);
 }
 
-.contact-item h3 {
+.contact-item h2 {
   font-size: 1.1rem;
   margin-bottom: var(--space-xs);
 }

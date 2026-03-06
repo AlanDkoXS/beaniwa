@@ -43,9 +43,10 @@
   animation: gradient-pulse-2 8s ease-in-out infinite;
 }
 
-.services h2,
+.services h1,
 .services > p {
   text-align: center;
+  margin-inline: auto;
   position: relative;
   z-index: 1;
 }

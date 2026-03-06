@@ -19,7 +19,7 @@
   background: rgba(10, 10, 10, 0.85);
 }
 
-.service-card h3 {
+.service-card h2 {
   margin-bottom: var(--space-sm);
   color: var(--color-light);
 }
@@ -46,7 +46,7 @@
   z-index: 2;
 }
 
-.project-card h3 {
+.project-card h2 {
   margin-bottom: var(--space-sm);
   color: var(--color-dark);
 }
@@ -77,8 +77,9 @@
   background: rgba(10, 10, 10, 0.85);
 }
 
-.value-card h3 {
+.value-card h2 {
   margin-bottom: var(--space-sm);
+  margin-inline: auto;
   color: var(--color-light);
 }
 

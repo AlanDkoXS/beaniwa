@@ -36,7 +36,12 @@
 
 .hero-title,
 .hero-subtitle {
+  /* color property removed to allow gradient header style */
+}
+
+.hero-subtitle {
   color: var(--color-light);
+  padding: 0 1rem;
 }
 
 .hero-content {
@@ -57,6 +62,7 @@
   justify-content: center;
   margin-top: 2rem;
   opacity: 0;
+  text-decoration: none;
   animation:
     fadeIn 1s ease forwards,
     bounce 2s ease-in-out infinite;
