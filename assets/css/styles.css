@@ -1242,6 +1242,29 @@ section {
   color: var(--color-dark);
 }
 
+.portfolio-header,
+.portafolio-header {
+  background: var(--color-light);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto var(--space-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio-header h2,
+.portafolio-header h2 {
+  margin-bottom: var(--space-xs);
+}
+
+.portfolio-header p,
+.portafolio-header p {
+  color: var(--color-dark);
+  margin-bottom: 0;
+}
+
 .portfolio > p,
 .portafolio > p {
   text-align: center;
