@@ -12,7 +12,7 @@
   border-top: 15px solid var(--color-dark);
   border-bottom: 15px solid var(--color-dark);
   filter: url("#drip-goo");
-  z-index: -2;
+  z-index: 0;
 }
 
 .dripping-effect .drip {
