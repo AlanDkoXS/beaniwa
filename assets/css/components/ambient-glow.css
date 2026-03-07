@@ -30,6 +30,7 @@
   left: 0;
   width: 400px;
   height: 400px;
+  opacity: 0.5;
   transform: translateX(-30%) translateY(-10%);
   background: radial-gradient(
     circle at 0 0,
@@ -45,10 +46,11 @@
   right: 0;
   width: 350px;
   height: 350px;
+  opacity: 0.2;
   transform: translateX(30%) translateY(20%);
   background: radial-gradient(
     circle at 100% 100%,
-    rgba(165, 196, 212, 7) 0%,
+    rgba(165, 196, 212, 0.7) 0%,
     rgba(165, 196, 212, 0.4) 30%,
     rgba(165, 196, 212, 0.1) 60%,
     transparent 100%
