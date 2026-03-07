@@ -21,6 +21,8 @@ const COLORS = {
   base: "#fa6e02",
   bright: "#ffab5c",
   highlight: "#ffd4a0",
+  white: "#ffffff",
+  gray: "#888888",
 };
 
 class Particle {
@@ -245,7 +247,7 @@ class ParticleEngine {
       fromX: 0,
       toX: 0,
       ballwidth: 3,
-      alphamax: 0.4,
+      alphamax: 0.5,
       areaHeight: 0.5,
       color: COLORS.highlight,
       fill: false,
@@ -256,14 +258,14 @@ class ParticleEngine {
       fromX: 0,
       toX: 0,
       ballwidth: 8,
-      alphamax: 0.3,
+      alphamax: 0.5,
       areaHeight: 1,
       color: COLORS.bright,
       fill: true,
     },
   ];
 
-  #lightSettings = [
+  #ambientLightSettings = [
     {
       ellipseWidth: 100,
       ellipseHeight: 80,
@@ -271,6 +273,31 @@ class ParticleEngine {
       offsetX: 80,
       offsetY: -50,
       color: COLORS.bright,
+    },
+  ];
+
+  #extraParticleSettings = [
+    {
+      id: "white",
+      num: 15,
+      fromX: 0,
+      toX: 0,
+      ballwidth: 4,
+      alphamax: 0.5,
+      areaHeight: 1,
+      color: COLORS.white,
+      fill: true,
+    },
+    {
+      id: "gray",
+      num: 15,
+      fromX: 0,
+      toX: 0,
+      ballwidth: 5,
+      alphamax: 0.5,
+      areaHeight: 1,
+      color: COLORS.gray,
+      fill: true,
     },
   ];
 
@@ -305,11 +332,18 @@ class ParticleEngine {
     const w = this.#canvas.width;
     const h = this.#canvas.height;
 
-    this.#lightSettings.forEach(cfg => {
+    this.#ambientLightSettings.forEach(cfg => {
       this.#lights.push(new AmbientLight(cfg, w, h));
     });
 
     this.#particleSettings.forEach(settings => {
+      settings.toX = w;
+      for (let i = 0; i < settings.num; i++) {
+        this.#particles.push(new Particle(settings, w, h));
+      }
+    });
+
+    this.#extraParticleSettings.forEach(settings => {
       settings.toX = w;
       for (let i = 0; i < settings.num; i++) {
         this.#particles.push(new Particle(settings, w, h));
