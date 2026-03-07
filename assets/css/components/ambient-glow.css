@@ -42,15 +42,14 @@
 
 .hero-ambient-glow--blue {
   bottom: 15%;
-  right: 0;
+  right: -125px;
   top: auto;
   width: 250px;
   height: 250px;
   background: radial-gradient(
-    circle at 100% 50%,
+    circle at 0% 50%,
     rgba(236, 71, 0, 0.7) 0%,
     rgba(236, 71, 0, 0.35) 40%,
-    transparent 100%
+    transparent 70%
   );
-  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
 }
