@@ -91,7 +91,7 @@
   border-radius: inherit;
   filter: blur(32px);
   transform: scale(1.1);
-  opacity: 0.3;
+  opacity: 0.15; /* Reduced from 0.3 to lower intensity */
   z-index: -1;
   background: linear-gradient(
     -30deg,
@@ -158,6 +158,7 @@
   position: absolute;
   inset: 0;
   filter: blur(4px);
+  opacity: 0.5; /* Added opacity to lower intensity */
 }
 
 /* Overlay effects */
