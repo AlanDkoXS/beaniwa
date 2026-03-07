@@ -14,40 +14,20 @@
     <link rel="alternate" hreflang="es" href="https://beaniwa.com/es/" />
     <link rel="alternate" hreflang="en" href="https://beaniwa.com/en/" />
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-
+    <meta http-equiv="refresh" content="0; url=/en/" />
     <script>
-      // Language detection and redirect
+      // Fallback redirect
       (function () {
         var userLang = navigator.language || navigator.userLanguage;
-        var lang = userLang.split("-")[0];
-
-        // Check if user prefers Spanish
-        if (lang === "es") {
-          window.location.href = "/es/";
+        if (userLang.split("-")[0] === "es") {
+          window.location.replace("/es/");
         } else {
-          window.location.href = "/en/";
+          window.location.replace("/en/");
         }
       })();
     </script>
   </head>
   <body>
-    <p>
-      Redirecting to
-      <a id="redirect-link" href="/en/">your language version</a>...
-    </p>
-    <script>
-      // Fallback link in case JavaScript doesn't redirect
-      (function () {
-        var userLang = navigator.language || navigator.userLanguage;
-        var lang = userLang.split("-")[0];
-        var link = document.getElementById("redirect-link");
-
-        if (lang === "es") {
-          link.href = "/es/";
-        } else {
-          link.href = "/en/";
-        }
-      })();
-    </script>
+    <p>Redirecting to <a href="/en/">your language version</a>...</p>
   </body>
 </html>

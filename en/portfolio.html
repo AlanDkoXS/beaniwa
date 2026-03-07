@@ -40,24 +40,39 @@
     <!-- Preload fonts -->
     <link
       rel="preload"
-      href="../assets/fonts/Antonio-VariableFont_wght.ttf"
+      href="../assets/fonts/Antonio-VariableFont_wght.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin />
     <link
       rel="preload"
-      href="../assets/fonts/Poppins-Regular.ttf"
+      href="../assets/fonts/Poppins-Regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin />
     <link
       rel="preload"
-      href="../assets/fonts/Poppins-Bold.ttf"
+      href="../assets/fonts/Poppins-Bold.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin />
 
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <!-- Parallel CSS Loading -->
+    <link rel="stylesheet" href="../assets/css/base/fonts.css" />
+    <link rel="stylesheet" href="../assets/css/base/variables.css" />
+    <link rel="stylesheet" href="../assets/css/base/reset.css" />
+    <link rel="stylesheet" href="../assets/css/base/typography.css" />
+    <link rel="stylesheet" href="../assets/css/layout/containers.css" />
+    <link rel="stylesheet" href="../assets/css/layout/header.css" />
+    <link rel="stylesheet" href="../assets/css/layout/footer.css" />
+    <link rel="stylesheet" href="../assets/css/components/mobile-menu.css" />
+    <link rel="stylesheet" href="../assets/css/components/effects.css" />
+    <link rel="stylesheet" href="../assets/css/components/buttons.css" />
+    <link rel="stylesheet" href="../assets/css/components/cards.css" />
+    <link rel="stylesheet" href="../assets/css/sections/portfolio.css" />
+    <link rel="stylesheet" href="../assets/css/animations/animations.css" />
+    <link rel="stylesheet" href="../assets/css/utilities/utilities.css" />
+
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -86,13 +101,13 @@
     <!-- Header -->
     <header class="header" id="header">
       <nav class="nav">
-        <a href="/en/" class="logo"></a>
+        <a href="/en/" class="logo">Aniwa</a>
         <ul class="nav-menu">
-          <li><a href="/en/#inicio">Home</a></li>
-          <li><a href="/en/#servicios">Services</a></li>
-          <li><a href="/en/#portafolio">Portfolio</a></li>
-          <li><a href="/en/#nosotros">About Us</a></li>
-          <li><a href="/en/#contacto">Contact</a></li>
+          <li><a href="/en/#home">Home</a></li>
+          <li><a href="/en/#services">Services</a></li>
+          <li><a href="/en/#portfolio">Portfolio</a></li>
+          <li><a href="/en/#about">About Us</a></li>
+          <li><a href="/en/#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -166,10 +181,9 @@
             <p>Professional personal portfolio.</p>
           </article>
         </div>
-        <a href="/en/#contacto" class="btn btn--block">Contact Us</a>
+        <a href="/en/#contact" class="btn btn--block">Contact Us</a>
       </section>
     </main>
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -179,7 +193,11 @@
             <img
               src="../assets/img/logo_landscape.svg"
               alt="Aniwa"
-              class="footer-logo" />
+              class="footer-logo"
+              width="150"
+              height="50"
+              loading="lazy"
+              decoding="async" />
           </a>
           <p>Creating unique digital experiences</p>
           <div class="footer-social">
@@ -192,7 +210,9 @@
                 src="../assets/icons/social/facebook.svg"
                 alt="Facebook"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
             <a
               href="https://instagram.com"
@@ -203,7 +223,9 @@
                 src="../assets/icons/social/instagram.svg"
                 alt="Instagram"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
             <a
               href="https://tiktok.com"
@@ -214,10 +236,12 @@
                 src="../assets/icons/social/tiktok.svg"
                 alt="TikTok"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
             <a
-              href="https://wa.me/526141234567"
+              href="https://wa.me/526146849441"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp">
@@ -225,7 +249,9 @@
                 src="../assets/icons/social/whatsapp.svg"
                 alt="WhatsApp"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
           </div>
         </div>

@@ -1,14 +1,47 @@
 [build]
   publish = "."
 
+# Language detection and redirects
+[[redirects]]
+  from = "/"
+  to = "/es/"
+  status = 302
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+
 # SPA redirect for client-side routing (only for pages not found)
 [[redirects]]
   from = "/pages/*"
   to = "/pages/:splat"
   status = 200
 
-# Redirect root to index.html
+# Redirect root to index.html as a fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Cache headers for static assets
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/assets/icons/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"

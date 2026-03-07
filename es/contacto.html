@@ -40,24 +40,39 @@
     <!-- Preload fonts -->
     <link
       rel="preload"
-      href="../assets/fonts/Antonio-VariableFont_wght.ttf"
+      href="../assets/fonts/Antonio-VariableFont_wght.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin />
     <link
       rel="preload"
-      href="../assets/fonts/Poppins-Regular.ttf"
+      href="../assets/fonts/Poppins-Regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin />
     <link
       rel="preload"
-      href="../assets/fonts/Poppins-Bold.ttf"
+      href="../assets/fonts/Poppins-Bold.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin />
 
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <!-- Parallel CSS Loading -->
+    <link rel="stylesheet" href="../assets/css/base/fonts.css" />
+    <link rel="stylesheet" href="../assets/css/base/variables.css" />
+    <link rel="stylesheet" href="../assets/css/base/reset.css" />
+    <link rel="stylesheet" href="../assets/css/base/typography.css" />
+    <link rel="stylesheet" href="../assets/css/layout/containers.css" />
+    <link rel="stylesheet" href="../assets/css/layout/header.css" />
+    <link rel="stylesheet" href="../assets/css/layout/footer.css" />
+    <link rel="stylesheet" href="../assets/css/components/mobile-menu.css" />
+    <link rel="stylesheet" href="../assets/css/components/buttons.css" />
+    <link rel="stylesheet" href="../assets/css/components/forms.css" />
+    <link rel="stylesheet" href="../assets/css/components/modal.css" />
+    <link rel="stylesheet" href="../assets/css/sections/contact.css" />
+    <link rel="stylesheet" href="../assets/css/animations/animations.css" />
+    <link rel="stylesheet" href="../assets/css/utilities/utilities.css" />
+
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -176,7 +191,11 @@
             <img
               src="../assets/img/logo_landscape.svg"
               alt="Aniwa"
-              class="footer-logo" />
+              class="footer-logo"
+              width="150"
+              height="50"
+              loading="lazy"
+              decoding="async" />
           </a>
           <p>Creando experiencias digitales únicas</p>
           <div class="footer-social">
@@ -189,7 +208,9 @@
                 src="../assets/icons/social/facebook.svg"
                 alt="Facebook"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
             <a
               href="https://instagram.com"
@@ -200,7 +221,9 @@
                 src="../assets/icons/social/instagram.svg"
                 alt="Instagram"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
             <a
               href="https://tiktok.com"
@@ -211,7 +234,9 @@
                 src="../assets/icons/social/tiktok.svg"
                 alt="TikTok"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
             <a
               href="https://wa.me/526146849441"
@@ -222,7 +247,9 @@
                 src="../assets/icons/social/whatsapp.svg"
                 alt="WhatsApp"
                 width="24"
-                height="24" />
+                height="24"
+                loading="lazy"
+                decoding="async" />
             </a>
           </div>
         </div>
