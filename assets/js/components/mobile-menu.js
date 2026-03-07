@@ -5,8 +5,17 @@
 
 import { getEquivalentUrl, getCurrentLanguage } from "../router.js";
 
-// Navigation labels by language
+// Navigation labels by language (First-English)
 const labels = {
+  en: {
+    regresar: "Return",
+    inicio: "Home",
+    servicios: "Services",
+    portafolio: "Portfolio",
+    nosotros: "About Us",
+    contacto: "Contact",
+    mas: "More",
+  },
   es: {
     regresar: "Regresar",
     inicio: "Inicio",
@@ -16,14 +25,23 @@ const labels = {
     contacto: "Contacto",
     mas: "Más",
   },
+};
+
+// Section IDs by language for routing (First-English)
+const sectionIds = {
   en: {
-    regresar: "Return",
-    inicio: "Home",
-    servicios: "Services",
-    portafolio: "Portfolio",
-    nosotros: "About",
-    contacto: "Contact",
-    mas: "More",
+    inicio: "home",
+    servicios: "services",
+    portafolio: "portfolio",
+    nosotros: "about",
+    contacto: "contact",
+  },
+  es: {
+    inicio: "inicio",
+    servicios: "servicios",
+    portafolio: "portafolio",
+    nosotros: "nosotros",
+    contacto: "contacto",
   },
 };
 
@@ -31,27 +49,22 @@ const labels = {
 const navItems = [
   {
     id: "inicio",
-    href: "/#inicio",
     icon: `<polygon stroke-linecap="round" stroke-linejoin="round" points="12.1 23 15.5 11.1 8.6 9 9.3 23.1 7.4 23.2 0.1 0.2 0.1 0.1 23.9 3.6 14.2 23.3 12.1 23"/>`,
   },
   {
     id: "servicios",
-    href: "/#servicios",
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/>`,
   },
   {
     id: "portafolio",
-    href: "/#portafolio",
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/>`,
   },
   {
     id: "nosotros",
-    href: "/#nosotros",
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/>`,
   },
   {
     id: "contacto",
-    href: "/#contacto",
     icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"/>`,
   },
 ];
@@ -67,13 +80,17 @@ const hamburgerItem = {
  * Get current active item based on URL hash or scroll position
  */
 function getCurrentItem() {
+  const currentLang = getCurrentLanguage();
+  const currentSections = sectionIds[currentLang];
+  
   const sections = [
-    "inicio",
-    "servicios",
-    "portafolio",
-    "nosotros",
-    "contacto",
+    currentSections.inicio,
+    currentSections.servicios,
+    currentSections.portafolio,
+    currentSections.nosotros,
+    currentSections.contacto,
   ];
+  
   const scrollPosition = window.scrollY + window.innerHeight / 3;
 
   // Check which section is currently visible
@@ -86,19 +103,18 @@ function getCurrentItem() {
         scrollPosition >= offsetTop - 100 &&
         scrollPosition < offsetTop + offsetHeight
       ) {
-        return sectionId;
+        // Return the logical ID (e.g. 'home' instead of 'inicio') to match navItems
+        return Object.keys(currentSections).find(key => currentSections[key] === sectionId);
       }
     }
   }
 
-  // Fallback to hash or default to last section (contacto)
-  // This prevents returning to "inicio" when scrolling past the last section
+  // Fallback to hash or default to last section
   const hash = window.location.hash.slice(1);
   if (hash && sections.includes(hash)) {
-    return hash;
+    return Object.keys(currentSections).find(key => currentSections[key] === hash);
   }
-  // Return the last section instead of "inicio" when scroll is past all sections
-  return sections[sections.length - 1];
+  return Object.keys(currentSections)[4]; // return logical ID of last section
 }
 
 /**
@@ -402,25 +418,9 @@ function toggleHamburgerMenu(hamburgerButton) {
   const langButtonHref = getEquivalentUrl(otherLang);
 
   // Section IDs by language
-  const sectionIds =
-    currentLang === "en"
-      ? {
-          inicio: "home",
-          servicios: "services",
-          portafolio: "portfolio",
-          nosotros: "about",
-          contacto: "contact",
-        }
-      : {
-          inicio: "inicio",
-          servicios: "servicios",
-          portafolio: "portafolio",
-          nosotros: "nosotros",
-          contacto: "contacto",
-        };
+  const modalSectionIds = sectionIds[currentLang];
 
   // Navigation items with icons for modal
-  // navItems indices: 0=inicio, 1=servicios, 2=portafolio, 3=nosotros, 4=contacto
   const navItemsWithIcons = [
     {
       id: "regresar",
@@ -430,31 +430,31 @@ function toggleHamburgerMenu(hamburgerButton) {
     },
     {
       id: "inicio",
-      href: hrefLang + "/#" + sectionIds.inicio,
+      href: hrefLang + "/#" + modalSectionIds.inicio,
       icon: navItems[0].icon,
       label: currentLabels.inicio,
     },
     {
       id: "nosotros",
-      href: hrefLang + "/#" + sectionIds.nosotros,
+      href: hrefLang + "/#" + modalSectionIds.nosotros,
       icon: navItems[3].icon,
       label: currentLabels.nosotros,
     },
     {
       id: "servicios",
-      href: hrefLang + "/#" + sectionIds.servicios,
+      href: hrefLang + "/#" + modalSectionIds.servicios,
       icon: navItems[1].icon,
       label: currentLabels.servicios,
     },
     {
       id: "portafolio",
-      href: hrefLang + "/#" + sectionIds.portafolio,
+      href: hrefLang + "/#" + modalSectionIds.portafolio,
       icon: navItems[2].icon,
       label: currentLabels.portafolio,
     },
     {
       id: "contacto",
-      href: hrefLang + "/#" + sectionIds.contacto,
+      href: hrefLang + "/#" + modalSectionIds.contacto,
       icon: navItems[4].icon,
       label: currentLabels.contacto,
     },
@@ -682,14 +682,15 @@ function initMobileMenu() {
     const regresarItem = {
       id: "regresar",
       href: langPrefix + "/",
-      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
+      icon: `<polygon stroke-linecap="round" stroke-linejoin="round" points="12.1 23 15.5 11.1 8.6 9 9.3 23.1 7.4 23.2 0.1 0.2 0.1 0.1 23.9 3.6 14.2 23.3 12.1 23"/>`,
     };
     bottomNavItems.push(regresarItem);
   } else {
-    // On index page, show all nav items with correct language prefix
+    // On index page, show all nav items with correct language prefix and section IDs
+    const currentSections = sectionIds[currentLang];
     const prefixedNavItems = navItems.map(item => ({
       ...item,
-      href: langPrefix + item.href,
+      href: langPrefix + "/#" + currentSections[item.id],
     }));
     bottomNavItems.push(...prefixedNavItems);
   }
