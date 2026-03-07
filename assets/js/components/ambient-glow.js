@@ -30,9 +30,9 @@ export function initAmbientGlow() {
     orangeGlow.style.setProperty("--glow-move-x", `${s1 * 30}px`);
     orangeGlow.style.setProperty("--glow-move-y", `${c1 * 20}px`);
     
-    blueGlow.style.setProperty("--glow-intensity", 0.2 + s2 * 0.15);
-    blueGlow.style.setProperty("--glow-scale", 1 + c2 * 0.1);
-    blueGlow.style.setProperty("--glow-move-x", `${s2 * -20}px`);
+    blueGlow.style.setProperty("--glow-intensity", 0.3 + s2 * 0.2);
+    blueGlow.style.setProperty("--glow-scale", 1 + c2 * 0.08);
+    blueGlow.style.setProperty("--glow-move-x", `${s2 * -15}px`);
     blueGlow.style.setProperty("--glow-move-y", "0px");
     
     animationId = requestAnimationFrame(animate);
