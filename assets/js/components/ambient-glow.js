@@ -1,14 +1,12 @@
 export function initAmbientGlow() {
   const glowContainer = document.getElementById("ambient-glow");
   const orangeGlow = glowContainer?.querySelector(".hero-ambient-glow--orange");
-  const blueGlow = glowContainer?.querySelector(".hero-ambient-glow--blue");
   
-  if (!glowContainer || !orangeGlow || !blueGlow) {
+  if (!glowContainer || !orangeGlow) {
     return;
   }
 
-  let time1 = Math.random() * Math.PI * 2;
-  let time2 = Math.random() * Math.PI * 2 + Math.PI;
+  let time = Math.random() * Math.PI * 2;
   let animationId = null;
   let lastTime = 0;
 
@@ -17,21 +15,14 @@ export function initAmbientGlow() {
     const delta = timestamp - lastTime;
     lastTime = timestamp;
     
-    time1 += delta * 0.0008;
-    time2 += delta * 0.0012;
+    time += delta * 0.0008;
+    const s = Math.sin(time);
+    const c = Math.cos(time * 0.7);
     
-    const s1 = Math.sin(time1);
-    const c1 = Math.cos(time1 * 0.7);
-    const s2 = Math.sin(time2);
-    const c2 = Math.cos(time2 * 1.3);
-    
-    orangeGlow.style.setProperty("--glow-intensity", 0.4 + s1 * 0.3);
-    orangeGlow.style.setProperty("--glow-scale", 1 + c1 * 0.1);
-    orangeGlow.style.setProperty("--glow-move-x", `${s1 * 30}px`);
-    orangeGlow.style.setProperty("--glow-move-y", `${c1 * 20}px`);
-    
-    blueGlow.style.opacity = 0.3 + s2 * 0.4;
-    blueGlow.style.transform = `scale(${0.5 + c2 * 0.5})`;
+    orangeGlow.style.setProperty("--glow-intensity", 0.4 + s * 0.3);
+    orangeGlow.style.setProperty("--glow-scale", 1 + c * 0.1);
+    orangeGlow.style.setProperty("--glow-move-x", `${s * 30}px`);
+    orangeGlow.style.setProperty("--glow-move-y", `${c * 20}px`);
     
     animationId = requestAnimationFrame(animate);
   }
