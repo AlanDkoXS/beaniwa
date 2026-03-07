@@ -74,7 +74,19 @@
   inset: 0;
   pointer-events: none;
   border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   z-index: 0;
+}
+
+.value-card.selected .electric-layers {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .value-card:hover .electric-layers {
+    opacity: 1;
+  }
 }
 
 /* Background glow */
@@ -84,8 +96,7 @@
   border-radius: inherit;
   filter: blur(24px); /* Adjusted blur for potentially different card sizes */
   transform: scale(1.05); /* Adjusted scale for tighter glow */
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 0.15;
   z-index: -1;
   background: linear-gradient(
     -30deg,
@@ -101,6 +112,21 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
+  /* Fades out the physical borders and their specific glows in the middle */
+  mask-image: linear-gradient(
+    -30deg,
+    black 0%,
+    transparent 30%,
+    transparent 70%,
+    black 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    -30deg,
+    black 0%,
+    transparent 30%,
+    transparent 70%,
+    black 100%
+  );
 }
 
 /* Border layers */
@@ -130,8 +156,6 @@
   position: absolute;
   inset: 0;
   filter: blur(1px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
 .glow-layer-2 {
@@ -140,8 +164,7 @@
   position: absolute;
   inset: 0;
   filter: blur(4px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 0.5; /* Added opacity to lower intensity */
 }
 
 /* Overlay effects */
@@ -149,8 +172,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 1;
   mix-blend-mode: overlay;
   transform: scale(1.1);
   filter: blur(16px);
@@ -167,8 +189,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 0.5;
   mix-blend-mode: overlay;
   transform: scale(1.1);
   filter: blur(16px);
@@ -179,19 +200,4 @@
     transparent 85%,
     white
   );
-}
-
-/* Glow hover states */
-.value-card.selected .background-glow { opacity: 0.15; }
-.value-card.selected .glow-layer-1 { opacity: 1; }
-.value-card.selected .glow-layer-2 { opacity: 1; }
-.value-card.selected .overlay-1 { opacity: 1; }
-.value-card.selected .overlay-2 { opacity: 0.5; }
-
-@media (hover: hover) {
-  .value-card:hover .background-glow { opacity: 0.15; }
-  .value-card:hover .glow-layer-1 { opacity: 1; }
-  .value-card:hover .glow-layer-2 { opacity: 1; }
-  .value-card:hover .overlay-1 { opacity: 1; }
-  .value-card:hover .overlay-2 { opacity: 0.5; }
 }
