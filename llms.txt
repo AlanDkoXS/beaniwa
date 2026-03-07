@@ -1,0 +1,30 @@
+# Aniwa
+
+> Digital marketing agency with over 10 years of experience based in Chihuahua, México. We help businesses and small companies grow through comprehensive digital strategies.
+
+## Services
+
+- [Web Development](https://beaniwa.com/en/services): Modern, responsive websites optimized for conversions.
+- [Social Media](https://beaniwa.com/en/services): Strategic social media management to increase reach and audience engagement.
+- [SEO](https://beaniwa.com/en/services): Organic search engine positioning to attract qualified visitors.
+- [App Development](https://beaniwa.com/en/services): Custom mobile and web applications to optimize business processes.
+- [Branding](https://beaniwa.com/en/services): Unique visual identity design that reflects your brand values.
+
+## Main Pages
+
+- [Home](https://beaniwa.com/en/): General overview of the agency and its services.
+- [Services](https://beaniwa.com/en/services): Full detail of all services offered.
+- [Portfolio](https://beaniwa.com/en/portfolio): Completed projects including mercadoregional.com.mx, forjanorte.com.mx and alanquintana.pro.
+- [About](https://beaniwa.com/en/about): Agency history and values.
+- [Contact](https://beaniwa.com/en/contact): Contact form available on the site.
+
+## Contact
+
+For inquiries in English: hello@beaniwa.com
+Para consultas en español: hola@beaniwa.com
+WhatsApp: https://wa.me/526146849441
+
+## Languages
+
+- English: https://beaniwa.com/en/
+- Español: https://beaniwa.com/es/
