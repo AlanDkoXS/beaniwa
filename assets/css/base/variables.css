@@ -9,6 +9,7 @@
   --gradient-color: oklch(
     from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4
   );
+  --color-neutral-900: oklch(0.185 0 0);
 
   /* Font Families */
   --font-h1: "Poppins", system-ui, sans-serif;

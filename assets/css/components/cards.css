@@ -61,7 +61,6 @@
 .value-card {
   background: rgba(20, 20, 20, 0.7);
   backdrop-filter: blur(10px);
-  padding: var(--space-lg);
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
@@ -69,12 +68,37 @@
     transform 0.3s ease,
     background 0.3s ease;
   position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .value-card:hover,
 .value-card.selected {
   transform: translateY(-4px);
-  background: rgba(10, 10, 10, 0.85);
+  padding: 2px;
+  border-color: transparent;
+  background:
+    linear-gradient(
+      -30deg,
+      var(--gradient-color),
+      transparent,
+      var(--gradient-color)
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-neutral-900),
+      var(--color-neutral-900)
+    );
+}
+
+.value-card-content {
+  padding: var(--space-lg);
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .value-card h2 {
