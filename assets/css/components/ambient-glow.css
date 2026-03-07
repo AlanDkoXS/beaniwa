@@ -48,9 +48,9 @@
   transform: translateX(30%) translateY(20%);
   background: radial-gradient(
     circle at 100% 100%,
-    rgba(165, 196, 212, 1) 0%,
-    rgba(165, 196, 212, 0.6) 30%,
-    rgba(165, 196, 212, 0.3) 60%,
+    rgba(165, 196, 212, 7) 0%,
+    rgba(165, 196, 212, 0.4) 30%,
+    rgba(165, 196, 212, 0.1) 60%,
     transparent 100%
   );
 }
