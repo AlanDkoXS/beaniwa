@@ -33,7 +33,7 @@ export function initAmbientGlow() {
     blueGlow.style.setProperty("--glow-intensity", 0.25 + s2 * 0.15);
     blueGlow.style.setProperty("--glow-scale", 1 + c2 * 0.08);
     blueGlow.style.setProperty("--glow-move-x", `${s2 * -15}px`);
-    blueGlow.style.setProperty("--glow-move-y", "0px");
+    blueGlow.style.setProperty("--glow-move-y", `${s2 * -15}px`);
     
     animationId = requestAnimationFrame(animate);
   }

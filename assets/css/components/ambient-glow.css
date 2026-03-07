@@ -41,8 +41,9 @@
 }
 
 .hero-ambient-glow--blue {
-  top: 15%;
+  bottom: 15%;
   right: 0;
+  top: auto;
   width: 250px;
   height: 250px;
   background: radial-gradient(
