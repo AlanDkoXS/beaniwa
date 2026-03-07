@@ -4,6 +4,7 @@
  */
 
 // Import modules
+import { initAmbientGlow } from "./components/ambient-glow.js";
 import { initContactForm } from "./components/contact-form.js";
 import { initHeader } from "./components/header.js";
 import { initSecondaryMobileMenu } from "./components/mobile-menu-secondary.js";
@@ -93,6 +94,8 @@ function initApp() {
   initHeroVideoFreeze();
   // Initialize hero middle effect
   initHeroMiddleEffect();
+  // Initialize ambient glow
+  initAmbientGlow();
 
   console.log("Aniwa initialized successfully");
 }

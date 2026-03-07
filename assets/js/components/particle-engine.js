@@ -183,18 +183,9 @@ class AmbientLight {
     this.canvasHeight = canvasHeight;
     this.scaleX = 1;
     this.scaleY = 1;
+    this.x = canvasWidth / 2 + config.offsetX;
+    this.y = canvasHeight / 2 + config.offsetY;
     this.time = Math.random() * Math.PI * 2;
-    this.updatePosition();
-  }
-
-  updatePosition() {
-    if (this.config.corner === "top-left") {
-      this.x = this.config.offsetX || 100;
-      this.y = this.config.offsetY || 100;
-    } else {
-      this.x = this.canvasWidth / 2 + this.config.offsetX;
-      this.y = this.canvasHeight / 2 + this.config.offsetY;
-    }
   }
 
   update(delta) {
@@ -203,23 +194,14 @@ class AmbientLight {
     const c = Math.cos(this.time * 0.7);
     this.scaleX = 1.5 + s * 0.5;
     this.scaleY = 0.8 + c * 0.4;
-    
-    const pulseIntensity = this.config.pulseSpeed || 0.5;
-    this.currentAlpha = this.config.alpha * (0.5 + s * pulseIntensity);
-    
-    if (this.config.corner === "top-left") {
-      this.x = (this.config.offsetX || 100) + s * 30;
-      this.y = (this.config.offsetY || 100) + c * 20;
-    } else {
-      this.x = this.canvasWidth / 2 + this.config.offsetX + s * 50;
-      this.y = this.canvasHeight / 2 + this.config.offsetY + c * 30;
-    }
+    this.x = this.canvasWidth / 2 + this.config.offsetX + s * 50;
+    this.y = this.canvasHeight / 2 + this.config.offsetY + c * 30;
   }
 
   draw(ctx) {
     ctx.save();
     ctx.globalCompositeOperation = "screen";
-    ctx.globalAlpha = this.currentAlpha || this.config.alpha;
+    ctx.globalAlpha = this.config.alpha;
     ctx.translate(this.x, this.y);
     ctx.scale(this.scaleX, this.scaleY);
 
@@ -247,7 +229,6 @@ class AmbientLight {
   resize(canvasWidth, canvasHeight) {
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
-    this.updatePosition();
   }
 }
 
@@ -285,16 +266,6 @@ class ParticleEngine {
   ];
 
   #ambientLightSettings = [
-    {
-      ellipseWidth: 600,
-      ellipseHeight: 500,
-      alpha: 0.5,
-      offsetX: 250,
-      offsetY: 250,
-      corner: "top-left",
-      color: COLORS.bright,
-      pulseSpeed: 0.4,
-    },
     {
       ellipseWidth: 100,
       ellipseHeight: 80,

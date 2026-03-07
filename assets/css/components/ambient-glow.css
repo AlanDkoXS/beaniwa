@@ -1,0 +1,36 @@
+.hero-glow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.hero-glow-container.visible {
+  opacity: 1;
+}
+
+.hero-ambient-glow {
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 600px;
+  height: 500px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 171, 92, 1) 0%,
+    rgba(255, 171, 92, 0.6) 20%,
+    rgba(255, 171, 92, 0.3) 50%,
+    transparent 70%
+  );
+  opacity: var(--glow-intensity, 0.5);
+  transform: 
+    translate(var(--glow-move-x, 0), var(--glow-move-y, 0))
+    scale(var(--glow-scale, 1));
+  filter: blur(80px);
+  will-change: opacity, transform;
+}
