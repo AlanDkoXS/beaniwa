@@ -286,11 +286,11 @@ class ParticleEngine {
 
   #ambientLightSettings = [
     {
-      ellipseWidth: 400,
-      ellipseHeight: 300,
-      alpha: 0.3,
-      offsetX: 150,
-      offsetY: 150,
+      ellipseWidth: 600,
+      ellipseHeight: 500,
+      alpha: 0.5,
+      offsetX: 250,
+      offsetY: 250,
       corner: "top-left",
       color: COLORS.bright,
       pulseSpeed: 0.4,
