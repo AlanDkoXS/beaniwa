@@ -25,7 +25,7 @@ export function initAmbientGlow() {
     const s2 = Math.sin(time2);
     const c2 = Math.cos(time2 * 0.8);
     
-    orangeGlow.style.setProperty("--glow-intensity", 0.3 + s1 * 0.2);
+    orangeGlow.style.setProperty("--glow-intensity", 0.4 + s1 * 0.3);
     orangeGlow.style.setProperty("--glow-scale", 1 + c1 * 0.1);
     orangeGlow.style.setProperty("--glow-move-x", `${s1 * 30}px`);
     orangeGlow.style.setProperty("--glow-move-y", `${c1 * 20}px`);
@@ -33,7 +33,7 @@ export function initAmbientGlow() {
     blueGlow.style.setProperty("--glow-intensity", 0.2 + s2 * 0.15);
     blueGlow.style.setProperty("--glow-scale", 1 + c2 * 0.1);
     blueGlow.style.setProperty("--glow-move-x", `${s2 * -20}px`);
-    blueGlow.style.setProperty("--glow-move-y", `${c2 * 15}px`);
+    blueGlow.style.setProperty("--glow-move-y", "0px");
     
     animationId = requestAnimationFrame(animate);
   }
