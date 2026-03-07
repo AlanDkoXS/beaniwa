@@ -41,21 +41,33 @@ function handleValueCardsMobile() {
 
   const cards = document.querySelectorAll(".value-card");
   
-  // Create an active zone between 20% and 70% of the viewport height
-  const topTrigger = window.innerHeight * 0.20; 
-  const bottomTrigger = window.innerHeight * 0.70; 
+  // Find the card that is closest to the vertical center of the screen
+  const centerY = window.innerHeight / 2;
+  let closestCard = null;
+  let closestDistance = Infinity;
   
   cards.forEach(card => {
-    const rect = card.getBoundingClientRect();
+    // Reset all cards first
+    card.classList.remove("selected");
     
-    // Check if any part of the card is within the active zone
-    // meaning its top is above the bottom trigger, and its bottom is below the top trigger
-    if (rect.top <= bottomTrigger && rect.bottom >= topTrigger) {
-      card.classList.add("selected");
-    } else {
-      card.classList.remove("selected");
+    const rect = card.getBoundingClientRect();
+    const cardCenterY = rect.top + (rect.height / 2);
+    const distanceToCenter = Math.abs(centerY - cardCenterY);
+    
+    if (distanceToCenter < closestDistance) {
+      closestDistance = distanceToCenter;
+      closestCard = card;
     }
   });
+  
+  // Only activate the single closest card if it's somewhat in view
+  if (closestCard) {
+    const rect = closestCard.getBoundingClientRect();
+    // 15% to 85% - broad zone to ensure at least one is active while scrolling through the section
+    if (rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15) {
+      closestCard.classList.add("selected");
+    }
+  }
 }
 
 /**
