@@ -4,15 +4,16 @@
  */
 
 // Import modules
+import { initContactForm } from "./components/contact-form.js";
 import { initHeader } from "./components/header.js";
 import { initSecondaryMobileMenu } from "./components/mobile-menu-secondary.js";
 import { initMobileMenu } from "./components/mobile-menu.js";
+import { initParticleEngine } from "./components/particle-engine.js";
 import { initScrollAnimations } from "./components/scroll-animations.js";
-import { initContactForm } from "./components/contact-form.js";
 import { initNavigation } from "./navigation.js";
+import { initRouter } from "./router.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
-import { initRouter } from "./router.js";
 import { initViewTransitions } from "./view-transitions.js";
 
 // Check if current page is index
@@ -47,6 +48,24 @@ function initHeroVideoFreeze() {
 }
 
 /**
+ * Show hero middle container effect after 3 seconds
+ */
+function initHeroMiddleEffect() {
+  const heroMiddle = document.getElementById("hero-middle");
+
+  if (!heroMiddle) {
+    return;
+  }
+
+  // Show the effect after 3 seconds
+  setTimeout(() => {
+    heroMiddle.classList.add("visible");
+    // Initialize particle engine after container is visible
+    initParticleEngine();
+  }, 3000);
+}
+
+/**
  * Initialize all application modules
  */
 function initApp() {
@@ -72,6 +91,8 @@ function initApp() {
   updateDateYear();
   // Freeze video on last frame
   initHeroVideoFreeze();
+  // Initialize hero middle effect
+  initHeroMiddleEffect();
 
   console.log("Aniwa initialized successfully");
 }
@@ -92,13 +113,13 @@ document.addEventListener("viewTransitionComplete", () => {
   if (existingPanel) existingPanel.remove();
   const existingOverlay = document.querySelector(".mobile-menu__overlay");
   if (existingOverlay) existingOverlay.remove();
-  
+
   if (isIndexPage()) {
     initMobileMenu();
   } else {
     initSecondaryMobileMenu();
   }
-  
+
   // Re-init page-specific components
   initScrollAnimations();
   initContactForm();

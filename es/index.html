@@ -99,7 +99,12 @@
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Electric Border SVG Filter -->
-    <svg class="electric-border-svg" aria-hidden="true" width="0" height="0" style="position: absolute;">
+    <svg
+      class="electric-border-svg"
+      aria-hidden="true"
+      width="0"
+      height="0"
+      style="position: absolute">
       <defs>
         <filter
           id="electric-border"
@@ -205,7 +210,12 @@
       <section class="hero" id="inicio">
         <!-- Video Background -->
         <div class="hero-video-container">
-          <video class="hero-video" autoplay muted playsinline fetchpriority="high">
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            playsinline
+            fetchpriority="high">
             <source
               src="../assets/video/logo_desktop_full.webm"
               type="video/webm"
@@ -224,6 +234,11 @@
               type="video/mp4"
               media="(max-width: 768px)" />
           </video>
+        </div>
+
+        <!-- Hero Middle Container -->
+        <div class="hero-middle-container" id="hero-middle">
+          <canvas id="projector"></canvas>
         </div>
 
         <!-- Hero Content -->
@@ -464,11 +479,28 @@
               24 horas.
             </p>
             <address>
-              <p>Email: <a href="mailto:hola@beaniwa.com?subject=Info">hola@beaniwa.com</a></p>
-              <p>Teléfono: <a href="https://wa.me/526146849441" target="_blank" rel="noopener noreferrer">+52 614 684 9441</a></p>
+              <p>
+                Email:
+                <a href="mailto:hola@beaniwa.com?subject=Info"
+                  >hola@beaniwa.com</a
+                >
+              </p>
+              <p>
+                Teléfono:
+                <a
+                  href="https://wa.me/526146849441"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >+52 614 684 9441</a
+                >
+              </p>
             </address>
           </div>
-          <form class="contact-form" name="contact" method="POST" data-netlify="true">
+          <form
+            class="contact-form"
+            name="contact"
+            method="POST"
+            data-netlify="true">
             <input type="hidden" name="form-name" value="contact" />
             <label for="name">Nombre</label>
             <input
