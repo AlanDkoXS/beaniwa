@@ -4,6 +4,7 @@
  */
 
 import { getEquivalentUrl, getCurrentLanguage } from "../router.js";
+import { supportsViewTransitions, navigateWithTransition } from "../view-transitions.js";
 
 // Navigation labels by language (First-English)
 const labels = {
@@ -251,11 +252,19 @@ function handleItemClick(clickedItem, href) {
       targetSection.scrollIntoView({ behavior: "smooth" });
     } else {
       // Section not found on current page, navigate to it
-      window.location.href = href;
+      if (supportsViewTransitions()) {
+        navigateWithTransition(href);
+      } else {
+        window.location.href = href;
+      }
     }
   } else {
     // No hash, navigate to the page
-    window.location.href = href;
+    if (supportsViewTransitions()) {
+      navigateWithTransition(href);
+    } else {
+      window.location.href = href;
+    }
   }
 }
 
@@ -544,11 +553,19 @@ function toggleHamburgerMenu(hamburgerButton) {
             targetSection.scrollIntoView({ behavior: "smooth" });
           } else {
             // Section not found, navigate to page with hash
-            window.location.hash = hash;
+            if (supportsViewTransitions()) {
+              navigateWithTransition(href);
+            } else {
+              window.location.hash = hash;
+            }
           }
         } else {
           // Full page navigation
-          window.location.href = href;
+          if (supportsViewTransitions()) {
+            navigateWithTransition(href);
+          } else {
+            window.location.href = href;
+          }
         }
       }, 450);
     });
@@ -571,7 +588,11 @@ function toggleHamburgerMenu(hamburgerButton) {
       closeHamburgerPanel(panel, overlay, hamburgerButton);
       // Navigate after modal closes
       setTimeout(() => {
-        window.location.href = href;
+        if (supportsViewTransitions()) {
+          navigateWithTransition(href);
+        } else {
+          window.location.href = href;
+        }
       }, 450);
     });
   }

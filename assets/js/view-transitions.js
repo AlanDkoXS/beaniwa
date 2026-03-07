@@ -166,4 +166,4 @@ function initViewTransitions() {
 }
 
 // Export functions
-export { initViewTransitions, supportsViewTransitions };
+export { initViewTransitions, supportsViewTransitions, navigateWithTransition };

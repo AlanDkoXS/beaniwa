@@ -5,6 +5,8 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Disable smooth scroll on mobile devices to prevent interference with mobile menu */

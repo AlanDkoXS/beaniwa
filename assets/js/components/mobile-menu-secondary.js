@@ -4,6 +4,7 @@
  */
 
 import { getEquivalentUrl, getCurrentLanguage } from "../router.js";
+import { supportsViewTransitions, navigateWithTransition } from "../view-transitions.js";
 
 // Navigation labels by language
 const labelsSecondary = {
@@ -110,10 +111,18 @@ function handleItemClickSecondary(href, clickedItem) {
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: "smooth" });
       } else {
-        window.location.href = href;
+        if (supportsViewTransitions()) {
+          navigateWithTransition(href);
+        } else {
+          window.location.href = href;
+        }
       }
     } else {
-      window.location.href = href;
+      if (supportsViewTransitions()) {
+        navigateWithTransition(href);
+      } else {
+        window.location.href = href;
+      }
     }
   }, 300);
 }
@@ -309,7 +318,11 @@ function toggleHamburgerMenuSecondary(hamburgerButton) {
 
       // Navigate after modal closes - full page navigation
       setTimeout(() => {
-        window.location.href = href;
+        if (supportsViewTransitions()) {
+          navigateWithTransition(href);
+        } else {
+          window.location.href = href;
+        }
       }, 450);
     });
   });
@@ -331,7 +344,11 @@ function toggleHamburgerMenuSecondary(hamburgerButton) {
       closeHamburgerPanelSecondary(panel, overlay, hamburgerButton);
       // Navigate after modal closes
       setTimeout(() => {
-        window.location.href = href;
+        if (supportsViewTransitions()) {
+          navigateWithTransition(href);
+        } else {
+          window.location.href = href;
+        }
       }, 450);
     });
   }

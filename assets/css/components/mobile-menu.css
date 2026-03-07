@@ -20,6 +20,8 @@
   font-size: 1em;
   margin: 0;
   width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   --bgColorItem: #fa6e02;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -37,6 +39,7 @@
   will-change: transform;
   justify-content: center;
   padding: 0.55em 0 0.85em;
+  box-sizing: border-box;
   transition: transform var(--timeOut, 0.7s);
   text-decoration: none;
 }

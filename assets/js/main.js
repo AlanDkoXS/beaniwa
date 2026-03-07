@@ -13,6 +13,7 @@ import { initNavigation } from "./navigation.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
 import { initRouter } from "./router.js";
+import { initViewTransitions } from "./view-transitions.js";
 
 // Check if current page is index
 function isIndexPage() {
@@ -53,6 +54,7 @@ function initApp() {
 
   // Initialize all modules
   initRouter();
+  initViewTransitions();
   initNavigation();
   initScroll();
   initHeader();
@@ -80,6 +82,28 @@ if (document.readyState === "loading") {
 } else {
   initApp();
 }
+
+// Support for View Transitions - Re-run UI init on navigation
+document.addEventListener("viewTransitionComplete", () => {
+  // Force re-init mobile menu to update links/buttons based on the new page
+  const existingMenu = document.querySelector(".mobile-menu");
+  if (existingMenu) existingMenu.remove();
+  const existingPanel = document.querySelector(".mobile-menu__panel");
+  if (existingPanel) existingPanel.remove();
+  const existingOverlay = document.querySelector(".mobile-menu__overlay");
+  if (existingOverlay) existingOverlay.remove();
+  
+  if (isIndexPage()) {
+    initMobileMenu();
+  } else {
+    initSecondaryMobileMenu();
+  }
+  
+  // Re-init page-specific components
+  initScrollAnimations();
+  initContactForm();
+  initHeroVideoFreeze();
+});
 
 // Export for debugging
 export { initApp };
