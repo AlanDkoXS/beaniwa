@@ -106,11 +106,11 @@
   opacity: 0;
   pointer-events: none;
   z-index: 1;
-  transition: opacity 1s ease;
+  transition: opacity 2s ease;
 }
 
 .hero-middle-container.visible {
-  opacity: 0.6;
+  opacity: 0.4;
   pointer-events: auto;
 }
 
