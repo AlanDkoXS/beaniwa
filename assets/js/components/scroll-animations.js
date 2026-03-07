@@ -40,15 +40,17 @@ function handleValueCardsMobile() {
   }
 
   const cards = document.querySelectorAll(".value-card");
-  // 30% from the top of the viewport
-  const triggerPoint = window.innerHeight * 0.30; 
+  
+  // Create an active zone between 20% and 70% of the viewport height
+  const topTrigger = window.innerHeight * 0.20; 
+  const bottomTrigger = window.innerHeight * 0.70; 
   
   cards.forEach(card => {
     const rect = card.getBoundingClientRect();
     
-    // Check if the card is intersecting the 30% threshold
-    // meaning its top is above or at the 30% mark, and its bottom hasn't passed it
-    if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
+    // Check if any part of the card is within the active zone
+    // meaning its top is above the bottom trigger, and its bottom is below the top trigger
+    if (rect.top <= bottomTrigger && rect.bottom >= topTrigger) {
       card.classList.add("selected");
     } else {
       card.classList.remove("selected");

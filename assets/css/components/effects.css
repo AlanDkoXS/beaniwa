@@ -71,7 +71,7 @@
 
 .electric-layers {
   position: absolute;
-  inset: 0;
+  inset: -20px; /* Expands the layers outward so blur has room to overflow */
   pointer-events: none;
   border-radius: inherit;
   opacity: 0;
@@ -92,10 +92,10 @@
 /* Background glow */
 .background-glow {
   position: absolute;
-  inset: 0;
+  inset: 20px; /* Compensate for the parent's negative inset */
   border-radius: inherit;
-  filter: blur(24px); /* Adjusted blur for potentially different card sizes */
-  transform: scale(1.05); /* Adjusted scale for tighter glow */
+  filter: blur(24px); 
+  transform: scale(1.05); 
   opacity: 0.15;
   z-index: -1;
   background: linear-gradient(
@@ -110,7 +110,7 @@
 /* Inner container */
 .inner-container {
   position: absolute;
-  inset: 0;
+  inset: 20px; /* Compensate for the parent's negative inset to stick to real border */
   border-radius: inherit;
   /* Fades out the physical borders and their specific glows in the middle */
   mask-image: linear-gradient(
@@ -162,15 +162,15 @@
   border: 2px solid var(--electric-light-color);
   border-radius: inherit;
   position: absolute;
-  inset: 0;
-  filter: blur(4px);
-  opacity: 0.5; /* Added opacity to lower intensity */
+  inset: -10px; /* Allows the glow to bleed outwards slightly beyond the card */
+  filter: blur(8px); /* slightly more blur for outward bleeding */
+  opacity: 0.5; 
 }
 
 /* Overlay effects */
 .overlay-1 {
   position: absolute;
-  inset: 0;
+  inset: 20px; /* Compensate for negative inset */
   border-radius: inherit;
   opacity: 1;
   mix-blend-mode: overlay;
@@ -187,7 +187,7 @@
 
 .overlay-2 {
   position: absolute;
-  inset: 0;
+  inset: 20px; /* Compensate for negative inset */
   border-radius: inherit;
   opacity: 0.5;
   mix-blend-mode: overlay;
