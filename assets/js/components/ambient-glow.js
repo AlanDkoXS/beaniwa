@@ -30,8 +30,8 @@ export function initAmbientGlow() {
     orangeGlow.style.setProperty("--glow-move-x", `${s1 * 30}px`);
     orangeGlow.style.setProperty("--glow-move-y", `${c1 * 20}px`);
     
-    blueGlow.style.opacity = 0.5 + s2 * 0.3;
-    blueGlow.style.transform = `translateX(-50%) translate(${s2 * -15}px, ${s2 * -15}px) scale(${1 + c2 * 0.15})`;
+    blueGlow.style.opacity = 0.3 + s2 * 0.4;
+    blueGlow.style.transform = `scale(${0.5 + c2 * 0.5})`;
     
     animationId = requestAnimationFrame(animate);
   }
