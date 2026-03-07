@@ -18,19 +18,19 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 500px;
+  width: 400px;
   height: 400px;
   background: radial-gradient(
-    ellipse at top left,
+    circle at 0 0,
     rgba(255, 171, 92, 1) 0%,
-    rgba(255, 171, 92, 0.6) 20%,
-    rgba(255, 171, 92, 0.3) 50%,
-    transparent 70%
+    rgba(255, 171, 92, 0.6) 30%,
+    rgba(255, 171, 92, 0.3) 60%,
+    transparent 100%
   );
   opacity: var(--glow-intensity, 0.5);
   transform: 
     translate(var(--glow-move-x, 0), var(--glow-move-y, 0))
     scale(var(--glow-scale, 1));
-  filter: blur(80px);
+  filter: blur(40px);
   will-change: opacity, transform;
 }
