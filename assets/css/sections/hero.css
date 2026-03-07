@@ -59,6 +59,16 @@
   mix-blend-mode: overlay;
 }
 
+/* Wide screens - full width coverage */
+@media (min-width: 1024px) {
+  .hero-hexagon-pattern img {
+    object-fit: cover;
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+  }
+}
+
 .hero-video {
   width: 100%;
   height: 100%;
