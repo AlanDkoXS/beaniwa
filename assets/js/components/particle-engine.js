@@ -243,7 +243,7 @@ class ParticleEngine {
   #particleSettings = [
     {
       id: "small",
-      num: 300,
+      num: 150,
       fromX: 0,
       toX: 0,
       ballwidth: 3,
@@ -254,7 +254,7 @@ class ParticleEngine {
     },
     {
       id: "medium",
-      num: 100,
+      num: 30,
       fromX: 0,
       toX: 0,
       ballwidth: 8,
@@ -279,7 +279,7 @@ class ParticleEngine {
   #extraParticleSettings = [
     {
       id: "white",
-      num: 15,
+      num: 5,
       fromX: 0,
       toX: 0,
       ballwidth: 4,
@@ -290,7 +290,7 @@ class ParticleEngine {
     },
     {
       id: "gray",
-      num: 15,
+      num: 5,
       fromX: 0,
       toX: 0,
       ballwidth: 5,
