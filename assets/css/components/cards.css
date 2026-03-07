@@ -73,7 +73,6 @@
   flex-direction: column;
 }
 
-.value-card:hover,
 .value-card.selected {
   transform: translateY(-4px);
   padding: 2px;
@@ -90,6 +89,26 @@
       var(--color-neutral-900),
       var(--color-neutral-900)
     );
+}
+
+@media (hover: hover) {
+  .value-card:hover {
+    transform: translateY(-4px);
+    padding: 2px;
+    border-color: transparent;
+    background:
+      linear-gradient(
+        -30deg,
+        var(--gradient-color),
+        transparent,
+        var(--gradient-color)
+      ),
+      linear-gradient(
+        to bottom,
+        var(--color-neutral-900),
+        var(--color-neutral-900)
+      );
+  }
 }
 
 .value-card-content {

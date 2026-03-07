@@ -40,16 +40,14 @@ function handleValueCardsMobile() {
   }
 
   const cards = document.querySelectorAll(".value-card");
-  // 10% from the top of the viewport
-  const triggerPoint = window.innerHeight * 0.1; 
-  // We can add a bottom trigger point so it deactivates if it scrolls way past
-  // But let's keep it simple: if the card is crossing the 10% line or is generally near the top
+  // 25% from the top of the viewport
+  const triggerPoint = window.innerHeight * 0.25; 
   
   cards.forEach(card => {
     const rect = card.getBoundingClientRect();
     
-    // Check if the card is intersecting the 10% threshold
-    // meaning its top is above or at the 10% mark, and its bottom hasn't passed it
+    // Check if the card is intersecting the 25% threshold
+    // meaning its top is above or at the 25% mark, and its bottom hasn't passed it
     if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
       card.classList.add("selected");
     } else {

@@ -79,9 +79,14 @@
   z-index: 0;
 }
 
-.value-card:hover .electric-layers,
 .value-card.selected .electric-layers {
   opacity: 1;
+}
+
+@media (hover: hover) {
+  .value-card:hover .electric-layers {
+    opacity: 1;
+  }
 }
 
 /* Background glow */
