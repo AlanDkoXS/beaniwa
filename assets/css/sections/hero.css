@@ -54,8 +54,20 @@
   height: 100%;
   object-fit: none;
   object-position: bottom left;
-  mask-image: linear-gradient(to top, black 10%, transparent 35%);
-  -webkit-mask-image: linear-gradient(to top, black 10%, transparent 35%);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 90%,
+    transparent 100%
+  );
   mix-blend-mode: overlay;
 }
 
