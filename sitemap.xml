@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://beaniwa.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/en/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/services.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/servicios.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/es/servicios.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/servicios.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/services.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/en/portfolio.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/portfolio.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/portafolio.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/es/portafolio.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/portafolio.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/portfolio.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/en/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/nosotros.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/es/nosotros.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/about.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/en/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/contacto.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://beaniwa.com/es/contacto.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://beaniwa.com/es/contacto.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://beaniwa.com/en/contact.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
