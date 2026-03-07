@@ -40,14 +40,14 @@ function handleValueCardsMobile() {
   }
 
   const cards = document.querySelectorAll(".value-card");
-  // 25% from the top of the viewport
-  const triggerPoint = window.innerHeight * 0.25; 
+  // 30% from the top of the viewport
+  const triggerPoint = window.innerHeight * 0.30; 
   
   cards.forEach(card => {
     const rect = card.getBoundingClientRect();
     
-    // Check if the card is intersecting the 25% threshold
-    // meaning its top is above or at the 25% mark, and its bottom hasn't passed it
+    // Check if the card is intersecting the 30% threshold
+    // meaning its top is above or at the 30% mark, and its bottom hasn't passed it
     if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
       card.classList.add("selected");
     } else {

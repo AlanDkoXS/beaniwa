@@ -94,14 +94,15 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  filter: blur(32px);
-  transform: scale(1.1);
-  opacity: 0.15; /* Reduced from 0.3 to lower intensity */
+  filter: blur(24px); /* Adjusted blur for potentially different card sizes */
+  transform: scale(1.05); /* Adjusted scale for tighter glow */
+  opacity: 0.15;
   z-index: -1;
   background: linear-gradient(
     -30deg,
     var(--electric-light-color),
-    transparent,
+    transparent 40%,
+    transparent 60%,
     var(--electric-border-color)
   );
 }
@@ -178,8 +179,8 @@
   background: linear-gradient(
     -30deg,
     white,
-    transparent 30%,
-    transparent 70%,
+    transparent 15%,
+    transparent 85%,
     white
   );
 }
@@ -195,8 +196,8 @@
   background: linear-gradient(
     -30deg,
     white,
-    transparent 30%,
-    transparent 70%,
+    transparent 15%,
+    transparent 85%,
     white
   );
 }
