@@ -1,6 +1,13 @@
 [build]
   publish = "."
 
+# www REDIRECTS
+[[redirects]]
+  from = "https://www.beaniwa.com/*"
+  to = "https://beaniwa.com/:splat"
+  status = 301
+  force = true
+
 # Language detection and redirects
 [[redirects]]
   from = "/"
