@@ -123,6 +123,9 @@ document.addEventListener("viewTransitionComplete", () => {
     initSecondaryMobileMenu();
   }
 
+  // Re-init header
+  initHeader();
+
   // Re-init page-specific components
   initScrollAnimations();
   initContactForm();

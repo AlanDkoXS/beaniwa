@@ -89,9 +89,25 @@ async function loadPage(href) {
     const currentBody = document.body;
     const newBody = doc.body;
 
-    // Get header and footer from current page to preserve them
+    // Get header and footer from current page
     const currentHeader = currentBody.querySelector("header");
     const currentFooter = currentBody.querySelector("footer");
+
+    // Get new header and footer
+    const newHeader = newBody.querySelector("header");
+    const newFooter = newBody.querySelector("footer");
+
+    // Replace header if exists in new page
+    if (currentHeader && newHeader) {
+      currentHeader.innerHTML = newHeader.innerHTML;
+      currentHeader.className = newHeader.className;
+    }
+
+    // Replace footer if exists in new page
+    if (currentFooter && newFooter) {
+      currentFooter.innerHTML = newFooter.innerHTML;
+      currentFooter.className = newFooter.className;
+    }
 
     // Get new content sections
     const newSections = Array.from(newBody.querySelectorAll("section, main"));
