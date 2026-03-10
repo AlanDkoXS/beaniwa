@@ -112,7 +112,7 @@
 }
 
 .value-card-content {
-  padding: var(--space-lg);
+  padding: var(--space-2xl) var(--space-lg);
   position: relative;
   z-index: 10;
   height: 100%;
@@ -131,4 +131,26 @@
   color: var(--color-light);
   opacity: 0.85;
   font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  .value-card-content {
+    padding: var(--space-lg);
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1024px) {
+  .value-card-content {
+    padding: var(--space-lg);
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
