@@ -6,7 +6,7 @@
   background-color: var(--color-dark);
   color: var(--color-light);
   position: relative;
-  /* overflow: hidden; removed to allow card glow to spill over if needed */
+  overflow: hidden;
   background-image: url("../../img/textures/temporal-gradient.png");
   background-blend-mode: normal;
   background-size: 250px;

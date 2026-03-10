@@ -50,4 +50,5 @@ section {
   padding-left: var(--section-padding-x);
   padding-right: var(--section-padding-x);
   overflow-x: hidden;
+  overflow-y: hidden;
 }
