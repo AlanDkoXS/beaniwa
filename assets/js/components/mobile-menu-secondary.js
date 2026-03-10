@@ -20,7 +20,7 @@ const labelsSecondary = {
 const regresarItem = {
   id: "regresar",
   href: "/",
-  icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
+  icon: `<polygon stroke-linecap="round" stroke-linejoin="round" points="12.1 23 15.5 11.1 8.6 9 9.3 23.1 7.4 23.2 0.1 0.2 0.1 0.1 23.9 3.6 14.2 23.3 12.1 23"/>`,
 };
 
 // Social networks configuration
