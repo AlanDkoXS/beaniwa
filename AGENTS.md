@@ -38,11 +38,15 @@ This project is a static site with **no build system**, **no tests**, and **no l
 - Use **vanilla design** - avoid frameworks
 - Use **mobile-first design**
 
-### HTML Guidelines
-- Use semantic HTML5 elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`)
-- Include `lang` attribute on `<html>`: `en` or `es`
-- Include meta viewport tag for responsive design
-- Add `alt` attributes to all images
+### HTML & Accessibility Guidelines (A11y)
+- **Mandatory ARIA & Identification**: When adding NEW elements, you MUST always include:
+  - `aria-label`: For descriptive text on interactive elements (especially those without visible text).
+  - `title`: To provide additional contextual information on hover.
+  - `aria-labelledby`: When a visible label or heading exists to describe the element.
+  - `role`: To define the element's purpose if it's not natively semantic.
+- Use semantic HTML5 elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`).
+- Include `alt` attributes to all images (descriptive for content, empty for decorative).
+- Ensure all interactive elements are keyboard accessible and have visible focus states.
 - Use proper heading hierarchy (`<h1>` through `<h6>`)
 
 ### CSS Guidelines
