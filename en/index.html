@@ -193,22 +193,22 @@
       </defs>
     </svg>
     <!-- Header -->
-    <header class="header" id="header">
-      <nav class="nav">
-        <ul class="nav-menu">
-          <li><a href="/en/#home">Home</a></li>
-          <li><a href="/en/#services">Services</a></li>
-          <li><a href="/en/#portfolio">Portfolio</a></li>
-          <li><a href="/en/#about">About Us</a></li>
-          <li><a href="/en/#contact">Contact</a></li>
+    <header class="header" id="header" role="banner">
+      <nav class="nav" role="navigation" aria-label="Main navigation" title="Main navigation">
+        <ul class="nav-menu" role="list">
+          <li><a href="/en/#home" title="Home">Home</a></li>
+          <li><a href="/en/#services" title="Services">Services</a></li>
+          <li><a href="/en/#portfolio" title="Portfolio">Portfolio</a></li>
+          <li><a href="/en/#about" title="About Us">About Us</a></li>
+          <li><a href="/en/#contact" title="Contact">Contact</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="page-content">
+    <main class="page-content" role="main">
       <!-- Hero Section -->
-      <section class="hero" id="home">
+      <section class="hero" id="home" aria-labelledby="hero-title">
         <!-- Video Background -->
         <div class="hero-video-container">
           <video
@@ -216,7 +216,9 @@
             autoplay
             muted
             playsinline
-            fetchpriority="high">
+            fetchpriority="high"
+            aria-label="Animated logo background video"
+            title="Animated logo background video">
             <source
               src="../assets/video/logo_desktop_full.webm"
               type="video/webm"
@@ -257,13 +259,13 @@
 
         <!-- Hero Content -->
         <div class="hero-content">
-          <h1 class="hero-title">Triple Your Sales</h1>
+          <h1 class="hero-title" id="hero-title">Triple Your Sales</h1>
           <p class="hero-subtitle">
             Digital marketing, web development and strategies that grow your
             business
           </p>
           <!-- Scroll Indicator -->
-          <a class="hero-scroll-indicator" href="#services">
+          <a class="hero-scroll-indicator" href="#services" aria-label="Scroll to services" title="Scroll to services">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -282,8 +284,8 @@
       </section>
 
       <!-- Services Section -->
-      <section class="services" id="services">
-        <h1>Our Services</h1>
+      <section class="services" id="services" aria-labelledby="services-title">
+        <h1 id="services-title">Our Services</h1>
         <p>Everything you need to grow your business</p>
         <div class="services-grid">
           <article class="service-card">
@@ -326,11 +328,11 @@
             </p>
           </article>
         </div>
-        <a href="/en/services.html" class="btn btn--block">View all services</a>
+        <a href="/en/services.html" class="btn btn--block" title="View all services">View all services</a>
       </section>
 
       <!-- Portfolio Section -->
-      <section class="portfolio" id="portfolio">
+      <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
         <!-- Liquid Cheese Texture Background -->
         <div class="liquid-cheese-bg" aria-hidden="true"></div>
         <!-- Dripping Paint Effect -->
@@ -377,7 +379,7 @@
           </defs>
         </svg>
         <div class="portfolio-header">
-          <h1>Portfolio</h1>
+          <h1 id="portfolio-title">Portfolio</h1>
           <p>Projects that speak for us</p>
         </div>
         <div class="portfolio-grid">
@@ -396,12 +398,12 @@
             <p>Professional personal portfolio.</p>
           </article>
         </div>
-        <a href="/en/portfolio.html" class="btn btn--block">View projects</a>
+        <a href="/en/portfolio.html" class="btn btn--block" title="View all projects">View projects</a>
       </section>
 
       <!-- About Us Section -->
-      <section class="about" id="about">
-        <h1>About Us</h1>
+      <section class="about" id="about" aria-labelledby="about-title">
+        <h1 id="about-title">About Us</h1>
         <div class="about-content">
           <h2>Our History</h2>
           <p>
@@ -475,12 +477,12 @@
             </div>
           </article>
         </div>
-        <a href="/en/about.html" class="btn btn--block">Learn more</a>
+        <a href="/en/about.html" class="btn btn--block" title="Learn more about us">Learn more</a>
       </section>
 
       <!-- Contact Section -->
-      <section class="contact" id="contact">
-        <h1>Contact</h1>
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <h1 id="contact-title">Contact</h1>
         <p>We are ready to help you</p>
         <div class="contact-content">
           <div class="contact-info">
@@ -492,6 +494,7 @@
               <p>
                 Email:
                 <a href="mailto:hello@beaniwa.com?subject=Info"
+                  title="Send us an email"
                   >hello@beaniwa.com</a
                 >
               </p>
@@ -501,6 +504,7 @@
                   href="https://wa.me/526146849441"
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Contact us on WhatsApp"
                   >+52 614 684 9441</a
                 >
               </p>
@@ -510,9 +514,10 @@
             class="contact-form"
             name="contact"
             method="POST"
-            data-netlify="true">
+            data-netlify="true"
+            aria-label="Contact form">
             <input type="hidden" name="form-name" value="contact" />
-            <label for="name">Name</label>
+            <label for="name" title="Your name">Name</label>
             <input
               type="text"
               id="name"
@@ -520,8 +525,9 @@
               placeholder="Your name"
               required
               aria-required="true"
-              autocomplete="name" />
-            <label for="email">Email</label>
+              autocomplete="name"
+              title="Enter your name" />
+            <label for="email" title="Your email address">Email</label>
             <input
               type="email"
               id="email"
@@ -529,25 +535,27 @@
               placeholder="your@email.com"
               required
               aria-required="true"
-              autocomplete="email" />
-            <label for="message">Message</label>
+              autocomplete="email"
+              title="Enter your email address" />
+            <label for="message" title="Your message">Message</label>
             <textarea
               id="message"
               name="message"
               placeholder="Write your message here..."
               rows="5"
-              required></textarea>
-            <button type="submit" class="btn btn--block">Send</button>
+              required
+              title="Write your message here"></textarea>
+            <button type="submit" class="btn btn--block" title="Send message">Send</button>
           </form>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-brand">
-          <a href="/en/" class="logo">
+          <a href="/en/" class="logo" title="Go to homepage">
             <img
               src="../assets/img/logo_landscape.svg"
               alt="Aniwa"
@@ -563,7 +571,8 @@
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook">
+              aria-label="Facebook"
+              title="Visit our Facebook">
               <img
                 src="../assets/icons/social/facebook.svg"
                 alt="Facebook"
@@ -576,7 +585,8 @@
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram">
+              aria-label="Instagram"
+              title="Visit our Instagram">
               <img
                 src="../assets/icons/social/instagram.svg"
                 alt="Instagram"
@@ -589,7 +599,8 @@
               href="https://tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="TikTok">
+              aria-label="TikTok"
+              title="Visit our TikTok">
               <img
                 src="../assets/icons/social/tiktok.svg"
                 alt="TikTok"
@@ -602,7 +613,8 @@
               href="https://wa.me/526146849441"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp">
+              aria-label="WhatsApp"
+              title="Contact us on WhatsApp">
               <img
                 src="../assets/icons/social/whatsapp.svg"
                 alt="WhatsApp"
@@ -616,21 +628,21 @@
         <nav class="footer-links">
           <h2>Links</h2>
           <ul>
-            <li><a href="/en/services.html">Services</a></li>
-            <li><a href="/en/portfolio.html">Portfolio</a></li>
-            <li><a href="/en/about.html">About Us</a></li>
-            <li><a href="/en/contact.html">Contact</a></li>
+            <li><a href="/en/services.html" title="View our services">Services</a></li>
+            <li><a href="/en/portfolio.html" title="View our portfolio">Portfolio</a></li>
+            <li><a href="/en/about.html" title="Learn about us">About Us</a></li>
+            <li><a href="/en/contact.html" title="Contact us">Contact</a></li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Language</h2>
           <ul>
-            <li><a href="/en/" hreflang="en">English</a></li>
-            <li><a href="/es/" hreflang="es">Español</a></li>
+            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
+            <li><a href="/es/" hreflang="es" title="Versión en español">Español</a></li>
           </ul>
           <h2>Legal</h2>
           <ul>
-            <li><a href="/en/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/en/privacy-policy.html" title="Privacy Policy">Privacy Policy</a></li>
           </ul>
         </nav>
       </div>
@@ -642,9 +654,9 @@
     </footer>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="modal">
+    <div id="success-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" title="Close modal">&times;</span>
         <div class="modal-body text-center">
           <div class="success-icon">
             <svg
@@ -660,12 +672,12 @@
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2>Message Sent!</h2>
+          <h2 id="modal-title">Message Sent!</h2>
           <p>
             Thank you for contacting us. We will get back to you in less than 24
             hours.
           </p>
-          <button class="btn close-modal-btn">Close</button>
+          <button class="btn close-modal-btn" title="Close">Close</button>
         </div>
       </div>
     </div>

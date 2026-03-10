@@ -193,22 +193,22 @@
       </defs>
     </svg>
     <!-- Header -->
-    <header class="header" id="header">
-      <nav class="nav">
-        <ul class="nav-menu">
-          <li><a href="/es/#inicio">Inicio</a></li>
-          <li><a href="/es/#servicios">Servicios</a></li>
-          <li><a href="/es/#portafolio">Portafolio</a></li>
-          <li><a href="/es/#nosotros">Nosotros</a></li>
-          <li><a href="/es/#contacto">Contacto</a></li>
+    <header class="header" id="header" role="banner">
+      <nav class="nav" role="navigation" aria-label="Navegación principal" title="Navegación principal">
+        <ul class="nav-menu" role="list">
+          <li><a href="/es/#inicio" title="Inicio">Inicio</a></li>
+          <li><a href="/es/#servicios" title="Servicios">Servicios</a></li>
+          <li><a href="/es/#portafolio" title="Portafolio">Portafolio</a></li>
+          <li><a href="/es/#nosotros" title="Nosotros">Nosotros</a></li>
+          <li><a href="/es/#contacto" title="Contacto">Contacto</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="page-content">
+    <main class="page-content" role="main">
       <!-- Hero Section -->
-      <section class="hero" id="inicio">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
         <!-- Video Background -->
         <div class="hero-video-container">
           <video
@@ -216,7 +216,9 @@
             autoplay
             muted
             playsinline
-            fetchpriority="high">
+            fetchpriority="high"
+            aria-label="Video de logo animado de fondo"
+            title="Video de logo animado de fondo">
             <source
               src="../assets/video/logo_desktop_full.webm"
               type="video/webm"
@@ -257,13 +259,13 @@
 
         <!-- Hero Content -->
         <div class="hero-content">
-          <h1 class="hero-title">Triplica Tus Ventas</h1>
+          <h1 class="hero-title" id="hero-title">Triplica Tus Ventas</h1>
           <p class="hero-subtitle">
             Marketing digital, desarrollo web y estrategias que hacen crecer tu
             negocio
           </p>
           <!-- Scroll Indicator -->
-          <a class="hero-scroll-indicator" href="#servicios">
+          <a class="hero-scroll-indicator" href="#servicios" aria-label="Ir a servicios" title="Ir a servicios">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -282,8 +284,8 @@
       </section>
 
       <!-- Services Section -->
-      <section class="services" id="servicios">
-        <h1>Nuestros Servicios</h1>
+      <section class="services" id="servicios" aria-labelledby="servicios-title">
+        <h1 id="servicios-title">Nuestros Servicios</h1>
         <p>Todo lo que necesitas para hacer crecer tu negocio</p>
         <div class="services-grid">
           <article class="service-card">
@@ -332,54 +334,9 @@
       </section>
 
       <!-- Portfolio Section -->
-      <section class="portfolio" id="portafolio">
-        <!-- Liquid Cheese Texture Background -->
-        <div class="liquid-cheese-bg" aria-hidden="true"></div>
-        <!-- Dripping Paint Effect -->
-        <div class="dripping-effect" aria-hidden="true">
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-          <div class="drip"></div>
-        </div>
-        <!-- SVG Filter for goo effect -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          version="1.1"
-          style="display: none">
-          <defs>
-            <filter id="drip-goo">
-              <feGaussianBlur
-                in="SourceGraphic"
-                stdDeviation="10"
-                result="blur" />
-              <feColorMatrix
-                in="blur"
-                mode="matrix"
-                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-                result="goo" />
-              <feBlend in="SourceGraphic" in2="goo" />
-            </filter>
-          </defs>
-        </svg>
+      <section class="portfolio" id="portafolio" aria-labelledby="portafolio-title">
         <div class="portfolio-header">
-          <h1>Portafolio</h1>
+          <h1 id="portafolio-title">Portafolio</h1>
           <p>Proyectos que hablan por nosotros</p>
         </div>
         <div class="portfolio-grid">
@@ -398,12 +355,12 @@
             <p>Portafolio personal profesional.</p>
           </article>
         </div>
-        <a href="/es/portafolio.html" class="btn btn--block">Ver proyectos</a>
+        <a href="/es/portafolio.html" class="btn btn--block" title="Ver todos los proyectos">Ver proyectos</a>
       </section>
 
       <!-- About Us Section -->
-      <section class="about" id="nosotros">
-        <h1>Nosotros</h1>
+      <section class="about" id="nosotros" aria-labelledby="nosotros-title">
+        <h1 id="nosotros-title">Nosotros</h1>
         <div class="about-content">
           <h2>Nuestra Historia</h2>
           <p>
@@ -477,12 +434,12 @@
             </div>
           </article>
         </div>
-        <a href="/es/nosotros.html" class="btn btn--block">Conoce más</a>
+        <a href="/es/nosotros.html" class="btn btn--block" title="Conoce más sobre nosotros">Conoce más</a>
       </section>
 
       <!-- Contact Section -->
-      <section class="contact" id="contacto">
-        <h1>Contacto</h1>
+      <section class="contact" id="contacto" aria-labelledby="contacto-title">
+        <h1 id="contacto-title">Contacto</h1>
         <p>Estamos listos para ayudarte</p>
         <div class="contact-content">
           <div class="contact-info">
@@ -494,6 +451,7 @@
               <p>
                 Email:
                 <a href="mailto:hola@beaniwa.com?subject=Info"
+                  title="Envíanos un correo"
                   >hola@beaniwa.com</a
                 >
               </p>
@@ -503,6 +461,7 @@
                   href="https://wa.me/526146849441"
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Contáctanos en WhatsApp"
                   >+52 614 684 9441</a
                 >
               </p>
@@ -512,9 +471,10 @@
             class="contact-form"
             name="contact"
             method="POST"
-            data-netlify="true">
+            data-netlify="true"
+            aria-label="Formulario de contacto">
             <input type="hidden" name="form-name" value="contact" />
-            <label for="name">Nombre</label>
+            <label for="name" title="Tu nombre">Nombre</label>
             <input
               type="text"
               id="name"
@@ -522,8 +482,9 @@
               placeholder="Tu nombre"
               required
               aria-required="true"
-              autocomplete="name" />
-            <label for="email">Correo Electrónico</label>
+              autocomplete="name"
+              title="Ingresa tu nombre" />
+            <label for="email" title="Tu correo electrónico">Correo Electrónico</label>
             <input
               type="email"
               id="email"
@@ -531,25 +492,27 @@
               placeholder="tu@email.com"
               required
               aria-required="true"
-              autocomplete="email" />
-            <label for="message">Mensaje</label>
+              autocomplete="email"
+              title="Ingresa tu correo electrónico" />
+            <label for="message" title="Tu mensaje">Mensaje</label>
             <textarea
               id="message"
               name="message"
               placeholder="Escribe tu mensaje aquí..."
               rows="5"
-              required></textarea>
-            <button type="submit" class="btn btn--block">Enviar</button>
+              required
+              title="Escribe tu mensaje aquí"></textarea>
+            <button type="submit" class="btn btn--block" title="Enviar mensaje">Enviar</button>
           </form>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-brand">
-          <a href="/es/" class="logo">
+          <a href="/es/" class="logo" title="Ir a inicio">
             <img
               src="../assets/img/logo_landscape.svg"
               alt="Aniwa"
@@ -565,7 +528,8 @@
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook">
+              aria-label="Facebook"
+              title="Visitar nuestro Facebook">
               <img
                 src="../assets/icons/social/facebook.svg"
                 alt="Facebook"
@@ -578,7 +542,8 @@
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram">
+              aria-label="Instagram"
+              title="Visitar nuestro Instagram">
               <img
                 src="../assets/icons/social/instagram.svg"
                 alt="Instagram"
@@ -591,7 +556,8 @@
               href="https://tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="TikTok">
+              aria-label="TikTok"
+              title="Visitar nuestro TikTok">
               <img
                 src="../assets/icons/social/tiktok.svg"
                 alt="TikTok"
@@ -604,7 +570,8 @@
               href="https://wa.me/526146849441"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp">
+              aria-label="WhatsApp"
+              title="Contactarnos en WhatsApp">
               <img
                 src="../assets/icons/social/whatsapp.svg"
                 alt="WhatsApp"
@@ -618,22 +585,22 @@
         <nav class="footer-links">
           <h2>Enlaces</h2>
           <ul>
-            <li><a href="/es/servicios.html">Servicios</a></li>
-            <li><a href="/es/portafolio.html">Portafolio</a></li>
-            <li><a href="/es/nosotros.html">Nosotros</a></li>
-            <li><a href="/es/contacto.html">Contacto</a></li>
+            <li><a href="/es/servicios.html" title="Ver nuestros servicios">Servicios</a></li>
+            <li><a href="/es/portafolio.html" title="Ver nuestro portafolio">Portafolio</a></li>
+            <li><a href="/es/nosotros.html" title="Conócenos">Nosotros</a></li>
+            <li><a href="/es/contacto.html" title="Contáctanos">Contacto</a></li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Idioma</h2>
           <ul>
-            <li><a href="/en/" hreflang="en">English</a></li>
-            <li><a href="/es/" hreflang="es">Español</a></li>
+            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
+            <li><a href="/es/" hreflang="es" title="Versión en español">Español</a></li>
           </ul>
           <h2>Legal</h2>
           <ul>
             <li>
-              <a href="/es/politica-privacidad.html">Política de Privacidad</a>
+              <a href="/es/politica-privacidad.html" title="Política de Privacidad">Política de Privacidad</a>
             </li>
           </ul>
         </nav>
@@ -646,9 +613,9 @@
     </footer>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="modal">
+    <div id="success-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" title="Cerrar modal">&times;</span>
         <div class="modal-body text-center">
           <div class="success-icon">
             <svg
@@ -664,11 +631,11 @@
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2>¡Mensaje Enviado!</h2>
+          <h2 id="modal-title">¡Mensaje Enviado!</h2>
           <p>
             Gracias por contactarnos. Te responderemos en menos de 24 horas.
           </p>
-          <button class="btn close-modal-btn">Cerrar</button>
+          <button class="btn close-modal-btn" title="Cerrar">Cerrar</button>
         </div>
       </div>
     </div>

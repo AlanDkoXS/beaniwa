@@ -100,23 +100,23 @@
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
-    <header class="header" id="header">
-      <nav class="nav">
-        <ul class="nav-menu">
-          <li><a href="/es/#inicio">Inicio</a></li>
-          <li><a href="/es/#servicios">Servicios</a></li>
-          <li><a href="/es/#portafolio">Portafolio</a></li>
-          <li><a href="/es/#nosotros">Nosotros</a></li>
-          <li><a href="/es/#contacto">Contacto</a></li>
+    <header class="header" id="header" role="banner">
+      <nav class="nav" role="navigation" aria-label="Navegación principal" title="Navegación principal">
+        <ul class="nav-menu" role="list">
+          <li><a href="/es/#inicio" title="Inicio">Inicio</a></li>
+          <li><a href="/es/#servicios" title="Servicios">Servicios</a></li>
+          <li><a href="/es/#portafolio" title="Portafolio">Portafolio</a></li>
+          <li><a href="/es/#nosotros" title="Nosotros">Nosotros</a></li>
+          <li><a href="/es/#contacto" title="Contacto">Contacto</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="page-content">
+    <main class="page-content" role="main">
       <!-- Contact Section -->
-      <section class="contact">
-        <h1>Contáctanos</h1>
+      <section class="contact" aria-labelledby="contacto-title">
+        <h1 id="contacto-title">Contáctanos</h1>
         <p>
           Estamos disponibles para proyectos y colaboraciones. Escríbenos y
           respondemos en menos de 24 horas.
@@ -128,6 +128,7 @@
                 <h2>Email</h2>
                 <p>
                   <a href="mailto:hola@beaniwa.com?subject=Info"
+                    title="Envíanos un correo"
                     >hola@beaniwa.com</a
                   >
                 </p>
@@ -139,6 +140,7 @@
                     href="https://wa.me/526146849441"
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="Contáctanos en WhatsApp"
                     >+52 614 684 9441</a
                   >
                 </p>
@@ -150,10 +152,11 @@
             class="contact-form"
             name="contact"
             method="POST"
-            data-netlify="true">
+            data-netlify="true"
+            aria-label="Formulario de contacto">
             <input type="hidden" name="form-name" value="contact" />
             <div class="form-group">
-              <label for="name">Nombre</label>
+              <label for="name" title="Tu nombre">Nombre</label>
               <input
                 type="text"
                 id="name"
@@ -161,10 +164,11 @@
                 placeholder="Tu nombre"
                 required
                 aria-required="true"
-                autocomplete="name" />
+                autocomplete="name"
+                title="Ingresa tu nombre" />
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email" title="Tu correo electrónico">Email</label>
               <input
                 type="email"
                 id="email"
@@ -172,37 +176,40 @@
                 placeholder="tu@email.com"
                 required
                 aria-required="true"
-                autocomplete="email" />
+                autocomplete="email"
+                title="Ingresa tu correo electrónico" />
             </div>
             <div class="form-group">
-              <label for="subject">Asunto</label>
+              <label for="subject" title="Asunto del mensaje">Asunto</label>
               <input
                 type="text"
                 id="subject"
                 name="subject"
                 placeholder="Asunto de tu mensaje"
-                autocomplete="off" />
+                autocomplete="off"
+                title="Ingresa el asunto de tu mensaje" />
             </div>
             <div class="form-group">
-              <label for="message">Mensaje</label>
+              <label for="message" title="Tu mensaje">Mensaje</label>
               <textarea
                 id="message"
                 name="message"
                 placeholder="Escribe tu mensaje aquí..."
                 rows="6"
-                required></textarea>
+                required
+                title="Escribe tu mensaje aquí"></textarea>
             </div>
-            <button type="submit" class="btn btn--block">Enviar mensaje</button>
+            <button type="submit" class="btn btn--block" title="Enviar mensaje">Enviar mensaje</button>
           </form>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-brand">
-          <a href="/es/" class="logo">
+          <a href="/es/" class="logo" title="Ir a inicio">
             <img
               src="../assets/img/logo_landscape.svg"
               alt="Aniwa"
@@ -218,7 +225,8 @@
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook">
+              aria-label="Facebook"
+              title="Visitar nuestro Facebook">
               <img
                 src="../assets/icons/social/facebook.svg"
                 alt="Facebook"
@@ -231,7 +239,8 @@
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram">
+              aria-label="Instagram"
+              title="Visitar nuestro Instagram">
               <img
                 src="../assets/icons/social/instagram.svg"
                 alt="Instagram"
@@ -244,7 +253,8 @@
               href="https://tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="TikTok">
+              aria-label="TikTok"
+              title="Visitar nuestro TikTok">
               <img
                 src="../assets/icons/social/tiktok.svg"
                 alt="TikTok"
@@ -257,7 +267,8 @@
               href="https://wa.me/526146849441"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp">
+              aria-label="WhatsApp"
+              title="Contactarnos en WhatsApp">
               <img
                 src="../assets/icons/social/whatsapp.svg"
                 alt="WhatsApp"
@@ -271,22 +282,22 @@
         <nav class="footer-links">
           <h2>Enlaces</h2>
           <ul>
-            <li><a href="/es/servicios.html">Servicios</a></li>
-            <li><a href="/es/portafolio.html">Portafolio</a></li>
-            <li><a href="/es/nosotros.html">Nosotros</a></li>
-            <li><a href="/es/contacto.html">Contacto</a></li>
+            <li><a href="/es/servicios.html" title="Ver nuestros servicios">Servicios</a></li>
+            <li><a href="/es/portafolio.html" title="Ver nuestro portafolio">Portafolio</a></li>
+            <li><a href="/es/nosotros.html" title="Conócenos">Nosotros</a></li>
+            <li><a href="/es/contacto.html" title="Contáctanos">Contacto</a></li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Idioma</h2>
           <ul>
-            <li><a href="/en/" hreflang="en">English</a></li>
-            <li><a href="/es/" hreflang="es">Español</a></li>
+            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
+            <li><a href="/es/" hreflang="es" title="Versión en español">Español</a></li>
           </ul>
           <h2>Legal</h2>
           <ul>
             <li>
-              <a href="/es/politica-privacidad.html">Política de Privacidad</a>
+              <a href="/es/politica-privacidad.html" title="Política de Privacidad">Política de Privacidad</a>
             </li>
           </ul>
         </nav>
@@ -299,9 +310,9 @@
     </footer>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="modal">
+    <div id="success-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" title="Cerrar modal">&times;</span>
         <div class="modal-body text-center">
           <div class="success-icon">
             <svg
@@ -317,11 +328,11 @@
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2>¡Mensaje Enviado!</h2>
+          <h2 id="modal-title">¡Mensaje Enviado!</h2>
           <p>
             Gracias por contactarnos. Te responderemos en menos de 24 horas.
           </p>
-          <button class="btn close-modal-btn">Cerrar</button>
+          <button class="btn close-modal-btn" title="Cerrar">Cerrar</button>
         </div>
       </div>
     </div>

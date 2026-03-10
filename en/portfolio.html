@@ -100,22 +100,22 @@
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
-    <header class="header" id="header">
-      <nav class="nav">
-        <ul class="nav-menu">
-          <li><a href="/en/#home">Home</a></li>
-          <li><a href="/en/#services">Services</a></li>
-          <li><a href="/en/#portfolio">Portfolio</a></li>
-          <li><a href="/en/#about">About Us</a></li>
-          <li><a href="/en/#contact">Contact</a></li>
+    <header class="header" id="header" role="banner">
+      <nav class="nav" role="navigation" aria-label="Main navigation" title="Main navigation">
+        <ul class="nav-menu" role="list">
+          <li><a href="/en/#home" title="Home">Home</a></li>
+          <li><a href="/en/#services" title="Services">Services</a></li>
+          <li><a href="/en/#portfolio" title="Portfolio">Portfolio</a></li>
+          <li><a href="/en/#about" title="About Us">About Us</a></li>
+          <li><a href="/en/#contact" title="Contact">Contact</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="page-content">
+    <main class="page-content" role="main">
       <!-- Portfolio Section -->
-      <section class="portfolio" id="portfolio">
+      <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
         <!-- Liquid Cheese Texture Background -->
         <div class="liquid-cheese-bg" aria-hidden="true"></div>
         <!-- Dripping Paint Effect -->
@@ -162,7 +162,7 @@
           </defs>
         </svg>
         <div class="portfolio-header">
-          <h1>Portfolio</h1>
+          <h1 id="portfolio-title">Portfolio</h1>
           <p>Projects that speak for us</p>
         </div>
         <div class="portfolio-grid">
@@ -181,15 +181,15 @@
             <p>Professional personal portfolio.</p>
           </article>
         </div>
-        <a href="/en/contact.html" class="btn btn--block title="Go to contact page"">Contact Us</a>
+        <a href="/en/contact.html" class="btn btn--block" title="Contact us">Contact Us</a>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-brand">
-          <a href="/en/" class="logo">
+          <a href="/en/" class="logo" title="Go to homepage">
             <img
               src="../assets/img/logo_landscape.svg"
               alt="Aniwa"
@@ -205,7 +205,8 @@
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook">
+              aria-label="Facebook"
+              title="Visit our Facebook">
               <img
                 src="../assets/icons/social/facebook.svg"
                 alt="Facebook"
@@ -218,7 +219,8 @@
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram">
+              aria-label="Instagram"
+              title="Visit our Instagram">
               <img
                 src="../assets/icons/social/instagram.svg"
                 alt="Instagram"
@@ -231,7 +233,8 @@
               href="https://tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="TikTok">
+              aria-label="TikTok"
+              title="Visit our TikTok">
               <img
                 src="../assets/icons/social/tiktok.svg"
                 alt="TikTok"
@@ -244,7 +247,8 @@
               href="https://wa.me/526146849441"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp">
+              aria-label="WhatsApp"
+              title="Contact us on WhatsApp">
               <img
                 src="../assets/icons/social/whatsapp.svg"
                 alt="WhatsApp"
@@ -258,21 +262,21 @@
         <nav class="footer-links">
           <h2>Links</h2>
           <ul>
-            <li><a href="/en/services.html">Services</a></li>
-            <li><a href="/en/portfolio.html">Portfolio</a></li>
-            <li><a href="/en/about.html">About Us</a></li>
-            <li><a href="/en/contact.html">Contact</a></li>
+            <li><a href="/en/services.html" title="View our services">Services</a></li>
+            <li><a href="/en/portfolio.html" title="View our portfolio">Portfolio</a></li>
+            <li><a href="/en/about.html" title="Learn about us">About Us</a></li>
+            <li><a href="/en/contact.html" title="Contact us">Contact</a></li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Language</h2>
           <ul>
-            <li><a href="/en/" hreflang="en">English</a></li>
-            <li><a href="/es/" hreflang="es">Español</a></li>
+            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
+            <li><a href="/es/" hreflang="es" title="Spanish version">Español</a></li>
           </ul>
           <h2>Legal</h2>
           <ul>
-            <li><a href="/en/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/en/privacy-policy.html" title="Privacy Policy">Privacy Policy</a></li>
           </ul>
         </nav>
       </div>

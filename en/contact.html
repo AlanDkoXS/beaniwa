@@ -100,23 +100,23 @@
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
-    <header class="header" id="header">
-      <nav class="nav">
-        <ul class="nav-menu">
-          <li><a href="/en/#home">Home</a></li>
-          <li><a href="/en/#services">Services</a></li>
-          <li><a href="/en/#portfolio">Portfolio</a></li>
-          <li><a href="/en/#about">About Us</a></li>
-          <li><a href="/en/#contact">Contact</a></li>
+    <header class="header" id="header" role="banner">
+      <nav class="nav" role="navigation" aria-label="Main navigation" title="Main navigation">
+        <ul class="nav-menu" role="list">
+          <li><a href="/en/#home" title="Home">Home</a></li>
+          <li><a href="/en/#services" title="Services">Services</a></li>
+          <li><a href="/en/#portfolio" title="Portfolio">Portfolio</a></li>
+          <li><a href="/en/#about" title="About Us">About Us</a></li>
+          <li><a href="/en/#contact" title="Contact">Contact</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="page-content">
+    <main class="page-content" role="main">
       <!-- Contact Section -->
-      <section class="contact">
-        <h1>Get in Touch</h1>
+      <section class="contact" aria-labelledby="contact-title">
+        <h1 id="contact-title">Get in Touch</h1>
         <p>
           We are available for projects and collaborations. Write to us and we
           respond in less than 24 hours.
@@ -128,6 +128,7 @@
                 <h2>Email</h2>
                 <p>
                   <a href="mailto:hello@beaniwa.com?subject=Info"
+                    title="Send us an email"
                     >hello@beaniwa.com</a
                   >
                 </p>
@@ -139,6 +140,7 @@
                     href="https://wa.me/526146849441"
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="Contact us on WhatsApp"
                     >+52 614 684 9441</a
                   >
                 </p>
@@ -150,10 +152,11 @@
             class="contact-form"
             name="contact"
             method="POST"
-            data-netlify="true">
+            data-netlify="true"
+            aria-label="Contact form">
             <input type="hidden" name="form-name" value="contact" />
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name" title="Your name">Name</label>
               <input
                 type="text"
                 id="name"
@@ -161,10 +164,11 @@
                 placeholder="Your name"
                 required
                 aria-required="true"
-                autocomplete="name" />
+                autocomplete="name"
+                title="Enter your name" />
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email" title="Your email address">Email</label>
               <input
                 type="email"
                 id="email"
@@ -172,37 +176,40 @@
                 placeholder="your@email.com"
                 required
                 aria-required="true"
-                autocomplete="email" />
+                autocomplete="email"
+                title="Enter your email address" />
             </div>
             <div class="form-group">
-              <label for="subject">Subject</label>
+              <label for="subject" title="Message subject">Subject</label>
               <input
                 type="text"
                 id="subject"
                 name="subject"
                 placeholder="Subject of your message"
-                autocomplete="off" />
+                autocomplete="off"
+                title="Enter the subject of your message" />
             </div>
             <div class="form-group">
-              <label for="message">Message</label>
+              <label for="message" title="Your message">Message</label>
               <textarea
                 id="message"
                 name="message"
                 placeholder="Write your message here..."
                 rows="6"
-                required></textarea>
+                required
+                title="Write your message here"></textarea>
             </div>
-            <button type="submit" class="btn btn--block">Send Message</button>
+            <button type="submit" class="btn btn--block" title="Send message">Send Message</button>
           </form>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="footer-content">
         <div class="footer-brand">
-          <a href="/en/" class="logo">
+          <a href="/en/" class="logo" title="Go to homepage">
             <img
               src="../assets/img/logo_landscape.svg"
               alt="Aniwa"
@@ -218,7 +225,8 @@
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook">
+              aria-label="Facebook"
+              title="Visit our Facebook">
               <img
                 src="../assets/icons/social/facebook.svg"
                 alt="Facebook"
@@ -231,7 +239,8 @@
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram">
+              aria-label="Instagram"
+              title="Visit our Instagram">
               <img
                 src="../assets/icons/social/instagram.svg"
                 alt="Instagram"
@@ -244,7 +253,8 @@
               href="https://tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="TikTok">
+              aria-label="TikTok"
+              title="Visit our TikTok">
               <img
                 src="../assets/icons/social/tiktok.svg"
                 alt="TikTok"
@@ -257,7 +267,8 @@
               href="https://wa.me/526146849441"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="WhatsApp">
+              aria-label="WhatsApp"
+              title="Contact us on WhatsApp">
               <img
                 src="../assets/icons/social/whatsapp.svg"
                 alt="WhatsApp"
@@ -271,21 +282,21 @@
         <nav class="footer-links">
           <h2>Links</h2>
           <ul>
-            <li><a href="/en/services.html">Services</a></li>
-            <li><a href="/en/portfolio.html">Portfolio</a></li>
-            <li><a href="/en/about.html">About Us</a></li>
-            <li><a href="/en/contact.html">Contact</a></li>
+            <li><a href="/en/services.html" title="View our services">Services</a></li>
+            <li><a href="/en/portfolio.html" title="View our portfolio">Portfolio</a></li>
+            <li><a href="/en/about.html" title="Learn about us">About Us</a></li>
+            <li><a href="/en/contact.html" title="Contact us">Contact</a></li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Language</h2>
           <ul>
-            <li><a href="/en/" hreflang="en">English</a></li>
-            <li><a href="/es/" hreflang="es">Español</a></li>
+            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
+            <li><a href="/es/" hreflang="es" title="Spanish version">Español</a></li>
           </ul>
           <h2>Legal</h2>
           <ul>
-            <li><a href="/en/privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="/en/privacy-policy.html" title="Privacy Policy">Privacy Policy</a></li>
           </ul>
         </nav>
       </div>
@@ -297,9 +308,9 @@
     </footer>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="modal">
+    <div id="success-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <span class="close-modal" title="Close modal">&times;</span>
         <div class="modal-body text-center">
           <div class="success-icon">
             <svg
@@ -315,12 +326,12 @@
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </div>
-          <h2>Message Sent!</h2>
+          <h2 id="modal-title">Message Sent!</h2>
           <p>
             Thank you for contacting us. We will get back to you in less than 24
             hours.
           </p>
-          <button class="btn close-modal-btn">Close</button>
+          <button class="btn close-modal-btn" title="Close">Close</button>
         </div>
       </div>
     </div>
