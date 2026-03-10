@@ -129,18 +129,6 @@ This is a bilingual website. Follow these rules:
 
 Follow the rules in `.kilocode/skills/git-convention.md`:
 
-### Branch Naming
-- Format: `<type>/<short-description>`
-- Examples: `feature/add-login-form`, `bugfix/fix-header-overflow`
-
-### Branch Types
-- `feature/` - New features
-- `bugfix/` - Bug fixes
-- `hotfix/` - Urgent production fixes
-- `refactor/` - Code refactoring
-- `docs/` - Documentation updates
-- `test/` - Adding or updating tests
-
 ### Commit Messages
 Format: `:emoji: TYPE: description`
 
