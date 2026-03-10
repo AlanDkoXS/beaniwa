@@ -1,30 +1,36 @@
-# Aniwa
+# Aniwa | Digital Strategy & Development Agency
 
-> Digital marketing agency with over 10 years of experience based in Chihuahua, México. We help businesses and small companies grow through comprehensive digital strategies.
+> Digital marketing and software development agency with over 10 years of experience based in Chihuahua, México. Specialized in helping businesses grow through comprehensive digital strategies, high-performance web development, and branding.
 
-## Services
+## Core Capabilities
+- **Web & App Development:** Modern, responsive websites and custom applications (mobile/web) optimized for conversion and performance.
+- **Digital Marketing:** Strategic Social Media management and SEO (Organic search engine positioning).
+- **Branding:** Professional visual identity design and brand positioning.
 
-- [Web Development](https://beaniwa.com/en/services): Modern, responsive websites optimized for conversions.
-- [Social Media](https://beaniwa.com/en/services): Strategic social media management to increase reach and audience engagement.
-- [SEO](https://beaniwa.com/en/services): Organic search engine positioning to attract qualified visitors.
-- [App Development](https://beaniwa.com/en/services): Custom mobile and web applications to optimize business processes.
-- [Branding](https://beaniwa.com/en/services): Unique visual identity design that reflects your brand values.
+## Site Structure (Bilingual)
 
-## Main Pages
+### English (Primary)
+- [Home](https://beaniwa.com/en/index.html) - Agency overview and value proposition.
+- [Services](https://beaniwa.com/en/services.html) - Full details on development, SEO, and marketing solutions.
+- [Portfolio](https://beaniwa.com/en/portfolio.html) - Case studies including `mercadoregional.com.mx`, `forjanorte.com.mx`, and `alanquintana.pro`.
+- [About](https://beaniwa.com/en/about.html) - History, mission, and team values.
+- [Contact](https://beaniwa.com/en/contact.html) - Lead generation and inquiry form.
 
-- [Home](https://beaniwa.com/en/): General overview of the agency and its services.
-- [Services](https://beaniwa.com/en/services): Full detail of all services offered.
-- [Portfolio](https://beaniwa.com/en/portfolio): Completed projects including mercadoregional.com.mx, forjanorte.com.mx and alanquintana.pro.
-- [About](https://beaniwa.com/en/about): Agency history and values.
-- [Contact](https://beaniwa.com/en/contact): Contact form available on the site.
+### Español (Secondary)
+- [Inicio](https://beaniwa.com/es/index.html) - Resumen general de la agencia.
+- [Servicios](https://beaniwa.com/es/servicios.html) - Detalle de soluciones digitales.
+- [Portafolio](https://beaniwa.com/es/portafolio.html) - Proyectos destacados y casos de éxito.
+- [Nosotros](https://beaniwa.com/es/nosotros.html) - Historia y filosofía de la agencia.
+- [Contacto](https://beaniwa.com/es/contacto.html) - Formulario de contacto y canales de atención.
 
-## Contact
 
-For inquiries in English: hello@beaniwa.com
-Para consultas en español: hola@beaniwa.com
-WhatsApp: https://wa.me/526146849441
+## Contact Information
+- **English Inquiries:** hello@beaniwa.com
+- **Consultas en Español:** hola@beaniwa.com
+- **WhatsApp:** [+52 614 684 9441](https://wa.me/526146849441)
+- **Location:** Chihuahua, México.
 
-## Languages
-
-- English: https://beaniwa.com/en/
-- Español: https://beaniwa.com/es/
+## Official Links
+- **Main Website:** [https://beaniwa.com](https://beaniwa.com)
+- **Sitemap:** [https://beaniwa.com/sitemap.xml](https://beaniwa.com/sitemap.xml)
+- **Robots:** [https://beaniwa.com/robots.txt](https://beaniwa.com/robots.txt)

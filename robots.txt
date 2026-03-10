@@ -1,20 +1,23 @@
 User-agent: *
 
-# Allow all indexed pages
+# Allow access to main language directories and assets
 Allow: /en/
 Allow: /es/
-Allow: /en/services.html
-Allow: /es/servicios.html
-Allow: /en/portfolio.html
-Allow: /es/portafolio.html
-Allow: /en/about.html
-Allow: /es/nosotros.html
-Allow: /en/contact.html
-Allow: /es/contacto.html
 Allow: /assets/
+Allow: /index.html
 
-# Disallow privacy policy
+# Disallow internal documentation and config files
+Disallow: /AGENTS.md
+Disallow: /netlify.toml
+Disallow: /llms.txt
+
+# Disallow specific private pages (Business Cards)
+Disallow: /en/b/
+Disallow: /es/b/
+
+# Disallow privacy policy (as requested)
 Disallow: /en/privacy-policy.html
 Disallow: /es/politica-privacidad.html
 
+# Host and Sitemap
 Sitemap: https://beaniwa.com/sitemap.xml
