@@ -7,8 +7,8 @@
 import { initAmbientGlow } from "./components/ambient-glow.js";
 import { initContactForm } from "./components/contact-form.js";
 import { initHeader } from "./components/header.js";
-import { initSecondaryMobileMenu } from "./components/mobile-menu-secondary.js";
-import { initMobileMenu } from "./components/mobile-menu.js";
+import { initSecondaryMobileMenu, updateSecondaryMenuLinks } from "./components/mobile-menu-secondary.js";
+import { initMobileMenu, updateMainMenuLinks } from "./components/mobile-menu.js";
 import { initParticleEngine } from "./components/particle-engine.js";
 import { initScrollAnimations } from "./components/scroll-animations.js";
 import { initNavigation } from "./navigation.js";
@@ -16,6 +16,10 @@ import { initRouter } from "./router.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
 import { initViewTransitions } from "./view-transitions.js";
+
+// Mobile menu state
+let mobileMenuInitialized = false;
+let currentMenuType = null; // 'main' or 'secondary'
 
 // Check if current page is index
 function isIndexPage(href = null) {
@@ -81,10 +85,13 @@ function initApp() {
 
   // Initialize appropriate mobile menu based on page
   if (isIndexPage()) {
-    initMobileMenu();
+    initMobileMenu(false);
+    currentMenuType = 'main';
   } else {
-    initSecondaryMobileMenu();
+    initSecondaryMobileMenu(false);
+    currentMenuType = 'secondary';
   }
+  mobileMenuInitialized = true;
 
   initScrollAnimations();
   initContactForm();
@@ -112,19 +119,37 @@ document.addEventListener("viewTransitionComplete", (event) => {
   // Get the destination URL from the event if available (View Transitions), otherwise use current URL
   const destinationHref = event?.detail?.href || null;
 
-  // Force re-init mobile menu to update links/buttons based on the new page
-  const existingMenu = document.querySelector(".mobile-menu");
-  if (existingMenu) existingMenu.remove();
+  // Determine new menu type
+  const newMenuType = isIndexPage(destinationHref) ? 'main' : 'secondary';
+
+  // Remove panel and overlay (they should be closed during navigation)
   const existingPanel = document.querySelector(".mobile-menu__panel");
   if (existingPanel) existingPanel.remove();
   const existingOverlay = document.querySelector(".mobile-menu__overlay");
   if (existingOverlay) existingOverlay.remove();
 
-  if (isIndexPage(destinationHref)) {
-    initMobileMenu();
+  // Only recreate menu if type changed, otherwise update links
+  if (mobileMenuInitialized && currentMenuType === newMenuType) {
+    // Same menu type - just update links without recreating
+    if (newMenuType === 'main') {
+      updateMainMenuLinks();
+    } else {
+      updateSecondaryMenuLinks();
+    }
   } else {
-    initSecondaryMobileMenu();
+    // Different menu type - recreate menu without delay
+    const existingMenu = document.querySelector(".mobile-menu");
+    if (existingMenu) existingMenu.remove();
+
+    if (newMenuType === 'main') {
+      initMobileMenu(true);
+    } else {
+      initSecondaryMobileMenu(true);
+    }
+    currentMenuType = newMenuType;
   }
+
+  mobileMenuInitialized = true;
 
   // Re-init header
   initHeader();

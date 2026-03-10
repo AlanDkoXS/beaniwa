@@ -655,10 +655,11 @@ function closeHamburgerPanel(panel, overlay, hamburgerButton) {
 
 /**
  * Initialize the mobile menu with delay and wave effect
+ * @param {boolean} isReinitialization - If true, skip delay and don't check for existing menu
  */
-function initMobileMenu() {
-  // Check if mobile menu already exists
-  if (document.querySelector(".mobile-menu")) {
+function initMobileMenu(isReinitialization = false) {
+  // Check if mobile menu already exists (skip if reinitialization)
+  if (!isReinitialization && document.querySelector(".mobile-menu")) {
     return;
   }
 
@@ -753,16 +754,17 @@ function initMobileMenu() {
   // Add to body
   document.body.appendChild(mobileMenu);
 
-  // Wait for page load complete, then show menu after 2 seconds
-  if (document.readyState === "complete") {
+  // Show menu - skip delay for reinitializations
+  const delay = isReinitialization ? 0 : 2000;
+  if (document.readyState === "complete" || isReinitialization) {
     setTimeout(() => {
       showMobileMenu(mobileMenu, menuBorder);
-    }, 2000);
+    }, delay);
   } else {
     window.addEventListener("load", () => {
       setTimeout(() => {
         showMobileMenu(mobileMenu, menuBorder);
-      }, 2000);
+      }, delay);
     });
   }
 
@@ -912,5 +914,38 @@ function setActiveMenuItemMain(mobileMenu, item, index, menuBorder) {
   }
 }
 
+/**
+ * Update main menu links without recreating the menu
+ * Used during View Transitions to avoid flash
+ */
+function updateMainMenuLinks() {
+  const mobileMenu = document.querySelector(".mobile-menu");
+  if (!mobileMenu) return;
+
+  const currentLang = getCurrentLanguage();
+  const langPrefix = currentLang === "en" ? "/en" : "/es";
+  const currentSections = sectionIds[currentLang];
+  const menuItems = mobileMenu.querySelectorAll(".mobile-menu__item");
+
+  // Update hrefs based on current language
+  // For index page, items are: inicio, servicios, portafolio, nosotros, contacto, hamburger
+  // or: regresar, hamburger (for non-index, but this is handled by secondary menu)
+  navItems.forEach((item, index) => {
+    if (menuItems[index]) {
+      const href = langPrefix + "/#" + currentSections[item.id];
+      // Update the click handler to use new href
+      menuItems[index].onclick = () => handleItemClick(menuItems[index], href);
+    }
+  });
+
+  // Update Regresar button href if present (non-index pages)
+  const regresarItem = mobileMenu.querySelector('[data-id="regresar"]');
+  if (regresarItem) {
+    regresarItem.onclick = () => handleItemClick(regresarItem, langPrefix + "/");
+  }
+
+  // Update hamburger href (doesn't need update as it opens modal)
+}
+
 // Export functions
-export { closeMenu, initMobileMenu, toggleMenu };
+export { closeMenu, initMobileMenu, toggleMenu, updateMainMenuLinks };

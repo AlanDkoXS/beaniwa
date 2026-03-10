@@ -423,10 +423,11 @@ function offsetMenuBorderSecondary(element, menuBorder) {
 
 /**
  * Initialize the secondary mobile menu (for non-index pages)
+ * @param {boolean} isReinitialization - If true, skip check for existing menu
  */
-function initSecondaryMobileMenu() {
-  // Check if mobile menu already exists
-  if (document.querySelector(".mobile-menu")) {
+function initSecondaryMobileMenu(isReinitialization = false) {
+  // Check if mobile menu already exists (skip if reinitialization)
+  if (!isReinitialization && document.querySelector(".mobile-menu")) {
     return;
   }
 
@@ -613,5 +614,37 @@ function setActiveMenuItemSecondary(mobileMenu, item, index, menuBorder) {
   }
 }
 
+/**
+ * Update secondary menu links without recreating the menu
+ * Used during View Transitions to avoid flash
+ */
+function updateSecondaryMenuLinks() {
+  const mobileMenu = document.querySelector(".mobile-menu");
+  if (!mobileMenu) return;
+
+  const currentLang = getCurrentLanguage();
+  const langPrefix = currentLang === "en" ? "/en/" : "/es/";
+
+  // Update Regresar button href
+  const regresarItem = mobileMenu.querySelector('[data-id="regresar"]');
+  if (regresarItem) {
+    regresarItem.onclick = (e) => {
+      e.preventDefault();
+      handleItemClickSecondary(langPrefix, regresarItem);
+    };
+  }
+
+  // Update hamburger - doesn't need href update but ensure click handler is correct
+  const hamburgerButton = mobileMenu.querySelector('[data-hamburger="true"]');
+  if (hamburgerButton) {
+    // Re-attach click handler to ensure it works after navigation
+    hamburgerButton.onclick = (e) => {
+      e.preventDefault();
+      triggerWaveEffectSecondary(hamburgerButton);
+      toggleHamburgerMenuSecondary(hamburgerButton);
+    };
+  }
+}
+
 // Export functions
-export { initSecondaryMobileMenu };
+export { initSecondaryMobileMenu, updateSecondaryMenuLinks };
