@@ -328,6 +328,51 @@
 
       <!-- Portfolio Section -->
       <section class="portfolio" id="portafolio" aria-labelledby="portafolio-title">
+        <!-- Liquid Cheese Texture Background -->
+        <div class="liquid-cheese-bg" aria-hidden="true"></div>
+        <!-- Dripping Paint Effect -->
+        <div class="dripping-effect" aria-hidden="true">
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+        </div>
+        <!-- SVG Filter for goo effect -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          style="display: none">
+          <defs>
+            <filter id="drip-goo">
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="10"
+                result="blur" />
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                result="goo" />
+              <feBlend in="SourceGraphic" in2="goo" />
+            </filter>
+          </defs>
+        </svg>
         <div class="portfolio-header">
           <h1 id="portafolio-title">Portafolio</h1>
           <p>Proyectos que hablan por nosotros</p>

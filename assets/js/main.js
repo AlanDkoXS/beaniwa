@@ -18,8 +18,8 @@ import updateDateYear from "./utils/date_updater.js";
 import { initViewTransitions } from "./view-transitions.js";
 
 // Check if current page is index
-function isIndexPage() {
-  const path = window.location.pathname;
+function isIndexPage(href = null) {
+  const path = href ? new URL(href, window.location.origin).pathname : window.location.pathname;
   return (
     path === "/" ||
     path === "/index.html" ||
@@ -108,7 +108,10 @@ if (document.readyState === "loading") {
 }
 
 // Support for View Transitions - Re-run UI init on navigation
-document.addEventListener("viewTransitionComplete", () => {
+document.addEventListener("viewTransitionComplete", (event) => {
+  // Get the destination URL from the event if available (View Transitions), otherwise use current URL
+  const destinationHref = event?.detail?.href || null;
+
   // Force re-init mobile menu to update links/buttons based on the new page
   const existingMenu = document.querySelector(".mobile-menu");
   if (existingMenu) existingMenu.remove();
@@ -117,7 +120,7 @@ document.addEventListener("viewTransitionComplete", () => {
   const existingOverlay = document.querySelector(".mobile-menu__overlay");
   if (existingOverlay) existingOverlay.remove();
 
-  if (isIndexPage()) {
+  if (isIndexPage(destinationHref)) {
     initMobileMenu();
   } else {
     initSecondaryMobileMenu();

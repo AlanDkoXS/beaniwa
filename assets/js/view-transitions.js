@@ -131,7 +131,9 @@ async function loadPage(href) {
     document.title = doc.title;
 
     // Re-initialize scripts for new content
-    document.dispatchEvent(new CustomEvent("viewTransitionComplete"));
+    document.dispatchEvent(new CustomEvent("viewTransitionComplete", {
+      detail: { href }
+    }));
   } catch (error) {
     console.error("Navigation failed:", error);
     // Fallback to regular navigation
