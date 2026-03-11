@@ -43,7 +43,7 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
-  --radius-full: 9999px;
+  --radius-xl: 24px --radius-full: 9999px;
 
   /* Colors - See the palette here -> https://coolors.co/fa6e02-ec4700-a5c4d4-111111-595959-f5f5f5*/
   --color-primary: #fa6e02;

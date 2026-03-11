@@ -11,7 +11,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(4px);
   align-items: center;
   justify-content: center;
@@ -22,15 +22,24 @@
 }
 
 .modal-content {
-  background-color: var(--color-light);
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(10px);
   margin: auto;
   padding: var(--space-xl);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   width: 90%;
   max-width: 500px;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   animation: modalFadeIn 0.3s ease-out;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.modal-content:hover {
+  background: rgba(10, 10, 10, 0.85);
 }
 
 @keyframes modalFadeIn {
@@ -48,15 +57,17 @@
   position: absolute;
   right: var(--space-md);
   top: var(--space-md);
-  color: var(--color-neutral);
+  color: var(--color-light);
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
   line-height: 1;
+  opacity: 0.7;
 }
 
 .close-modal:hover {
-  color: var(--color-dark);
+  color: var(--color-light);
+  opacity: 1;
 }
 
 .modal-body {
@@ -68,18 +79,19 @@
 }
 
 .success-icon {
-  color: #28a745;
+  color: #4ade80;
   margin-bottom: var(--space-md);
 }
 
 .modal h2 {
   margin-bottom: var(--space-sm);
-  color: var(--color-dark);
+  color: var(--color-light);
 }
 
 .modal p {
   margin-bottom: var(--space-lg);
-  color: var(--color-neutral);
+  color: var(--color-light);
+  opacity: 0.85;
 }
 
 .close-modal-btn {
