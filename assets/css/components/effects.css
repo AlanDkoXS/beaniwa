@@ -6,6 +6,7 @@
 .dripping-effect {
   position: absolute;
   width: 100vw;
+  max-height: 750px;
   height: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -328,4 +329,10 @@
     transparent 85%,
     white
   );
+}
+@media (min-width: 992px) {
+  .dripping-effect {
+    max-height: 735px;
+    height: 100%;
+  }
 }

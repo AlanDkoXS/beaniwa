@@ -4,6 +4,7 @@
 
 .portfolio {
   position: relative;
+  min-height: 850px;
   z-index: 1;
   overflow: hidden;
   background-color: var(--color-on-primary);
@@ -88,9 +89,18 @@
 }
 
 .project-card {
-  flex: 1 1 300px; /* Crece, se achica y tiene un tamaño base de 300px */
-  max-width: 100%; /* Evita que se salga en móviles */
-  min-height: 8.5rem; /* Altura mínima de cada tarjeta */
+  flex: 1 1 300px;
+  max-width: 100%;
+  min-height: 8.5rem;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .project-card--cta {
@@ -112,18 +122,16 @@
   z-index: 10;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 50px;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .portfolio-flex {
-    grid-template-columns: repeat(2, 1fr);
+    display: inline-block;
+    margin-bottom: 0;
   }
-}
 
-@media (min-width: 992px) {
-  .portfolio-flex {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
+  .project-card {
+    margin-bottom: 1rem;
+    height: 100px;
   }
 }
