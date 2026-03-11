@@ -6,6 +6,7 @@
 // Import modules
 import { initAmbientGlow } from "./components/ambient-glow.js";
 import { initContactForm } from "./components/contact-form.js";
+import { initCtaModal } from "./components/cta-modal.js";
 import { initHeader } from "./components/header.js";
 import { initSecondaryMobileMenu, updateSecondaryMenuLinks } from "./components/mobile-menu-secondary.js";
 import { initMobileMenu, updateMainMenuLinks } from "./components/mobile-menu.js";
@@ -95,6 +96,7 @@ function initApp() {
 
   initScrollAnimations();
   initContactForm();
+  initCtaModal();
   // Initialize utils
   updateDateYear();
   // Freeze video on last frame
@@ -157,6 +159,7 @@ document.addEventListener("viewTransitionComplete", (event) => {
   // Re-init page-specific components
   initScrollAnimations();
   initContactForm();
+  initCtaModal();
   initHeroVideoFreeze();
 });
 

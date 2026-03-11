@@ -90,7 +90,21 @@
 .project-card {
   flex: 1 1 300px; /* Crece, se achica y tiene un tamaño base de 300px */
   max-width: 100%; /* Evita que se salga en móviles */
-  min-height: 100px; /* Altura mínima de cada tarjeta */
+  min-height: 8.5rem; /* Altura mínima de cada tarjeta */
+}
+
+.project-card--cta {
+  background: var(--color-light);
+  border: 2px solid var(--color-primary);
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-card--cta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .portfolio .btn {
