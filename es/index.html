@@ -78,7 +78,10 @@
     <!-- Google Tag Manager - Initialize dataLayer early -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      window.dataLayer.push({
+        "gtm.start": new Date().getTime(),
+        event: "gtm.js",
+      });
     </script>
   </head>
   <body>
@@ -185,7 +188,11 @@
     </svg>
     <!-- Header -->
     <header class="header" id="header" role="banner">
-      <nav class="nav" role="navigation" aria-label="Navegación principal" title="Navegación principal">
+      <nav
+        class="nav"
+        role="navigation"
+        aria-label="Navegación principal"
+        title="Navegación principal">
         <ul class="nav-menu" role="list">
           <li><a href="/es/#inicio" title="Inicio">Inicio</a></li>
           <li><a href="/es/#servicios" title="Servicios">Servicios</a></li>
@@ -258,7 +265,11 @@
             negocio
           </p>
           <!-- Scroll Indicator -->
-          <a class="hero-scroll-indicator" href="#servicios" aria-label="Ir a servicios" title="Ir a servicios">
+          <a
+            class="hero-scroll-indicator"
+            href="#servicios"
+            aria-label="Ir a servicios"
+            title="Ir a servicios">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -277,7 +288,10 @@
       </section>
 
       <!-- Services Section -->
-      <section class="services" id="servicios" aria-labelledby="servicios-title">
+      <section
+        class="services"
+        id="servicios"
+        aria-labelledby="servicios-title">
         <h1 id="servicios-title">Nuestros Servicios</h1>
         <p>Todo lo que necesitas para hacer crecer tu negocio</p>
         <div class="services-grid">
@@ -327,7 +341,14 @@
       </section>
 
       <!-- Portfolio Section -->
-      <section class="portfolio" id="portafolio" aria-labelledby="portafolio-title">
+      <section
+        class="portfolio"
+        id="portafolio"
+        aria-labelledby="portafolio-title">
+        <div class="portfolio-header">
+          <h1 id="portafolio-title">Portafolio</h1>
+          <p>Proyectos que hablan por nosotros</p>
+        </div>
         <!-- Liquid Cheese Texture Background -->
         <div class="liquid-cheese-bg" aria-hidden="true"></div>
         <!-- Dripping Paint Effect -->
@@ -373,10 +394,6 @@
             </filter>
           </defs>
         </svg>
-        <div class="portfolio-header">
-          <h1 id="portafolio-title">Portafolio</h1>
-          <p>Proyectos que hablan por nosotros</p>
-        </div>
         <div class="portfolio-grid">
           <article class="project-card">
             <h2>mercadoregional.com.mx</h2>
@@ -393,7 +410,12 @@
             <p>Portafolio personal profesional.</p>
           </article>
         </div>
-        <a href="/es/portafolio.html" class="btn btn--block" title="Ver todos los proyectos">Ver proyectos</a>
+        <a
+          href="/es/portafolio.html"
+          class="btn btn--block"
+          title="Ver todos los proyectos"
+          >Ver proyectos</a
+        >
       </section>
 
       <!-- About Us Section -->
@@ -472,7 +494,12 @@
             </div>
           </article>
         </div>
-        <a href="/es/nosotros.html" class="btn btn--block" title="Conoce más sobre nosotros">Conoce más</a>
+        <a
+          href="/es/nosotros.html"
+          class="btn btn--block"
+          title="Conoce más sobre nosotros"
+          >Conoce más</a
+        >
       </section>
 
       <!-- Contact Section -->
@@ -488,7 +515,8 @@
             <address>
               <p>
                 Email:
-                <a href="mailto:hola@beaniwa.com?subject=Info"
+                <a
+                  href="mailto:hola@beaniwa.com?subject=Info"
                   title="Envíanos un correo"
                   >hola@beaniwa.com</a
                 >
@@ -522,7 +550,9 @@
               aria-required="true"
               autocomplete="name"
               title="Ingresa tu nombre" />
-            <label for="email" title="Tu correo electrónico">Correo Electrónico</label>
+            <label for="email" title="Tu correo electrónico"
+              >Correo Electrónico</label
+            >
             <input
               type="email"
               id="email"
@@ -540,7 +570,9 @@
               rows="5"
               required
               title="Escribe tu mensaje aquí"></textarea>
-            <button type="submit" class="btn btn--block" title="Enviar mensaje">Enviar</button>
+            <button type="submit" class="btn btn--block" title="Enviar mensaje">
+              Enviar
+            </button>
           </form>
         </div>
       </section>
@@ -623,22 +655,42 @@
         <nav class="footer-links">
           <h2>Enlaces</h2>
           <ul>
-            <li><a href="/es/servicios.html" title="Ver nuestros servicios">Servicios</a></li>
-            <li><a href="/es/portafolio.html" title="Ver nuestro portafolio">Portafolio</a></li>
+            <li>
+              <a href="/es/servicios.html" title="Ver nuestros servicios"
+                >Servicios</a
+              >
+            </li>
+            <li>
+              <a href="/es/portafolio.html" title="Ver nuestro portafolio"
+                >Portafolio</a
+              >
+            </li>
             <li><a href="/es/nosotros.html" title="Conócenos">Nosotros</a></li>
-            <li><a href="/es/contacto.html" title="Contáctanos">Contacto</a></li>
+            <li>
+              <a href="/es/contacto.html" title="Contáctanos">Contacto</a>
+            </li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Idioma</h2>
           <ul>
-            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
-            <li><a href="/es/" hreflang="es" title="Versión en español">Español</a></li>
+            <li>
+              <a href="/en/" hreflang="en" title="English version">English</a>
+            </li>
+            <li>
+              <a href="/es/" hreflang="es" title="Versión en español"
+                >Español</a
+              >
+            </li>
           </ul>
           <h2>Legal</h2>
           <ul>
             <li>
-              <a href="/es/politica-privacidad.html" title="Política de Privacidad">Política de Privacidad</a>
+              <a
+                href="/es/politica-privacidad.html"
+                title="Política de Privacidad"
+                >Política de Privacidad</a
+              >
             </li>
           </ul>
         </nav>
@@ -651,7 +703,12 @@
     </footer>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div
+      id="success-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title">
       <div class="modal-content">
         <span class="close-modal" title="Cerrar modal">&times;</span>
         <div class="modal-body text-center">

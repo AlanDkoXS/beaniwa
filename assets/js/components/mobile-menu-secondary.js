@@ -23,7 +23,7 @@ const labelsSecondary = {
 const regresarItem = {
   id: "regresar",
   href: "/",
-  icon: `<polygon stroke-linecap="round" stroke-linejoin="round" points="12.1 23 15.5 11.1 8.6 9 9.3 23.1 7.4 23.2 0.1 0.2 0.1 0.1 23.9 3.6 14.2 23.3 12.1 23"/>`,
+  icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
 };
 
 // Social networks configuration
@@ -424,8 +424,9 @@ function offsetMenuBorderSecondary(element, menuBorder) {
 /**
  * Initialize the secondary mobile menu (for non-index pages)
  * @param {boolean} isReinitialization - If true, skip check for existing menu
+ * @param {string} destinationHref - The destination URL for View Transitions (not used but kept for consistency)
  */
-function initSecondaryMobileMenu(isReinitialization = false) {
+function initSecondaryMobileMenu(isReinitialization = false, destinationHref = null) {
   // Check if mobile menu already exists (skip if reinitialization)
   if (!isReinitialization && document.querySelector(".mobile-menu")) {
     return;
@@ -628,7 +629,7 @@ function updateSecondaryMenuLinks() {
   // Update Regresar button href
   const regresarItem = mobileMenu.querySelector('[data-id="regresar"]');
   if (regresarItem) {
-    regresarItem.onclick = (e) => {
+    regresarItem.onclick = e => {
       e.preventDefault();
       handleItemClickSecondary(langPrefix, regresarItem);
     };
@@ -638,7 +639,7 @@ function updateSecondaryMenuLinks() {
   const hamburgerButton = mobileMenu.querySelector('[data-hamburger="true"]');
   if (hamburgerButton) {
     // Re-attach click handler to ensure it works after navigation
-    hamburgerButton.onclick = (e) => {
+    hamburgerButton.onclick = e => {
       e.preventDefault();
       triggerWaveEffectSecondary(hamburgerButton);
       toggleHamburgerMenuSecondary(hamburgerButton);

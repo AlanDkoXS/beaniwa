@@ -656,12 +656,26 @@ function closeHamburgerPanel(panel, overlay, hamburgerButton) {
 /**
  * Initialize the mobile menu with delay and wave effect
  * @param {boolean} isReinitialization - If true, skip delay and don't check for existing menu
+ * @param {string} destinationHref - The destination URL for View Transitions
  */
-function initMobileMenu(isReinitialization = false) {
+function initMobileMenu(isReinitialization = false, destinationHref = null) {
   // Check if mobile menu already exists (skip if reinitialization)
   if (!isReinitialization && document.querySelector(".mobile-menu")) {
     return;
   }
+
+  // Use destinationHref if provided (for View Transitions), otherwise use current location
+  const path = destinationHref ? new URL(destinationHref, window.location.origin).pathname : window.location.pathname;
+  const isIndex =
+    path === "/" ||
+    path === "/index.html" ||
+    path === "/es" ||
+    path === "/es/" ||
+    path === "/es/index.html" ||
+    path === "/en" ||
+    path === "/en/" ||
+    path === "/en/index.html";
+  const isNotIndex = !isIndex;
 
   const currentLang = getCurrentLanguage();
   const langPrefix = currentLang === "en" ? "/en" : "/es";
@@ -683,19 +697,6 @@ function initMobileMenu(isReinitialization = false) {
   // Get current active item
   const currentItem = getCurrentItem();
   const currentIndex = navItems.findIndex(item => item.id === currentItem);
-
-  // Check if current page is not index
-  const path = window.location.pathname;
-  const isIndex =
-    path === "/" ||
-    path === "/index.html" ||
-    path === "/es" ||
-    path === "/es/" ||
-    path === "/es/index.html" ||
-    path === "/en" ||
-    path === "/en/" ||
-    path === "/en/index.html";
-  const isNotIndex = !isIndex;
 
   // Add "Regresar" item at the beginning for non-index pages
   const bottomNavItems = [];
