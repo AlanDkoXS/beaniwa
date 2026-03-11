@@ -14,7 +14,7 @@
       var(--color-primary) 0%,
       var(--color-on-primary) 70%
     );
-  padding: var(--space-xl) var(--space-md);
+  padding: 0 var(--space-md) var(--space-xl);
 }
 
 /* Liquid cheese texture background */
@@ -28,7 +28,7 @@
   background-size: cover;
   background-position: center;
   opacity: 0.7;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -40,25 +40,29 @@
   margin-bottom: var(--space-sm);
 }
 
+/* Portfolio Header Section - Dark */
 .portfolio-header {
-  background: var(--color-light);
-  padding: var(--space-md) var(--space-lg);
-  border-radius: var(--radius-md);
-  text-align: center;
-  max-width: 400px;
-  margin: 0 auto var(--space-lg);
+  background: var(--color-dark);
   position: relative;
   z-index: 2;
+  width: 100vw;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: var(--space-lg) 0;
 }
 
-.portfolio-header h1 {
+.portfolio-header h2 {
   margin-inline: auto;
   margin-bottom: var(--space-xs);
+  font-size: var(--font-size-h1);
 }
 
 .portfolio-header p {
-  color: var(--color-dark);
+  color: var(--color-light);
   margin-bottom: 0;
+  opacity: 0.8;
 }
 
 .portfolio > p {
@@ -67,21 +71,44 @@
   color: var(--color-dark);
 }
 
-.portfolio-grid {
-  display: grid;
+.portfolio-flex {
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-md);
-  grid-template-columns: 1fr;
-  margin-bottom: var(--space-lg);
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  z-index: 10;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: var(--space-xl) auto;
+  padding: 0 var(--space-md);
+  box-sizing: border-box;
+}
+
+.project-card {
+  flex: 1 1 300px; /* Crece, se achica y tiene un tamaño base de 300px */
+  max-width: 100%; /* Evita que se salga en móviles */
+  min-height: 100px; /* Altura mínima de cada tarjeta */
+}
+
+.portfolio .btn {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
 }
 
 @media (min-width: 576px) {
-  .portfolio-grid {
+  .portfolio-flex {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 992px) {
-  .portfolio-grid {
+  .portfolio-flex {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-lg);
   }

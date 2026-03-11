@@ -5,6 +5,7 @@
 /* Base container */
 .container {
   width: 100%;
+  min-height: calc(100vh - 3.5rem);
   max-width: var(--container-xs);
   margin-left: auto;
   margin-right: auto;
@@ -45,7 +46,7 @@
 /* Section base styles */
 section {
   max-width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 3.5rem);
   padding-top: var(--section-padding-y);
   padding-bottom: var(--section-padding-y);
   padding-left: var(--section-padding-x);

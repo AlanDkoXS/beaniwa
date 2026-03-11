@@ -77,7 +77,10 @@
     <!-- Google Tag Manager - Initialize dataLayer early -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      window.dataLayer.push({
+        "gtm.start": new Date().getTime(),
+        event: "gtm.js",
+      });
     </script>
   </head>
   <body>
@@ -92,9 +95,21 @@
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
     <header class="header" id="header" role="banner">
-      <nav class="nav" role="navigation" aria-label="Navegación principal" title="Navegación principal">
+      <nav
+        class="nav"
+        role="navigation"
+        aria-label="Navegación principal"
+        title="Navegación principal">
         <ul class="nav-menu nav-menu--back" role="list">
-          <li><a href="/es/" title="Volver"><img src="../assets/icons/arrows/arrow-left.svg" alt="Volver" width="20" height="20" /></a></li>
+          <li>
+            <a href="/es/" title="Volver"
+              ><img
+                src="../assets/icons/arrows/arrow-left.svg"
+                alt="Volver"
+                width="20"
+                height="20"
+            /></a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -102,7 +117,17 @@
     <!-- Main Content -->
     <main class="page-content" role="main">
       <!-- Portfolio Section -->
-      <section class="portfolio" id="portafolio" aria-labelledby="portafolio-title">
+      <section
+        class="portfolio"
+        id="portafolio"
+        aria-labelledby="portafolio-title">
+        <!-- Portfolio Header - Dark Section -->
+        <div class="portfolio-header-section">
+          <div class="portfolio-header">
+            <h1 id="portafolio-title">Portafolio</h1>
+            <p>Proyectos que hablan por nosotros</p>
+          </div>
+        </div>
         <!-- Liquid Cheese Texture Background -->
         <div class="liquid-cheese-bg" aria-hidden="true"></div>
         <!-- Dripping Paint Effect -->
@@ -148,11 +173,7 @@
             </filter>
           </defs>
         </svg>
-        <div class="portfolio-header">
-          <h1 id="portafolio-title">Portafolio</h1>
-          <p>Proyectos que hablan por nosotros</p>
-        </div>
-        <div class="portfolio-grid">
+        <div class="portfolio-flex">
           <article class="project-card">
             <h2>mercadoregional.com.mx</h2>
             <p>Plataforma de comercio electrónico para productos regionales.</p>
@@ -254,22 +275,42 @@
         <nav class="footer-links">
           <h2>Enlaces</h2>
           <ul>
-            <li><a href="/es/servicios.html" title="Ver nuestros servicios">Servicios</a></li>
-            <li><a href="/es/portafolio.html" title="Ver nuestro portafolio">Portafolio</a></li>
+            <li>
+              <a href="/es/servicios.html" title="Ver nuestros servicios"
+                >Servicios</a
+              >
+            </li>
+            <li>
+              <a href="/es/portafolio.html" title="Ver nuestro portafolio"
+                >Portafolio</a
+              >
+            </li>
             <li><a href="/es/nosotros.html" title="Conócenos">Nosotros</a></li>
-            <li><a href="/es/contacto.html" title="Contáctanos">Contacto</a></li>
+            <li>
+              <a href="/es/contacto.html" title="Contáctanos">Contacto</a>
+            </li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Idioma</h2>
           <ul>
-            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
-            <li><a href="/es/" hreflang="es" title="Versión en español">Español</a></li>
+            <li>
+              <a href="/en/" hreflang="en" title="English version">English</a>
+            </li>
+            <li>
+              <a href="/es/" hreflang="es" title="Versión en español"
+                >Español</a
+              >
+            </li>
           </ul>
           <h2>Legal</h2>
           <ul>
             <li>
-              <a href="/es/politica-privacidad.html" title="Política de Privacidad">Política de Privacidad</a>
+              <a
+                href="/es/politica-privacidad.html"
+                title="Política de Privacidad"
+                >Política de Privacidad</a
+              >
             </li>
           </ul>
         </nav>

@@ -5,7 +5,9 @@
 :root {
   /* Electric Border Colors */
   --electric-border-color: #dd8448;
-  --electric-light-color: var(--electric-border-color); /* Matches exactly the border color */
+  --electric-light-color: var(
+    --electric-border-color
+  ); /* Matches exactly the border color */
   --gradient-color: oklch(
     from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4
   );

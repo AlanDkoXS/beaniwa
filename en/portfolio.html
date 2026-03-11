@@ -77,7 +77,10 @@
     <!-- Google Tag Manager - Initialize dataLayer early -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      window.dataLayer.push({
+        "gtm.start": new Date().getTime(),
+        event: "gtm.js",
+      });
     </script>
   </head>
   <body>
@@ -92,9 +95,21 @@
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
     <header class="header" id="header" role="banner">
-      <nav class="nav" role="navigation" aria-label="Main navigation" title="Main navigation">
+      <nav
+        class="nav"
+        role="navigation"
+        aria-label="Main navigation"
+        title="Main navigation">
         <ul class="nav-menu nav-menu--back" role="list">
-          <li><a href="/en/" title="Back"><img src="../assets/icons/arrows/arrow-left.svg" alt="Back" width="20" height="20" /></a></li>
+          <li>
+            <a href="/en/" title="Back"
+              ><img
+                src="../assets/icons/arrows/arrow-left.svg"
+                alt="Back"
+                width="20"
+                height="20"
+            /></a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -102,7 +117,17 @@
     <!-- Main Content -->
     <main class="page-content" role="main">
       <!-- Portfolio Section -->
-      <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <section
+        class="portfolio"
+        id="portfolio"
+        aria-labelledby="portfolio-title">
+        <!-- Portfolio Header - Dark Section -->
+        <div class="portfolio-header-section">
+          <div class="portfolio-header">
+            <h1 id="portfolio-title">Portfolio</h1>
+            <p>Projects that speak for us</p>
+          </div>
+        </div>
         <!-- Liquid Cheese Texture Background -->
         <div class="liquid-cheese-bg" aria-hidden="true"></div>
         <!-- Dripping Paint Effect -->
@@ -148,11 +173,7 @@
             </filter>
           </defs>
         </svg>
-        <div class="portfolio-header">
-          <h1 id="portfolio-title">Portfolio</h1>
-          <p>Projects that speak for us</p>
-        </div>
-        <div class="portfolio-grid">
+        <div class="portfolio-flex">
           <article class="project-card">
             <h2>mercadoregional.com.mx</h2>
             <p>E-commerce platform for regional products.</p>
@@ -168,7 +189,9 @@
             <p>Professional personal portfolio.</p>
           </article>
         </div>
-        <a href="/en/contact.html" class="btn btn--block" title="Contact us">Contact Us</a>
+        <a href="/en/contact.html" class="btn btn--block" title="Contact us"
+          >Contact Us</a
+        >
       </section>
     </main>
 
@@ -249,21 +272,37 @@
         <nav class="footer-links">
           <h2>Links</h2>
           <ul>
-            <li><a href="/en/services.html" title="View our services">Services</a></li>
-            <li><a href="/en/portfolio.html" title="View our portfolio">Portfolio</a></li>
-            <li><a href="/en/about.html" title="Learn about us">About Us</a></li>
+            <li>
+              <a href="/en/services.html" title="View our services">Services</a>
+            </li>
+            <li>
+              <a href="/en/portfolio.html" title="View our portfolio"
+                >Portfolio</a
+              >
+            </li>
+            <li>
+              <a href="/en/about.html" title="Learn about us">About Us</a>
+            </li>
             <li><a href="/en/contact.html" title="Contact us">Contact</a></li>
           </ul>
         </nav>
         <nav class="footer-language">
           <h2>Language</h2>
           <ul>
-            <li><a href="/en/" hreflang="en" title="English version">English</a></li>
-            <li><a href="/es/" hreflang="es" title="Spanish version">Español</a></li>
+            <li>
+              <a href="/en/" hreflang="en" title="English version">English</a>
+            </li>
+            <li>
+              <a href="/es/" hreflang="es" title="Spanish version">Español</a>
+            </li>
           </ul>
           <h2>Legal</h2>
           <ul>
-            <li><a href="/en/privacy-policy.html" title="Privacy Policy">Privacy Policy</a></li>
+            <li>
+              <a href="/en/privacy-policy.html" title="Privacy Policy"
+                >Privacy Policy</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
