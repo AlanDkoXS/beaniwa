@@ -107,7 +107,9 @@ function initApp() {
   // Initialize ambient glow
   initAmbientGlow();
   // Initialize service scanner (index pages only)
-  initServiceScanner();
+  if (isIndexPage()) {
+    initServiceScanner();
+  }
 
   console.log("Aniwa initialized successfully");
 }
@@ -165,7 +167,9 @@ document.addEventListener("viewTransitionComplete", (event) => {
   initCtaModal();
   initHeroVideoFreeze();
   // Re-init service scanner on index pages after navigation
-  initServiceScanner();
+  if (isIndexPage(destinationHref)) {
+    initServiceScanner();
+  }
 });
 
 // Export for debugging
