@@ -51,13 +51,13 @@
 .about-content {
   max-width: 700px;
   margin: 0 auto var(--space-xl);
-  text-align: center;
+  text-align: right;
   position: relative;
   z-index: 1;
 }
 
 .about-content h2 {
-  margin-inline: auto;
+  margin: 0 0 var(--space-sm) 0;
 }
 
 .about-values {
