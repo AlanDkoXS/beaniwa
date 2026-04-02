@@ -90,12 +90,33 @@
 
 .project-card {
   flex: 1 1 300px;
-  max-width: 100%;
-  min-height: 8.5rem;
+  max-width: 400px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-md);
+  box-sizing: border-box;
   cursor: pointer;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .portfolio-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-bottom: 0;
+  }
+
+  .project-card {
+    height: 300px;
+  }
 }
 
 .project-card:hover {
@@ -118,20 +139,42 @@
 }
 
 .portfolio .btn {
-  position: absolute;
+  display: flex;
+  margin: var(--space-xl) auto 0;
+  position: relative;
   z-index: 10;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 @media (min-width: 768px) {
   .portfolio-flex {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
     margin-bottom: 0;
   }
 
   .project-card {
     margin-bottom: 1rem;
-    height: 100px;
+    height: 70px;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: 0 var(--space-lg);
+  }
+
+  .project-card h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .project-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.7;
   }
 }

@@ -1,0 +1,312 @@
+/* ===================================
+   Service Card Scanner Effect
+   Infinite horizontal carousel with dual scanner beams.
+
+   Clipping model:
+     - .scanner-card-normal  → clips from both sides; visible only in
+                               the center band between the two beams.
+     - .scanner-card-ascii-left  → clips from the right; visible to the
+                                   left of the left beam.
+     - .scanner-card-ascii-right → clips from the left; visible to the
+                                   right of the right beam.
+   =================================== */
+
+/* ── Canvas ───────────────────────────────────────────────────────────── */
+
+#serviceScannerCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ── Lift heading / subtitle / CTA above the canvas ─────────────────── */
+
+.services > h1,
+.services > p {
+  position: relative;
+  z-index: 6;
+}
+
+.services > .btn {
+  position: relative;
+  z-index: 6;
+}
+
+/* ── Hide original grid while the carousel is active ────────────────── */
+
+.services-grid {
+  display: none !important;
+}
+
+/* ── Carousel Container ───────────────────────────────────────────────── */
+
+.scanner-strip-container {
+  position: relative;
+  width: 100%;
+  height: calc(
+    200px + 2rem
+  ); /* card height + 1rem breathing room top & bottom */
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  z-index: 4; /* below canvas (z-index 5) */
+  margin-bottom: var(--space-lg, 2rem);
+  /* Fade edges so cards don't hard-clip at the viewport boundary */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 6%,
+    rgba(0, 0, 0, 1) 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 6%,
+    rgba(0, 0, 0, 1) 94%,
+    transparent 100%
+  );
+}
+
+/* ── Sliding Strip ───────────────────────────────────────────────────── */
+
+.scanner-strip {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  white-space: nowrap;
+  cursor: grab;
+  user-select: none;
+  will-change: transform;
+}
+
+.scanner-strip:active,
+.scanner-strip.dragging {
+  cursor: grabbing;
+}
+
+/* ── Card Wrapper ────────────────────────────────────────────────────── */
+
+.scanner-card-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+}
+
+/* ── Normal Card Layer ───────────────────────────────────────────────── */
+
+/* Clips from both left and right; only visible in center (between beams).
+   --clip-normal-left  grows as the left beam crosses the card from the left.
+   --clip-normal-right grows as the right beam crosses the card from the right. */
+.scanner-card-normal {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 12px);
+  padding: var(--space-lg, 1.5rem);
+  color: var(--color-light, #f5f5f5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Dual-side clip */
+  clip-path: inset(
+    0 var(--clip-normal-right, 0%) 0 var(--clip-normal-left, 0%) round
+      var(--radius-md, 12px)
+  );
+}
+
+.scanner-card-normal h2 {
+  margin-bottom: var(--space-sm, 0.5rem);
+  font-size: 1.1rem;
+  color: var(--color-light, #f5f5f5);
+}
+
+.scanner-card-normal p {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  color: var(--color-light, #f5f5f5);
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  white-space: normal;
+}
+
+/* ── ASCII Layers ───────────────────────────────────────────────────── */
+
+/* Both ASCII layers sit below the normal card (z-index 1). */
+.scanner-card-ascii {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(8, 8, 8, 0.97);
+  border: 1px solid rgba(250, 110, 2, 0.15);
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+}
+
+/* Left ASCII: visible from card left edge up to the left beam.
+   Clips from the right using --ascii-clip-right. */
+.scanner-card-ascii-left {
+  clip-path: inset(
+    0 var(--ascii-clip-right, 100%) 0 0 round var(--radius-md, 12px)
+  );
+}
+
+/* Right ASCII: visible from the right beam to the card right edge.
+   Clips from the left using --ascii-clip-left. */
+.scanner-card-ascii-right {
+  clip-path: inset(
+    0 0 0 var(--ascii-clip-left, 100%) round var(--radius-md, 12px)
+  );
+}
+
+/* ── ASCII Text ──────────────────────────────────────────────────────── */
+
+.ascii-content {
+  position: absolute;
+  inset: 0;
+  padding: 8px 6px;
+  color: rgba(250, 110, 2, 0.65);
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-size: 10px;
+  line-height: 12px;
+  overflow: hidden;
+  white-space: pre;
+  animation: service-glitch 0.12s infinite linear alternate-reverse;
+}
+
+/* Left ASCII text fades toward the right (toward the beam) */
+.ascii-content--left {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 40%,
+    rgba(0, 0, 0, 0.4) 75%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 40%,
+    rgba(0, 0, 0, 0.4) 75%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* Right ASCII text fades toward the left (toward the beam) */
+.ascii-content--right {
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 40%,
+    rgba(0, 0, 0, 0.4) 75%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 40%,
+    rgba(0, 0, 0, 0.4) 75%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* Subtle terminal flicker */
+@keyframes service-glitch {
+  0% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.93;
+  }
+  16% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 0.88;
+  }
+  50% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0.94;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ── Scan Flash ──────────────────────────────────────────────────────── */
+
+.scan-effect {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(250, 110, 2, 0.28),
+    transparent
+  );
+  animation: scan-flash 0.6s ease-out forwards;
+  pointer-events: none;
+  z-index: 8;
+}
+
+@keyframes scan-flash {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ── Reduced Motion ──────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .ascii-content {
+    animation: none;
+  }
+
+  .scan-effect {
+    display: none;
+  }
+
+  #serviceScannerCanvas {
+    display: none;
+  }
+
+  .scanner-card-normal {
+    clip-path: none !important;
+  }
+
+  .scanner-card-ascii {
+    display: none;
+  }
+
+  /* Show original grid if carousel is disabled */
+  .services-grid {
+    display: grid !important;
+  }
+
+  .scanner-strip-container {
+    display: none;
+  }
+}

@@ -17,6 +17,7 @@ import { initRouter } from "./router.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
 import { initViewTransitions } from "./view-transitions.js";
+import { initServiceScanner } from "./components/service-scanner.js";
 
 // Mobile menu state
 let mobileMenuInitialized = false;
@@ -105,6 +106,8 @@ function initApp() {
   initHeroMiddleEffect();
   // Initialize ambient glow
   initAmbientGlow();
+  // Initialize service scanner (index pages only)
+  initServiceScanner();
 
   console.log("Aniwa initialized successfully");
 }
@@ -161,6 +164,8 @@ document.addEventListener("viewTransitionComplete", (event) => {
   initContactForm();
   initCtaModal();
   initHeroVideoFreeze();
+  // Re-init service scanner on index pages after navigation
+  initServiceScanner();
 });
 
 // Export for debugging
