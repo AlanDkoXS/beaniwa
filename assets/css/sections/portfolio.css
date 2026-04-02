@@ -4,7 +4,6 @@
 
 .portfolio {
   position: relative;
-  min-height: 100vh;
   z-index: 1;
   overflow: hidden;
   background-color: var(--color-on-primary);
@@ -15,7 +14,10 @@
       var(--color-primary) 0%,
       var(--color-on-primary) 70%
     );
-  padding: 0 var(--space-md) var(--space-xl);
+  padding: 0 0 var(--space-sm);
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 100vh;
 }
 
 /* Liquid cheese texture background */
@@ -33,31 +35,24 @@
   pointer-events: none;
 }
 
-.portfolio h1 {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  margin-inline: auto;
-  margin-bottom: var(--space-sm);
-}
-
 /* Portfolio Header Section - Dark */
 .portfolio-header {
   background: var(--color-dark);
   position: relative;
   z-index: 2;
-  width: 100vw;
+  width: 100%;
   box-sizing: border-box;
   text-align: center;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  padding: var(--space-lg) 0;
+  padding: 2rem var(--space-md) var(--space-sm);
 }
 
-.portfolio-header h2 {
+.portfolio-header h1 {
   margin-inline: auto;
   margin-bottom: var(--space-xs);
-  font-size: var(--font-size-h1);
+  background: var(--header-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .portfolio-header p {
@@ -66,115 +61,107 @@
   opacity: 0.8;
 }
 
-.portfolio > p {
-  text-align: center;
-  margin-bottom: var(--space-xl);
-  color: var(--color-dark);
-}
-
+/* Card grid */
 .portfolio-flex {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
   position: relative;
   z-index: 10;
-
   width: 100%;
-  max-width: 1200px;
-  margin: var(--space-xl) auto;
   padding: 0 var(--space-md);
+  margin: 2.5rem 0 var(--space-sm);
   box-sizing: border-box;
 }
 
-.project-card {
-  flex: 1 1 300px;
-  max-width: 400px;
-  min-height: 250px;
+/* Portfolio-specific card (white bg, dark text, controlled width) */
+.portfolio-card {
+  width: 100%;
+  max-width: 320px;
+  height: 100px;
+  background: var(--color-light);
+  border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: var(--space-md);
+  padding: var(--space-xs) var(--space-md);
   box-sizing: border-box;
   cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 2;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 
-@media (min-width: 768px) {
-  .portfolio-flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-lg);
-    margin-bottom: 0;
-  }
-
-  .project-card {
-    height: 300px;
-  }
+.portfolio-card h2 {
+  margin-bottom: var(--space-xs);
+  color: var(--color-dark);
+  font-size: 1rem;
 }
 
-.project-card:hover {
+.portfolio-card p {
+  margin-bottom: 0;
+  color: var(--color-dark);
+  font-size: 0.85rem;
+}
+
+.portfolio-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.project-card--cta {
-  background: var(--color-light);
+.portfolio-card--cta {
   border: 2px solid var(--color-primary);
-  cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
 }
 
-.project-card--cta:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+/* Last card spacing */
+.portfolio-flex > .portfolio-card:last-child {
+  margin-top: 0;
 }
 
+/* Button */
 .portfolio .btn {
   display: flex;
-  margin: var(--space-xl) auto 0;
+  margin: 1rem auto var(--space-sm);
   position: relative;
   z-index: 10;
 }
 
 @media (min-width: 768px) {
+  .portfolio {
+    max-height: none;
+    padding: 0 0 var(--space-xl);
+  }
+
   .portfolio-flex {
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--space-md);
-    margin-bottom: 0;
+    gap: var(--space-lg);
+    max-width: 1200px;
+    margin-inline: auto;
   }
 
-  .project-card {
-    margin-bottom: 1rem;
-    height: 70px;
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-md);
-    padding: 0 var(--space-lg);
+  .portfolio-card {
+    flex: 1 1 280px;
+    max-width: 380px;
+    padding: var(--space-lg);
+    height: auto;
+    min-height: 150px;
   }
 
-  .project-card h2 {
-    margin: 0;
+  .portfolio-card h2 {
     font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
   }
 
-  .project-card p {
-    margin: 0;
+  .portfolio-card p {
     font-size: 0.9rem;
-    opacity: 0.7;
   }
 }
