@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111111" />
+
+    <title>Alan Quintana — Creative Developer</title>
+    <meta name="description" content="Alan Quintana — Creative Developer at Beaniwa. Contact via WhatsApp, email, or visit the portfolio." />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Alan Quintana — Creative Developer" />
+    <meta property="og:description" content="Creative Developer at Beaniwa. Let's connect." />
+    <meta property="og:image" content="https://beaniwa.com/assets/img/opengraph.jpg" />
+    <meta property="og:url" content="https://beaniwa.com/papi/" />
+    <meta property="og:type" content="profile" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/img/favicon_apple.png" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://beaniwa.com/papi/" />
+
+    <!-- Font preloads -->
+    <link
+      rel="preload"
+      href="/assets/fonts/Poppins-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/Poppins-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/Antonio-VariableFont_wght.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Design system: font-faces + CSS custom properties -->
+    <link rel="stylesheet" href="/assets/css/base/fonts.css" />
+    <link rel="stylesheet" href="/assets/css/base/variables.css" />
+
+    <style>
+      /* ================================================
+         RESET
+         ================================================ */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      /* ================================================
+         PAGE BASE
+         ================================================ */
+      body {
+        font-family: "Poppins", system-ui, sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        background-color: #111111;
+        background-image: url('/assets/img/textures/temporal-gradient.png');
+        background-size: 300px;
+        background-position: top left;
+        background-repeat: no-repeat;
+        color: #f5f5f5;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3.5rem 1.5rem 2.5rem;
+        position: relative;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      /* ================================================
+         BACKGROUND BLOBS — services section pattern
+         ================================================ */
+      .bg-blob {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        will-change: opacity, transform;
+        z-index: 0;
+      }
+
+      /* Top-right — bright orange */
+      .bg-blob--1 {
+        top: -80px;
+        right: -100px;
+        width: 340px;
+        height: 340px;
+        background: var(--color-primary);
+        filter: blur(90px);
+        animation: gradient-pulse-1 6s ease-in-out infinite;
+      }
+
+      /* Bottom-left — deep red-orange */
+      .bg-blob--2 {
+        bottom: -100px;
+        left: -120px;
+        width: 400px;
+        height: 400px;
+        background: var(--color-on-primary);
+        filter: blur(100px);
+        animation: gradient-pulse-2 8s ease-in-out infinite;
+      }
+
+      /* Center subtle — amber */
+      .bg-blob--3 {
+        top: 40%;
+        right: -60px;
+        width: 180px;
+        height: 180px;
+        background: var(--electric-border-color);
+        filter: blur(110px);
+        animation: gradient-pulse-1 10s ease-in-out infinite 3s;
+        opacity: 0.6;
+      }
+
+      /* ================================================
+         KEYFRAMES
+         ================================================ */
+      @keyframes gradient-pulse-1 {
+        0%, 100% { opacity: 0.3;  transform: scale(0.85); }
+        50%       { opacity: 0.55; transform: scale(1.05); }
+      }
+
+      @keyframes gradient-pulse-2 {
+        0%, 100% { opacity: 0.25; transform: scale(0.9);  }
+        50%       { opacity: 0.45; transform: scale(1.15); }
+      }
+
+      @keyframes ring-rotate {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+
+      @keyframes glow-pulse {
+        0%, 100% { opacity: 0.45; transform: scale(1);    }
+        50%       { opacity: 0.85; transform: scale(1.12); }
+      }
+
+      @keyframes float-in {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* ================================================
+         LANGUAGE TOGGLE
+         ================================================ */
+      .lang-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: rgba(255, 255, 255, 0.07);
+        color: #f5f5f5;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 0.35rem 0.85rem 0.35rem 0.7rem;
+        font-family: "Poppins", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 100;
+        transition: background 0.25s ease, border-color 0.25s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .lang-toggle:hover,
+      .lang-toggle:focus-visible {
+        background: rgba(250, 110, 2, 0.14);
+        border-color: rgba(250, 110, 2, 0.45);
+        outline: none;
+      }
+
+      .lang-toggle svg {
+        width: 13px;
+        height: 13px;
+        opacity: 0.75;
+        flex-shrink: 0;
+      }
+
+      /* ================================================
+         MAIN CONTAINER
+         ================================================ */
+      .papi-container {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+        animation: float-in 0.55s ease-out both;
+      }
+
+      /* ================================================
+         PROFILE AREA — video-ready
+         ================================================ */
+      .profile-wrapper {
+        position: relative;
+        width: 166px;
+        height: 166px;
+        margin-bottom: 1.75rem;
+      }
+
+      /* Ambient radial glow behind the ring */
+      .profile-glow {
+        position: absolute;
+        inset: -22px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(250, 110, 2, 0.38) 0%,
+          rgba(250, 110, 2, 0.12) 50%,
+          transparent 75%
+        );
+        animation: glow-pulse 4s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Rotating conic-gradient border ring */
+      .profile-ring {
+        position: relative;
+        width: 166px;
+        height: 166px;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 0deg,
+          #fa6e02    0%,
+          #ec4700   25%,
+          #dd8448   45%,
+          rgba(250, 110, 2, 0.12) 65%,
+          rgba(250, 110, 2, 0.55) 80%,
+          #fa6e02  100%
+        );
+        animation: ring-rotate 3.5s linear infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px;
+        z-index: 1;
+      }
+
+      /* Dark inner circle — masks the gradient center */
+      .profile-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #111111;
+        flex-shrink: 0;
+      }
+
+      /* Profile image or video (ready to drop in) */
+      .profile-media {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 50%;
+      }
+
+      /* ================================================
+         IDENTITY
+         ================================================ */
+      .papi-name {
+        font-family: "Poppins", system-ui, sans-serif;
+        font-weight: 700;
+        font-size: clamp(2rem, 9vw, 2.8rem);
+        line-height: 1.1;
+        background: var(--header-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-align: center;
+        margin-bottom: 0.45rem;
+        letter-spacing: -0.02em;
+        width: fit-content;
+        max-width: 100%;
+      }
+
+      .papi-role {
+        font-family: "Antonio", system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 1.1rem;
+        color: var(--color-light-alt);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 0;
+      }
+
+      /* ================================================
+         DIVIDER
+         ================================================ */
+      .papi-divider {
+        width: 100%;
+        max-width: 220px;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          rgba(250, 110, 2, 0.55) 30%,
+          rgba(250, 110, 2, 0.85) 50%,
+          rgba(250, 110, 2, 0.55) 70%,
+          transparent 100%
+        );
+        margin: 1.75rem auto;
+      }
+
+      /* ================================================
+         ACTION BUTTONS
+         ================================================ */
+      .papi-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+      }
+
+      .papi-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        height: 54px;
+        padding: 0 1.5rem;
+        border-radius: 27px;
+        font-family: "Poppins", system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.25s ease;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        -webkit-user-select: none;
+        width: 100%;
+      }
+
+      .papi-btn:active {
+        transform: scale(0.97) !important;
+      }
+
+      .papi-btn svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      /* --- WhatsApp — green (universally recognized) --- */
+      .papi-btn--whatsapp {
+        background: linear-gradient(135deg, #25d366 0%, #1a9e4d 100%);
+        color: #ffffff;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.2);
+      }
+
+      .papi-btn--whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(37, 211, 102, 0.42);
+        color: #ffffff;
+      }
+
+      /* --- Email — brand orange gradient --- */
+      .papi-btn--email {
+        background: var(--header-gradient);
+        color: #ffffff;
+        box-shadow: 0 4px 20px rgba(250, 110, 2, 0.22);
+      }
+
+      .papi-btn--email:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(250, 110, 2, 0.48);
+        color: #ffffff;
+      }
+
+      /* --- Website — glass dark with orange border --- */
+      .papi-btn--site {
+        background: rgba(255, 255, 255, 0.04);
+        color: #f5f5f5;
+        border: 1px solid rgba(250, 110, 2, 0.45);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow:
+          0 4px 16px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .papi-btn--site:hover {
+        transform: translateY(-2px);
+        background: rgba(250, 110, 2, 0.1);
+        border-color: rgba(250, 110, 2, 0.75);
+        box-shadow: 0 8px 28px rgba(250, 110, 2, 0.22);
+        color: #f5f5f5;
+      }
+
+      /* --- Save contact — glass with amber border --- */
+      .papi-btn--save {
+        background: rgba(255, 255, 255, 0.03);
+        color: #f5f5f5;
+        border: 1px solid rgba(221, 132, 72, 0.38);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow:
+          0 4px 16px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .papi-btn--save:hover {
+        transform: translateY(-2px);
+        background: rgba(221, 132, 72, 0.09);
+        border-color: rgba(221, 132, 72, 0.68);
+        box-shadow: 0 8px 28px rgba(221, 132, 72, 0.22);
+        color: #f5f5f5;
+      }
+
+      /* ================================================
+         BRANDING MARK
+         ================================================ */
+      .papi-brand {
+        margin-top: 2.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.28;
+        transition: opacity 0.3s ease;
+        text-decoration: none;
+      }
+
+      .papi-brand:hover {
+        opacity: 0.6;
+      }
+
+      .papi-brand img {
+        height: 24px;
+        width: auto;
+        /* Convert any color to white for dark background */
+        filter: brightness(0) invert(1);
+      }
+
+      /* ================================================
+         DESKTOP REFINEMENTS
+         ================================================ */
+      @media (min-width: 480px) {
+        .papi-name {
+          font-size: 3rem;
+        }
+
+        .profile-wrapper {
+          width: 184px;
+          height: 184px;
+        }
+
+        .profile-ring {
+          width: 184px;
+          height: 184px;
+        }
+
+        .profile-placeholder {
+          font-size: 3.6rem;
+        }
+      }
+
+      /* ================================================
+         REDUCED MOTION
+         ================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        .bg-blob,
+        .profile-glow,
+        .profile-ring {
+          animation: none;
+        }
+
+        .papi-container {
+          animation: none;
+        }
+
+        .papi-btn {
+          transition: none;
+        }
+
+        /* Static fallback ring */
+        .profile-ring {
+          background: var(--color-primary);
+        }
+
+        /* Static blob opacities */
+        .bg-blob--1 { opacity: 0.35; }
+        .bg-blob--2 { opacity: 0.25; }
+        .bg-blob--3 { opacity: 0.2; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Animated background blobs — same pattern as the services section -->
+    <div class="bg-blob bg-blob--1" aria-hidden="true"></div>
+    <div class="bg-blob bg-blob--2" aria-hidden="true"></div>
+    <div class="bg-blob bg-blob--3" aria-hidden="true"></div>
+
+    <!-- Language toggle — shows the alternate language to switch to -->
+    <button
+      class="lang-toggle"
+      id="lang-toggle"
+      type="button"
+      aria-label="Switch language"
+      title="Switch language"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+      </svg>
+      <span id="lang-toggle-label">ES</span>
+    </button>
+
+    <main class="papi-container" role="main" id="main-content">
+
+      <!-- ─── Profile area ─────────────────────────────────── -->
+      <!--
+        VIDEO REPLACEMENT:
+        When the animation video is ready, replace the
+        .profile-placeholder <div> inside .profile-inner with:
+
+          <video
+            class="profile-media"
+            autoplay muted loop playsinline
+            poster="/assets/img/alan-poster.jpg"
+            aria-label="Alan Quintana"
+          >
+            <source src="/assets/video/alan-avatar.webm" type="video/webm" />
+            <source src="/assets/video/alan-avatar.mp4"  type="video/mp4"  />
+          </video>
+      -->
+      <div
+        class="profile-wrapper"
+        role="img"
+        aria-label="Alan Quintana"
+      >
+        <div class="profile-glow" aria-hidden="true"></div>
+        <div class="profile-ring" aria-hidden="true">
+          <div class="profile-inner">
+            <video
+              class="profile-media"
+              id="profile-video"
+              autoplay muted playsinline
+              aria-label="Alan Quintana"
+              preload="metadata"
+            >
+              <source src="/assets/video/profile.webm" type="video/webm" />
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Identity ─────────────────────────────────────── -->
+      <h1 class="papi-name">Alan Quintana</h1>
+      <p class="papi-role" data-i18n="role">Creative Developer</p>
+
+      <!-- ─── Divider ──────────────────────────────────────── -->
+      <div class="papi-divider" role="separator" aria-hidden="true"></div>
+
+      <!-- ─── Action buttons ──────────────────────────────── -->
+      <div
+        class="papi-actions"
+        role="group"
+        aria-label="Contact options"
+      >
+
+        <!-- WhatsApp -->
+        <a
+          href="https://wa.me/526146849441"
+          class="papi-btn papi-btn--whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Send WhatsApp message to Alan Quintana"
+          title="WhatsApp"
+          data-i18n-aria="whatsappAria"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          <span data-i18n="whatsapp">Send WhatsApp</span>
+        </a>
+
+        <!-- Email -->
+        <a
+          href="mailto:alan@beaniwa.com"
+          class="papi-btn papi-btn--email"
+          aria-label="Send email to Alan Quintana"
+          title="alan@beaniwa.com"
+          data-i18n-aria="emailAria"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          <span data-i18n="email">Send Email</span>
+        </a>
+
+        <!-- Website -->
+        <a
+          href="https://beaniwa.com"
+          class="papi-btn papi-btn--site"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit beaniwa.com"
+          title="beaniwa.com"
+          data-i18n-aria="siteAria"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+          </svg>
+          <span data-i18n="site">Visit Site</span>
+        </a>
+
+        <!-- Save contact — generates and downloads a .vcf file -->
+        <button
+          class="papi-btn papi-btn--save"
+          id="btn-save"
+          type="button"
+          aria-label="Save Alan Quintana contact card to your device"
+          title="Save contact"
+          data-i18n-aria="saveAria"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <span data-i18n="save">Save Contact</span>
+        </button>
+
+      </div>
+      <!-- /papi-actions -->
+
+      <!-- ─── Branding mark ────────────────────────────────── -->
+      <a
+        href="https://beaniwa.com"
+        class="papi-brand"
+        aria-label="Beaniwa"
+        title="beaniwa.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="/assets/img/logo_landscape.svg"
+          alt="Beaniwa"
+          width="96"
+          height="26"
+        />
+      </a>
+
+    </main>
+    <!-- /papi-container -->
+
+    <script>
+      'use strict';
+
+      /* ============================================================
+         TRANSLATIONS
+         ============================================================ */
+      const i18n = {
+        en: {
+          role:           'Creative Developer',
+          whatsapp:       'Send WhatsApp',
+          email:          'Send Email',
+          site:           'Visit Site',
+          save:           'Save Contact',
+          whatsappAria:   'Send WhatsApp message to Alan Quintana',
+          emailAria:      'Send email to Alan Quintana',
+          siteAria:       'Visit beaniwa.com website',
+          saveAria:       'Save Alan Quintana contact card to your device',
+          langLabel:      'ES',
+          langToggleAria: 'Cambiar a Español',
+        },
+        es: {
+          role:           'Creative Developer',
+          whatsapp:       'Enviar WhatsApp',
+          email:          'Enviar correo',
+          site:           'Ver sitio',
+          save:           'Guardar contacto',
+          whatsappAria:   'Enviar mensaje de WhatsApp a Alan Quintana',
+          emailAria:      'Enviar correo a Alan Quintana',
+          siteAria:       'Visitar el sitio beaniwa.com',
+          saveAria:       'Guardar tarjeta de contacto de Alan Quintana en tu dispositivo',
+          langLabel:      'EN',
+          langToggleAria: 'Switch to English',
+        },
+      };
+
+      /* ============================================================
+         LANGUAGE DETECTION
+         Read from:
+           1. sessionStorage (user already switched during this visit)
+           2. navigator.language (browser preference)
+           3. fallback → 'en'
+         ============================================================ */
+      function detectLang() {
+        const stored = sessionStorage.getItem('papi-lang');
+        if (stored === 'en' || stored === 'es') return stored;
+        const nav = ((navigator.language || navigator.userLanguage || 'en')
+          .split('-')[0]
+          .toLowerCase());
+        return nav === 'es' ? 'es' : 'en';
+      }
+
+      let currentLang = detectLang();
+
+      function applyTranslations(lang) {
+        const t = i18n[lang] || i18n['en'];
+
+        // Update <html lang="...">
+        document.documentElement.lang = lang;
+
+        // Translate text nodes
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          const key = el.dataset.i18n;
+          if (t[key] !== undefined) el.textContent = t[key];
+        });
+
+        // Translate aria-label attributes
+        document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+          const key = el.dataset.i18nAria;
+          if (t[key] !== undefined) el.setAttribute('aria-label', t[key]);
+        });
+
+        // Lang toggle: label shows the OTHER language
+        const toggleLabel = document.getElementById('lang-toggle-label');
+        const toggleBtn   = document.getElementById('lang-toggle');
+        if (toggleLabel) toggleLabel.textContent = t.langLabel;
+        if (toggleBtn)   toggleBtn.setAttribute('aria-label', t.langToggleAria);
+
+        currentLang = lang;
+        sessionStorage.setItem('papi-lang', lang);
+      }
+
+      // Wire up the toggle button
+      var langToggleBtn = document.getElementById('lang-toggle');
+      if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', function () {
+          var next = currentLang === 'en' ? 'es' : 'en';
+          applyTranslations(next);
+        });
+      }
+
+      // Apply on page load
+      applyTranslations(currentLang);
+
+      /* ============================================================
+         SAVE CONTACT — generates and downloads a vCard (.vcf)
+         ============================================================ */
+      function saveContact() {
+        var vcard = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'N:Quintana;Alan;;;',
+          'FN:Alan Quintana',
+          'TITLE:Creative Developer',
+          'ORG:Beaniwa',
+          'TEL;TYPE=CELL:+526146849441',
+          'EMAIL:alan@beaniwa.com',
+          'URL:https://beaniwa.com',
+          'END:VCARD',
+        ].join('\r\n');
+
+        try {
+          var blob   = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+          var url    = URL.createObjectURL(blob);
+          var anchor = document.createElement('a');
+          anchor.href     = url;
+          anchor.download = 'Alan-Quintana.vcf';
+          document.body.appendChild(anchor);
+          anchor.click();
+          document.body.removeChild(anchor);
+          URL.revokeObjectURL(url);
+        } catch (err) {
+          // Fallback for browsers that don't support Blob URLs
+          window.open(
+            'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard),
+            '_blank'
+          );
+        }
+      }
+
+      /* Attach save-contact handler to button */
+      var saveBtn = document.getElementById('btn-save');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', saveContact);
+      }
+
+      /* ============================================================
+         PROFILE VIDEO CONTROL
+         Start 1 second after load, play once, freeze on last frame
+         ============================================================ */
+      function initProfileVideo() {
+        var video = document.getElementById('profile-video');
+        if (!video) return;
+
+        // Wait 1 second after page load
+        setTimeout(function() {
+          video.play().then(function() {
+            // Listen for when video ends
+            video.addEventListener('ended', function() {
+              // Freeze on last frame by pausing
+              video.pause();
+            });
+          }).catch(function(err) {
+            console.warn('Profile video playback failed:', err);
+          });
+        }, 1000);
+      }
+
+      // Initialize video after DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initProfileVideo);
+      } else {
+        initProfileVideo();
+      }
+    </script>
+
+  </body>
+</html>
