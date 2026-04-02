@@ -585,10 +585,11 @@
             <video
               class="profile-media"
               id="profile-video"
-              autoplay muted playsinline
+              muted playsinline
               aria-label="Alan Quintana"
-              preload="metadata"
+              preload="auto"
             >
+              <source src="/assets/video/profile.mp4" type="video/mp4" />
               <source src="/assets/video/profile.webm" type="video/webm" />
             </video>
           </div>
@@ -872,20 +873,36 @@
          ============================================================ */
       function initProfileVideo() {
         var video = document.getElementById('profile-video');
-        if (!video) return;
+        if (!video) {
+          console.warn('Profile video element not found');
+          return;
+        }
 
-        // Wait 1 second after page load
-        setTimeout(function() {
-          video.play().then(function() {
-            // Listen for when video ends
-            video.addEventListener('ended', function() {
-              // Freeze on last frame by pausing
-              video.pause();
+        // Wait for video to be ready
+        video.addEventListener('canplaythrough', function() {
+          // Wait additional 1 second after video is loaded
+          setTimeout(function() {
+            video.play().then(function() {
+              console.log('Profile video started');
+              // Listen for when video ends
+              video.addEventListener('ended', function() {
+                console.log('Profile video ended, pausing on last frame');
+                // Freeze on last frame by pausing
+                video.pause();
+              });
+            }).catch(function(err) {
+              console.warn('Profile video playback failed:', err);
             });
-          }).catch(function(err) {
-            console.warn('Profile video playback failed:', err);
-          });
-        }, 1000);
+          }, 1000);
+        });
+
+        // Handle load errors
+        video.addEventListener('error', function(e) {
+          console.error('Profile video failed to load:', e);
+        });
+
+        // Load the video
+        video.load();
       }
 
       // Initialize video after DOM is ready
