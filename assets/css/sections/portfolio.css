@@ -139,6 +139,10 @@
     padding: 0 0 var(--space-xl);
   }
 
+  .portfolio-card {
+    max-width: 960px;
+  }
+
   .portfolio-card h2 {
     font-size: 1.25rem;
     margin-bottom: var(--space-sm);
