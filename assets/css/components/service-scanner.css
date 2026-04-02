@@ -34,6 +34,7 @@
 .services > .btn {
   position: relative;
   z-index: 6;
+  margin-top: var(--space-xl);
 }
 
 /* ── Hide original grid while the carousel is active ────────────────── */
@@ -54,7 +55,7 @@
   display: flex;
   align-items: center;
   z-index: 4; /* below canvas (z-index 5) */
-  margin-bottom: var(--space-lg, 2rem);
+  margin-bottom: var(--space-2xl);
   /* Fade edges so cards don't hard-clip at the viewport boundary */
   -webkit-mask-image: linear-gradient(
     to right,
@@ -140,6 +141,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   white-space: normal;
 }
 

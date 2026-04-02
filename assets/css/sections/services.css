@@ -15,9 +15,9 @@
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: var(--space-lg) 0;
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-lg);
 }
 
 /* Animated gradient backgrounds */
@@ -55,6 +55,10 @@
   margin-inline: auto;
   position: relative;
   z-index: 1;
+}
+
+.services h1 {
+  margin-bottom: var(--space-sm);
 }
 
 .services-grid {
