@@ -49,6 +49,7 @@
 }
 
 .services h1 {
+  margin-inline: auto;
   margin-bottom: var(--space-md);
 }
 
