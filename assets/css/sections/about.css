@@ -51,7 +51,7 @@
 .about-content {
   max-width: 700px;
   margin: 0 auto var(--space-xl);
-  text-align: right;
+  text-align: left;
   position: relative;
   z-index: 1;
 }
