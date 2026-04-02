@@ -65,8 +65,9 @@
     min-height: 100vh;
   }
   .about-values {
+    display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
   }
 }
 
