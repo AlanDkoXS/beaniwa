@@ -15,8 +15,9 @@
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: var(--space-lg) 0;
 }
 
 /* Animated gradient backgrounds */
