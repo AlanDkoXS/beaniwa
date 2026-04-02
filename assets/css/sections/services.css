@@ -61,9 +61,3 @@
   position: relative;
   z-index: 1;
 }
-
-@media (min-width: 576px) {
-  .services-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-}
