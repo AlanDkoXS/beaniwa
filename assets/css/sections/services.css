@@ -13,7 +13,10 @@
   background-size: 250px;
   background-position: top left;
   background-repeat: no-repeat;
-  padding: var(--space-3xl) 0 var(--space-xl) 0; /* Add spacing to center the section content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Animated gradient backgrounds */
@@ -65,11 +68,5 @@
 @media (min-width: 576px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .services {
-    padding: var(--space-lg) 0;
   }
 }
