@@ -45,13 +45,11 @@
 
 .services h1,
 .services > p {
-  text-align: center;
-  position: relative;
-  z-index: 1;
+  margin-bottom: var(--space-xl);
 }
 
 .services h1 {
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .services-grid {
