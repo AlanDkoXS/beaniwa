@@ -262,7 +262,6 @@
           rgba(250, 110, 2, 0.55) 80%,
           #fa6e02  100%
         );
-        animation: ring-rotate 3.5s linear infinite;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -589,7 +588,6 @@
               aria-label="Alan Quintana"
               preload="auto"
             >
-              <source src="/assets/video/profile.mp4" type="video/mp4" />
               <source src="/assets/video/profile.webm" type="video/webm" />
             </video>
           </div>
@@ -878,31 +876,32 @@
           return;
         }
 
-        // Wait for video to be ready
-        video.addEventListener('canplaythrough', function() {
-          // Wait additional 1 second after video is loaded
-          setTimeout(function() {
-            video.play().then(function() {
-              console.log('Profile video started');
-              // Listen for when video ends
-              video.addEventListener('ended', function() {
-                console.log('Profile video ended, pausing on last frame');
-                // Freeze on last frame by pausing
-                video.pause();
-              });
-            }).catch(function(err) {
-              console.warn('Profile video playback failed:', err);
-            });
-          }, 1000);
-        });
-
         // Handle load errors
         video.addEventListener('error', function(e) {
           console.error('Profile video failed to load:', e);
         });
 
-        // Load the video
+        video.addEventListener('loadeddata', function() {
+          console.log('Profile video loaded successfully');
+        });
+
+        // Preload the video
         video.load();
+
+        // Freeze on last frame when playback ends
+        video.addEventListener('ended', function() {
+          // currentTime is already at the end; pause keeps it there
+          video.pause();
+        });
+
+        // Wait 1 second, then play once
+        setTimeout(function() {
+          video.play().then(function() {
+            console.log('Profile video started playing');
+          }).catch(function(err) {
+            console.warn('Profile video playback failed:', err);
+          });
+        }, 1000);
       }
 
       // Initialize video after DOM is ready
