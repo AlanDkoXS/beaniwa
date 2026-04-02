@@ -27,6 +27,7 @@ h1,
   color: transparent;
   width: fit-content;
   max-width: 100%;
+  max-height: 999999px;
 }
 
 h2,
@@ -40,6 +41,7 @@ h6,
   line-height: 1.2;
   margin: 0 0 var(--space-md);
   color: inherit;
+  max-height: 999999px;
 }
 
 h1 {

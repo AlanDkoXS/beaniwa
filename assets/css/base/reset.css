@@ -36,12 +36,16 @@ body {
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 input,
 textarea,
 [contenteditable="true"] {
-  -webkit-user-select: text;
+  -webkit-user-select: none;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
