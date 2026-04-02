@@ -68,9 +68,8 @@
   }
 }
 
-@media (min-width: 992px) {
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-lg);
+@media (max-width: 767px) {
+  .services {
+    padding: var(--space-lg) 0;
   }
 }
