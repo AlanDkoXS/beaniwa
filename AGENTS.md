@@ -1,6 +1,12 @@
-# AGENTS.md - Agentic Coding Guidelines for beaniwa.com
+# AGENTS.md - OpenCode Guidelines for beaniwa.com
 
-This document provides guidelines for agentic coding agents operating in this repository.
+This document provides guidelines for OpenCode and other agentic tools operating in this repository.
+
+## Color Palette
+
+- **Orange**: `#fa6e02`
+- **Black**: `#111111`
+
 
 ## Project Overview
 
@@ -131,8 +137,6 @@ This is a bilingual website. Follow these rules:
 
 ## Git Convention
 
-Follow the rules in `.kilocode/skills/git-convention.md`:
-
 ### Commit Messages
 Format: `:emoji: TYPE: description`
 
@@ -144,11 +148,93 @@ Common emojis:
 - `:recycle:` - Refactoring
 - `:globe_with_meridians:` - i18n changes
 
-Example:
-```
-:sparkles: ADD: Contact form validation
+#### Extended Emoji List
+- `:art:` - Improve structure / format
+- `:zap:` - Improve performance
+- `:fire:` - Remove code or files
+- `:ambulance:` - Critical hotfix
+- `:rocket:` - Deploy stuff
+- `:tada:` - Begin a project
+- `:white_check_mark:` - Add, update, or pass tests
+- `:lock:` - Fix security or privacy issues
+- `:closed_lock_with_key:` - Add or update secrets
+- `:bookmark:` - Release / Version tags
+- `:rotating_light:` - Fix compiler / linter warnings
+- `:construction:` - Work in progress
+- `:green_heart:` - Fix CI Build
+- `:arrow_down:` - Downgrade dependencies
+- `:arrow_up:` - Upgrade dependencies
+- `:pushpin:` - Pin dependencies
+- `:construction_worker:` - Add or update CI build system
+- `:chart_with_upwards_trend:` - Add or update analytics
+- `:heavy_plus_sign:` - Add a dependency
+- `:heavy_minus_sign:` - Remove a dependency
+- `:wrench:` - Add or update configuration files
+- `:hammer:` - Add or update development scripts
+- `:pencil2:` - Fix typos
+- `:rewind:` - Revert changes
+- `:twisted_rightwards_arrows:` - Merge branches
+- `:package:` - Add or update compiled files
+- `:alien:` - Update code due to external API changes
+- `:truck:` - Move or rename resources
+- `:page_facing_up:` - Add or update license
+- `:boom:` - Introduce breaking changes
+- `:bento:` - Add or update assets
+- `:wheelchair:` - Improve accessibility
+- `:bulb:` - Add or update comments
+- `:beers:` - Write code drunkenly
+- `:speech_balloon:` - Add or update text and literals
+- `:card_file_box:` - Database changes
+- `:loud_sound:` - Add or update logs
+- `:mute:` - Remove logs
+- `:children_crossing:` - Improve user experience
+- `:building_construction:` - Architectural changes
+- `:iphone:` - Responsive design
+- `:clown_face:` - Mock things
+- `:egg:` - Add or update an easter egg
+- `:see_no_evil:` - Add or update .gitignore
+- `:camera_flash:` - Add or update snapshots
+- `:alembic:` - Perform experiments
+- `:mag:` - Improve SEO
+- `:label:` - Add or update types
+- `:seedling:` - Add or update seed files
+- `:triangular_flag_on_post:` - Feature flags
+- `:goal_net:` - Catch errors
+- `:dizzy:` - Add or update animations
+- `:wastebasket:` - Deprecate code
+- `:passport_control:` - Authorization/permissions
+- `:adhesive_bandage:` - Simple non-critical fix
+- `:monocle_face:` - Data exploration
+- `:coffin:` - Remove dead code
+- `:test_tube:` - Add a failing test
+- `:necktie:` - Business logic
+- `:stethoscope:` - Healthcheck
+- `:bricks:` - Infrastructure changes
+- `:technologist:` - Developer experience
+- `:money_with_wings:` - Money related infrastructure
+- `:thread:` - Multithreading/concurrency
+- `:safety_vest:` - Validation
+- `:airplane:` - Offline support
+- `:t-rex:` - Backwards compatibility
 
-Adds email and required field validation to contact form
+### Workflow Rules
+- **All changes only to main branch**
+- Use imperative mood (e.g., "Add feature" not "Added feature")
+- Keep subject line under 72 characters
+- Start with a capital letter (or use ADD for new features)
+- Do not end with a period
+
+### Examples
+```
+:sparkles: ADD: Password reset functionality
+
+Fixes #123
+```
+
+```
+:bug: RESOLVE: Mobile navigation overflow
+
+The navigation menu was overflowing on mobile devices.
 ```
 
 ## Project Structure
