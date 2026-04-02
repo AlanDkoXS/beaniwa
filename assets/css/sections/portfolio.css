@@ -139,6 +139,22 @@
     padding: 0 0 var(--space-xl);
   }
 
+  .portfolio-flex {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    max-width: 1200px;
+    margin-inline: auto;
+    align-items: start;
+  }
+
+  .portfolio-card {
+    max-width: none;
+    padding: var(--space-lg);
+    height: auto;
+    min-height: 150px;
+  }
+
   .portfolio-card h2 {
     font-size: 1.25rem;
     margin-bottom: var(--space-sm);
