@@ -149,8 +149,8 @@
   }
 
   .portfolio-card {
-    max-width: none;
-    padding: var(--space-lg);
+    max-width: 300px;
+    padding: var(--space-sm) var(--space-md);
     height: auto;
     min-height: 150px;
   }
