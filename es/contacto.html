@@ -103,38 +103,35 @@
     <main class="page-content" role="main">
       <!-- Contact Section -->
       <section class="contact" aria-labelledby="contacto-title">
-        <h1 id="contacto-title">Contáctanos</h1>
-        <p>
-          Estamos disponibles para proyectos y colaboraciones. Escríbenos y
-          respondemos en menos de 24 horas.
-        </p>
+        <h1 id="contacto-title">Contacto</h1>
+        <p>Estamos listos para ayudarte</p>
         <div class="contact-content">
           <div class="contact-info">
+            <p>
+              ¿Tienes un proyecto en mente? Escríbenos y respondemos en menos de
+              24 horas.
+            </p>
             <address>
-              <div class="contact-item">
-                <h2>Email</h2>
-                <p>
-                  <a href="mailto:hola@beaniwa.com?subject=Info"
-                    title="Envíanos un correo"
-                    >hola@beaniwa.com</a
-                  >
-                </p>
-              </div>
-              <div class="contact-item">
-                <h2>Teléfono</h2>
-                <p>
-                  <a
-                    href="https://wa.me/526146849441"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Contáctanos en WhatsApp"
-                    >+52 614 684 9441</a
-                  >
-                </p>
-              </div>
+              <p>
+                Email:
+                <a
+                  href="mailto:hola@beaniwa.com?subject=Info"
+                  title="Envíanos un correo"
+                  >hola@beaniwa.com</a
+                >
+              </p>
+              <p>
+                Teléfono:
+                <a
+                  href="https://wa.me/526146849441"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Contáctanos en WhatsApp"
+                  >+52 614 684 9441</a
+                >
+              </p>
             </address>
           </div>
-
           <form
             class="contact-form"
             name="contact"
@@ -142,51 +139,37 @@
             data-netlify="true"
             aria-label="Formulario de contacto">
             <input type="hidden" name="form-name" value="contact" />
-            <div class="form-group">
-              <label for="name" title="Tu nombre">Nombre</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Tu nombre"
-                required
-                aria-required="true"
-                autocomplete="name"
-                title="Ingresa tu nombre" />
-            </div>
-            <div class="form-group">
-              <label for="email" title="Tu correo electrónico">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="tu@email.com"
-                required
-                aria-required="true"
-                autocomplete="email"
-                title="Ingresa tu correo electrónico" />
-            </div>
-            <div class="form-group">
-              <label for="subject" title="Asunto del mensaje">Asunto</label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="Asunto de tu mensaje"
-                autocomplete="off"
-                title="Ingresa el asunto de tu mensaje" />
-            </div>
-            <div class="form-group">
-              <label for="message" title="Tu mensaje">Mensaje</label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Escribe tu mensaje aquí..."
-                rows="6"
-                required
-                title="Escribe tu mensaje aquí"></textarea>
-            </div>
-            <button type="submit" class="btn btn--block" title="Enviar mensaje">Enviar mensaje</button>
+            <label for="name" title="Tu nombre">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Tu nombre"
+              required
+              aria-required="true"
+              autocomplete="name"
+              title="Ingresa tu nombre" />
+            <label for="email" title="Tu correo electrónico">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="tu@email.com"
+              required
+              aria-required="true"
+              autocomplete="email"
+              title="Ingresa tu correo electrónico" />
+            <label for="message" title="Tu mensaje">Mensaje</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Escribe tu mensaje aquí..."
+              rows="5"
+              required
+              title="Escribe tu mensaje aquí"></textarea>
+            <button type="submit" class="btn btn--block" title="Enviar mensaje">
+              Enviar
+            </button>
           </form>
         </div>
       </section>
