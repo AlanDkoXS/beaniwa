@@ -291,6 +291,15 @@ function initViewTransitions() {
     return;
   }
 
+  // When the browser restores a page from the Back-Forward Cache (BFCache),
+  // the DOM may have a corrupted stylesheet order from a previous SPA navigation.
+  // Force a clean reload to avoid stale CSS cascade state.
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
+
   // Add click handler to document
   document.addEventListener("click", handleClick);
 
