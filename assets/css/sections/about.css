@@ -78,6 +78,11 @@
   z-index: 1;
 }
 
+.about .btn {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
 @media (min-width: 576px) {
   .about-values {
     grid-template-columns: repeat(2, 1fr);
