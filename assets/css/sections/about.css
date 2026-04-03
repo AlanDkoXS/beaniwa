@@ -81,7 +81,7 @@
 .about .btn {
   margin-top: var(--space-2xl);
   margin-bottom: var(--space-xl);
-  padding: 0 1rem;
+  padding: 1rem 2rem;
 }
 
 @media (min-width: 576px) {

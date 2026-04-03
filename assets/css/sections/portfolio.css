@@ -151,12 +151,17 @@
 
   .portfolio-flex {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-lg);
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
     justify-content: center;
     align-items: start;
     max-width: 1200px;
     margin: 0 auto;
+  }
+
+  .portfolio-flex > .portfolio-card:nth-last-child(2) {
+    grid-column: span 4;
+    margin-top: var(--space-md);
   }
 
   .portfolio-card {
