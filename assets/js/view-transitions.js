@@ -76,63 +76,119 @@ async function navigateWithTransition(href) {
 }
 
 /**
+ * Sync <head> from new page: CSS links, inline styles, meta tags and lang attribute.
+ * Scripts are intentionally left untouched to avoid re-execution.
+ */
+function syncHead(newDoc) {
+  // Update <html lang> attribute so language detection keeps working
+  const newLang = newDoc.documentElement.getAttribute("lang");
+  if (newLang) document.documentElement.setAttribute("lang", newLang);
+
+  // Update title
+  document.title = newDoc.title;
+
+  // --- CSS <link> elements ---
+  const currentLinks = Array.from(
+    document.head.querySelectorAll('link[rel="stylesheet"]'),
+  );
+  const newLinks = Array.from(
+    newDoc.head.querySelectorAll('link[rel="stylesheet"]'),
+  );
+
+  const currentHrefs = new Set(currentLinks.map(l => l.getAttribute("href")));
+  const newHrefs = new Set(newLinks.map(l => l.getAttribute("href")));
+
+  // Remove CSS no longer needed
+  currentLinks.forEach(link => {
+    if (!newHrefs.has(link.getAttribute("href"))) link.remove();
+  });
+
+  // Add CSS from new page not currently loaded
+  newLinks.forEach(link => {
+    if (!currentHrefs.has(link.getAttribute("href"))) {
+      document.head.appendChild(link.cloneNode(true));
+    }
+  });
+
+  // --- Inline <style> blocks ---
+  document.head.querySelectorAll("style").forEach(s => s.remove());
+  newDoc.head.querySelectorAll("style").forEach(s => {
+    document.head.appendChild(s.cloneNode(true));
+  });
+
+  // --- <meta> tags (skip charset) ---
+  document.head.querySelectorAll("meta:not([charset])").forEach(m => m.remove());
+  const charset = document.head.querySelector("meta[charset]");
+  Array.from(newDoc.head.querySelectorAll("meta:not([charset])")).forEach(m => {
+    const clone = m.cloneNode(true);
+    charset
+      ? charset.insertAdjacentElement("afterend", clone)
+      : document.head.appendChild(clone);
+  });
+
+  // --- Non-stylesheet <link> tags (canonical, hreflang, preload, etc.) ---
+  document.head
+    .querySelectorAll(
+      'link:not([rel="stylesheet"]):not([rel="icon"]):not([rel="shortcut icon"])',
+    )
+    .forEach(l => l.remove());
+  newDoc.head
+    .querySelectorAll(
+      'link:not([rel="stylesheet"]):not([rel="icon"]):not([rel="shortcut icon"])',
+    )
+    .forEach(l => {
+      document.head.appendChild(l.cloneNode(true));
+    });
+}
+
+/**
+ * Replace all visible body content with the new page's body.
+ * Existing <script> elements are kept in place to avoid re-execution.
+ */
+function replaceBodyContent(newBody) {
+  // Reset overflow in case a menu panel was open during navigation
+  document.body.style.overflow = "";
+
+  // Remove all non-script children from current body
+  Array.from(document.body.children).forEach(child => {
+    if (child.tagName !== "SCRIPT") child.remove();
+  });
+
+  // Append new body children (skip scripts — already loaded as modules)
+  Array.from(newBody.children).forEach(child => {
+    if (child.tagName !== "SCRIPT") {
+      document.body.appendChild(child.cloneNode(true));
+    }
+  });
+
+  // Propagate body class (e.g. page-specific classes)
+  document.body.className = newBody.className;
+
+  // Mark sections for view-transition targeting
+  document.body.querySelectorAll("section, main").forEach(section => {
+    section.classList.add("vt-section");
+  });
+}
+
+/**
  * Load new page content
  */
-async function loadPage(href) {
+async function loadPage(href, isBack = false) {
   try {
     const response = await fetch(href);
     const html = await response.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
 
-    // Update body content (everything except header and footer)
-    const currentBody = document.body;
-    const newBody = doc.body;
+    // Sync <head> first: CSS, meta, styles, lang
+    syncHead(doc);
 
-    // Get header and footer from current page
-    const currentHeader = currentBody.querySelector("header");
-    const currentFooter = currentBody.querySelector("footer");
-
-    // Get new header and footer
-    const newHeader = newBody.querySelector("header");
-    const newFooter = newBody.querySelector("footer");
-
-    // Replace header if exists in new page
-    if (currentHeader && newHeader) {
-      currentHeader.innerHTML = newHeader.innerHTML;
-      currentHeader.className = newHeader.className;
-    }
-
-    // Replace footer if exists in new page
-    if (currentFooter && newFooter) {
-      currentFooter.innerHTML = newFooter.innerHTML;
-      currentFooter.className = newFooter.className;
-    }
-
-    // Get new content sections
-    const newSections = Array.from(newBody.querySelectorAll("section, main"));
-    const currentSections = Array.from(
-      currentBody.querySelectorAll("section, main"),
-    );
-
-    // Replace content sections
-    currentSections.forEach((section, index) => {
-      if (newSections[index]) {
-        section.innerHTML = newSections[index].innerHTML;
-        // Copy classes but keep view-transition-name
-        const newClasses = newSections[index].className
-          .split(" ")
-          .filter(c => !c.includes("view-transition"));
-        section.className = newClasses.join(" ") + " vt-section";
-      }
-    });
-
-    // Update title
-    document.title = doc.title;
+    // Replace body content (scripts are preserved automatically)
+    replaceBodyContent(doc.body);
 
     // Re-initialize scripts for new content
     document.dispatchEvent(new CustomEvent("viewTransitionComplete", {
-      detail: { href }
+      detail: { href, isBack },
     }));
   } catch (error) {
     console.error("Navigation failed:", error);
@@ -157,7 +213,7 @@ function handlePopState() {
 
   if (supportsViewTransitions()) {
     document.startViewTransition(async () => {
-      await loadPage(href);
+      await loadPage(href, true); // isBack = true
     });
   } else {
     window.location.reload();

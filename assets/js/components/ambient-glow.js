@@ -1,4 +1,4 @@
-export function initAmbientGlow() {
+export function initAmbientGlow(isBack = false) {
   const glowContainer = document.getElementById("ambient-glow");
   const orangeGlow = glowContainer?.querySelector(".hero-ambient-glow--top");
   const blueGlow = glowContainer?.querySelector(".hero-ambient-glow--bottom");
@@ -37,10 +37,12 @@ export function initAmbientGlow() {
     animationId = requestAnimationFrame(animate);
   }
 
+  const delay = isBack ? 0 : 3000;
+
   setTimeout(() => {
     glowContainer.classList.add("visible");
     animationId = requestAnimationFrame(animate);
-  }, 3000);
+  }, delay);
 
   return () => {
     if (animationId) {

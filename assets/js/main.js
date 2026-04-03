@@ -23,6 +23,39 @@ import { initServiceScanner } from "./components/service-scanner.js";
 let mobileMenuInitialized = false;
 let currentMenuType = null; // 'main' or 'secondary'
 
+// Hero video state persistence
+const HERO_VIDEO_KEY = 'bw_hero_video_seen_at';
+const HERO_VIDEO_TTL = 60 * 60 * 1000; // 1 hour in ms
+
+/**
+ * Check if the hero video was seen within the last hour
+ */
+function heroVideoWasSeenRecently() {
+  const seenAt = localStorage.getItem(HERO_VIDEO_KEY);
+  if (!seenAt) return false;
+  return (Date.now() - parseInt(seenAt, 10)) < HERO_VIDEO_TTL;
+}
+
+/**
+ * Freeze hero video on last frame without playing
+ */
+function freezeHeroVideoNow(video) {
+  video.pause();
+  video.controls = false;
+
+  const seekToEnd = () => {
+    if (video.duration && isFinite(video.duration)) {
+      video.currentTime = video.duration;
+    }
+  };
+
+  if (video.readyState >= 1) {
+    seekToEnd();
+  } else {
+    video.addEventListener('loadedmetadata', seekToEnd, { once: true });
+  }
+}
+
 // Check if current page is index
 function isIndexPage(href = null) {
   const path = href ? new URL(href, window.location.origin).pathname : window.location.pathname;
@@ -39,37 +72,47 @@ function isIndexPage(href = null) {
 }
 
 /**
- * Freeze video on last frame when it ends
+ * Freeze video on last frame when it ends.
+ * If isBack is true and the video was seen recently, freeze immediately.
  */
-function initHeroVideoFreeze() {
+function initHeroVideoFreeze(isBack = false) {
   const heroVideo = document.querySelector(".hero-video");
 
   if (!heroVideo) {
     return;
   }
 
+  // Back navigation + seen within the last hour → congelar sin reproducir
+  if (isBack && heroVideoWasSeenRecently()) {
+    freezeHeroVideoNow(heroVideo);
+    return;
+  }
+
   heroVideo.addEventListener("ended", function () {
     this.pause();
     this.controls = false;
-  });
+    localStorage.setItem(HERO_VIDEO_KEY, Date.now().toString());
+  }, { once: true });
 }
 
 /**
- * Show hero middle container effect after 3 seconds
+ * Show hero middle container effect after 3 seconds (or immediately on back navigation)
  */
-function initHeroMiddleEffect() {
+function initHeroMiddleEffect(isBack = false) {
   const heroMiddle = document.getElementById("hero-middle");
 
   if (!heroMiddle) {
     return;
   }
 
-  // Show the effect after 3 seconds
+  const delay = isBack ? 0 : 3000;
+
+  // Show the effect after delay
   setTimeout(() => {
     heroMiddle.classList.add("visible");
     // Initialize particle engine after container is visible
     initParticleEngine();
-  }, 3000);
+  }, delay);
 }
 
 /**
@@ -100,12 +143,15 @@ function initApp() {
   initCtaModal();
   // Initialize utils
   updateDateYear();
+  // Detect back/forward navigation for video freeze
+  const navEntry = performance.getEntriesByType('navigation')[0];
+  const isInitialBack = navEntry ? navEntry.type === 'back_forward' : false;
   // Freeze video on last frame
-  initHeroVideoFreeze();
+  initHeroVideoFreeze(isInitialBack);
   // Initialize hero middle effect
-  initHeroMiddleEffect();
+  initHeroMiddleEffect(isInitialBack);
   // Initialize ambient glow
-  initAmbientGlow();
+  initAmbientGlow(isInitialBack);
   // Initialize service scanner (index pages only)
   if (isIndexPage()) {
     initServiceScanner();
@@ -125,6 +171,7 @@ if (document.readyState === "loading") {
 document.addEventListener("viewTransitionComplete", (event) => {
   // Get the destination URL from the event if available (View Transitions), otherwise use current URL
   const destinationHref = event?.detail?.href || null;
+  const isBack = event?.detail?.isBack || false;
 
   // Determine new menu type
   const newMenuType = isIndexPage(destinationHref) ? 'main' : 'secondary';
@@ -165,9 +212,11 @@ document.addEventListener("viewTransitionComplete", (event) => {
   initScrollAnimations();
   initContactForm();
   initCtaModal();
-  initHeroVideoFreeze();
-  // Re-init service scanner on index pages after navigation
+  initHeroVideoFreeze(isBack);
+  // Re-init hero effects on index pages (with immediate display on back navigation)
   if (isIndexPage(destinationHref)) {
+    initHeroMiddleEffect(isBack);
+    initAmbientGlow(isBack);
     initServiceScanner();
   }
 });

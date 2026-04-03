@@ -22,7 +22,7 @@ const labelsSecondary = {
 // Single item for non-index pages
 const regresarItem = {
   id: "regresar",
-  href: "/",
+  href: "back",
   icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
 };
 
@@ -106,6 +106,12 @@ function handleItemClickSecondary(href, clickedItem) {
 
   // Delay navigation to allow wave effect to be visible
   setTimeout(() => {
+    // Back navigation
+    if (href === "back") {
+      window.history.back();
+      return;
+    }
+
     if (href.includes("#")) {
       const [path, hash] = href.split("#");
       const targetId = hash || path;
@@ -447,8 +453,6 @@ function initSecondaryMobileMenu(isReinitialization = false, destinationHref = n
     "opacity 0.6s ease-out, transform 0.6s ease-out";
 
   // Create Regresar item
-  const langPrefix = currentLang === "en" ? "/en/" : "/es/";
-  regresarItem.href = langPrefix;
   const regresarBtn = createMenuItemSecondary(regresarItem, 0, true);
   mobileMenu.appendChild(regresarBtn);
 
@@ -623,15 +627,12 @@ function updateSecondaryMenuLinks() {
   const mobileMenu = document.querySelector(".mobile-menu");
   if (!mobileMenu) return;
 
-  const currentLang = getCurrentLanguage();
-  const langPrefix = currentLang === "en" ? "/en/" : "/es/";
-
-  // Update Regresar button href
-  const regresarItem = mobileMenu.querySelector('[data-id="regresar"]');
-  if (regresarItem) {
-    regresarItem.onclick = e => {
+  // Update Regresar button - always uses back navigation
+  const regresarBtn = mobileMenu.querySelector('[data-id="regresar"]');
+  if (regresarBtn) {
+    regresarBtn.onclick = e => {
       e.preventDefault();
-      handleItemClickSecondary(langPrefix, regresarItem);
+      handleItemClickSecondary("back", regresarBtn);
     };
   }
 
