@@ -6,7 +6,7 @@
     <title>Nosotros | Aniwa</title>
     <meta
       name="description"
-      content="Conoce a Aniwa, agencia de marketing digital con más de 10 años de experiencia. Especialistas en desarrollo web, publicidad y estrategias digitales en Chihuahua, México." />
+      content="Conoce a Aniwa, tu aliado para crecer en el mundo digital. Ayudamos a empresas a impulsar sus ventas con publicidad efectiva, contenido llamativo y estrategias en redes sociales." />
     <meta
       property="og:image"
       content="https://beaniwa.com/assets/img/opengraph.jpg" />
@@ -15,14 +15,14 @@
     <meta property="og:title" content="Nosotros | Aniwa" />
     <meta
       property="og:description"
-      content="Conoce a Aniwa, agencia de marketing digital con más de 10 años de experiencia." />
+      content="Conoce a Aniwa, tu aliado para crecer en el mundo digital con publicidad efectiva y contenido llamativo." />
     <meta property="og:site_name" content="Aniwa" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Nosotros | Aniwa" />
     <meta
       name="twitter:description"
-      content="Conoce a Aniwa, agencia de marketing digital con más de 10 años de experiencia." />
+      content="Conoce a Aniwa, tu aliado para crecer en el mundo digital con publicidad efectiva y contenido llamativo." />
     <meta
       name="twitter:image"
       content="https://beaniwa.com/assets/img/opengraph.jpg" />
@@ -72,6 +72,323 @@
     <link rel="stylesheet" href="../assets/css/sections/about.css" />
     <link rel="stylesheet" href="../assets/css/animations/animations.css" />
     <link rel="stylesheet" href="../assets/css/utilities/utilities.css" />
+
+    <style>
+      /* === Estilos adicionales para la página de Nosotros === */
+
+      /* Intro hero */
+      .about-hero {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto var(--space-2xl);
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-hero .hero-tag {
+        display: inline-block;
+        background: var(--color-primary);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.3rem 1rem;
+        border-radius: 2rem;
+        margin-bottom: var(--space-md);
+      }
+
+      .about-hero h1 {
+        margin: 0 auto var(--space-md);
+      }
+
+      .about-hero .hero-lead {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--color-light);
+        opacity: 0.85;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      /* Separador decorativo */
+      .section-divider {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin: var(--space-2xl) 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-divider::before,
+      .section-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--color-primary), transparent);
+        opacity: 0.4;
+      }
+
+      .section-divider span {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        white-space: nowrap;
+        font-weight: 700;
+      }
+
+      /* Sección qué ofrecemos */
+      .about-offer {
+        position: relative;
+        z-index: 1;
+        margin-bottom: var(--space-2xl);
+      }
+
+      .about-offer-header {
+        margin-bottom: var(--space-xl);
+      }
+
+      .about-offer-header h2 {
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        line-height: 1.2;
+        margin-bottom: var(--space-sm);
+      }
+
+      .about-offer-header h2 span {
+        color: var(--color-primary);
+      }
+
+      .about-offer-header p {
+        font-size: 1rem;
+        line-height: 1.75;
+        color: var(--color-light);
+        opacity: 0.8;
+        max-width: 600px;
+      }
+
+      /* Grid de pilares */
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      @media (min-width: 576px) {
+        .pillars-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 992px) {
+        .pillars-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .pillar-card {
+        position: relative;
+        padding: var(--space-xl) var(--space-lg);
+        border: 1px solid rgba(250, 110, 2, 0.15);
+        border-radius: 0.75rem;
+        background: rgba(255, 255, 255, 0.02);
+        transition: border-color 0.3s ease, background 0.3s ease;
+      }
+
+      .pillar-card:hover {
+        border-color: rgba(250, 110, 2, 0.45);
+        background: rgba(250, 110, 2, 0.05);
+      }
+
+      .pillar-icon {
+        font-size: 2rem;
+        margin-bottom: var(--space-sm);
+        display: block;
+        line-height: 1;
+      }
+
+      .pillar-card h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: var(--space-xs, 0.5rem);
+        color: var(--color-primary);
+        font-family: var(--font-heading, 'Antonio', sans-serif);
+        letter-spacing: 0.03em;
+      }
+
+      .pillar-card p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: var(--color-light);
+        opacity: 0.75;
+        margin: 0;
+      }
+
+      /* Sección Nuestro Equipo */
+      .about-team {
+        position: relative;
+        z-index: 1;
+        margin-bottom: var(--space-2xl);
+      }
+
+      .about-team-header {
+        margin-bottom: var(--space-xl);
+      }
+
+      .about-team-header h2 {
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        line-height: 1.2;
+        margin-bottom: var(--space-sm);
+      }
+
+      .about-team-header h2 span {
+        color: var(--color-primary);
+      }
+
+      .about-team-header p {
+        font-size: 1rem;
+        line-height: 1.75;
+        color: var(--color-light);
+        opacity: 0.8;
+        max-width: 600px;
+      }
+
+      /* Tarjeta de miembro del equipo */
+      .team-member {
+        border: 1px solid rgba(250, 110, 2, 0.2);
+        border-radius: 1rem;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.02);
+        padding: var(--space-xl);
+      }
+
+      .team-member-identity {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md);
+        margin-bottom: var(--space-lg);
+      }
+
+      .team-member-photo {
+        position: relative;
+        flex-shrink: 0;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(250, 110, 2, 0.5);
+      }
+
+      .team-member-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+      }
+
+      .team-member-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+
+      .member-since {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+      }
+
+      .team-member-info h3 {
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        font-family: var(--font-heading, 'Antonio', sans-serif);
+        line-height: 1;
+        color: var(--color-light);
+        margin: 0;
+      }
+
+      .member-role {
+        font-size: 0.85rem;
+        color: var(--color-light);
+        opacity: 0.55;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .member-bio {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: var(--color-light);
+        opacity: 0.8;
+        margin-bottom: var(--space-md);
+      }
+
+      .member-bio + .member-bio {
+        margin-top: calc(-1 * var(--space-xs, 0.5rem));
+      }
+
+      .member-stats {
+        display: flex;
+        gap: var(--space-lg);
+        flex-wrap: wrap;
+        margin-top: var(--space-md);
+        padding-top: var(--space-md);
+        border-top: 1px solid rgba(250, 110, 2, 0.15);
+      }
+
+      .member-stat {
+        text-align: left;
+      }
+
+      .member-stat strong {
+        display: block;
+        font-size: 1.6rem;
+        font-family: var(--font-heading, 'Antonio', sans-serif);
+        color: var(--color-primary);
+        line-height: 1;
+      }
+
+      .member-stat span {
+        font-size: 0.75rem;
+        color: var(--color-light);
+        opacity: 0.6;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      /* CTA final */
+      .about-cta {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: var(--space-2xl) var(--space-lg);
+        border: 1px solid rgba(250, 110, 2, 0.2);
+        border-radius: 1rem;
+        background: rgba(250, 110, 2, 0.04);
+        margin-bottom: var(--space-2xl);
+      }
+
+      .about-cta h2 {
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        margin-bottom: var(--space-sm);
+      }
+
+      .about-cta h2 span {
+        color: var(--color-primary);
+      }
+
+      .about-cta p {
+        font-size: 1rem;
+        line-height: 1.75;
+        opacity: 0.8;
+        max-width: 520px;
+        margin: 0 auto var(--space-lg);
+      }
+    </style>
 
     <!-- Google Tag Manager - Initialize dataLayer early -->
     <script>
@@ -192,88 +509,209 @@
 
     <!-- Main Content -->
     <main class="page-content" role="main">
-      <!-- About Us Section -->
       <section class="about" aria-labelledby="nosotros-title">
-        <h1 id="nosotros-title">Nosotros</h1>
-        <div class="about-content">
-          <h2>Nuestra Historia</h2>
-          <p>
-            Empresa con más de 10 años, encargadas de campañas publicitarias
-            para empresas, pequeños negocios, políticos, así como desarrollo de
-            sitios web, y expande tu imaginación.
+
+        <!-- Hero intro -->
+        <div class="about-hero">
+          <span class="hero-tag">Quiénes somos</span>
+          <h1 id="nosotros-title">Tu crecimiento,<br>nuestra pasión</h1>
+          <p class="hero-lead">
+            Somos Aniwa, y llevamos más de una década ayudando a empresas como
+            la tuya a destacar, conectar con su audiencia y convertir esa
+            conexión en ventas reales. No somos solo una agencia, somos el
+            equipo que tu marca necesita.
           </p>
         </div>
-        <div class="about-values">
-          <article class="value-card">
-            <div class="electric-layers" aria-hidden="true">
-              <div class="background-glow"></div>
-              <div class="inner-container">
-                <div class="border-outer">
-                  <div class="main-card"></div>
-                </div>
-                <div class="glow-layer-1"></div>
-                <div class="glow-layer-2"></div>
-              </div>
-              <div class="overlay-1"></div>
-              <div class="overlay-2"></div>
-            </div>
-            <div class="value-card-content">
-              <h2>Experiencia</h2>
-              <p>
-                Con más de una década en marketing digital, hemos ayudado a
-                numerosas empresas a crecer y alcanzar sus objetivos.
-              </p>
-            </div>
-          </article>
-          <article class="value-card">
-            <div class="electric-layers" aria-hidden="true">
-              <div class="background-glow"></div>
-              <div class="inner-container">
-                <div class="border-outer">
-                  <div class="main-card"></div>
-                </div>
-                <div class="glow-layer-1"></div>
-                <div class="glow-layer-2"></div>
-              </div>
-              <div class="overlay-1"></div>
-              <div class="overlay-2"></div>
-            </div>
-            <div class="value-card-content">
-              <h2>Creatividad</h2>
-              <p>
-                Enfocamos cada proyecto con ideas innovadoras y soluciones
-                creativas adaptadas a tus necesidades específicas.
-              </p>
-            </div>
-          </article>
-          <article class="value-card">
-            <div class="electric-layers" aria-hidden="true">
-              <div class="background-glow"></div>
-              <div class="inner-container">
-                <div class="border-outer">
-                  <div class="main-card"></div>
-                </div>
-                <div class="glow-layer-1"></div>
-                <div class="glow-layer-2"></div>
-              </div>
-              <div class="overlay-1"></div>
-              <div class="overlay-2"></div>
-            </div>
-            <div class="value-card-content">
-              <h2>Resultados</h2>
-              <p>
-                Nos enfocamos en entregar resultados medibles que impactan tu
-                negocio y lo hacen crecer.
-              </p>
-            </div>
-          </article>
+
+        <!-- Separador -->
+        <div class="section-divider" aria-hidden="true">
+          <span>Lo que hacemos por ti</span>
         </div>
-        <a
-          href="/es/contacto.html"
-          class="btn btn--block"
-          title="Ir a la página de contacto"
-          >Contáctanos</a
-        >
+
+        <!-- Qué ofrecemos -->
+        <div class="about-offer" aria-labelledby="ofrecemos-title">
+          <div class="about-offer-header">
+            <h2 id="ofrecemos-title">
+              Herramientas reales para<br>
+              <span>resultados reales</span>
+            </h2>
+            <p>
+              Queremos que tu empresa crezca de verdad. Por eso combinamos
+              estrategia, diseño y publicidad para crear una presencia digital
+              que no solo se ve bien, sino que vende.
+            </p>
+          </div>
+
+          <div class="pillars-grid">
+            <article
+              class="pillar-card"
+              aria-label="Publicidad en redes sociales"
+              title="Publicidad en redes sociales">
+              <span class="pillar-icon" aria-hidden="true">📣</span>
+              <h3>Publicidad en Redes</h3>
+              <p>
+                Campañas diseñadas para llegar exactamente a las personas que
+                buscan lo que tú ofreces. Más alcance, más clientes, más ventas.
+              </p>
+            </article>
+
+            <article
+              class="pillar-card"
+              aria-label="Contenido llamativo para tu audiencia"
+              title="Contenido llamativo para tu audiencia">
+              <span class="pillar-icon" aria-hidden="true">✨</span>
+              <h3>Contenido que Conecta</h3>
+              <p>
+                Creamos contenido visual y textual que para el dedo y genera
+                reacción. Tu audiencia lo verá, lo sentirá y querrá más.
+              </p>
+            </article>
+
+            <article
+              class="pillar-card"
+              aria-label="Desarrollo web profesional"
+              title="Desarrollo web profesional">
+              <span class="pillar-icon" aria-hidden="true">🌐</span>
+              <h3>Presencia Web</h3>
+              <p>
+                Un sitio web rápido, bonito y que convierte visitas en clientes.
+                Tu carta de presentación digital siempre disponible.
+              </p>
+            </article>
+
+            <article
+              class="pillar-card"
+              aria-label="Estrategia de marketing digital"
+              title="Estrategia de marketing digital">
+              <span class="pillar-icon" aria-hidden="true">🎯</span>
+              <h3>Estrategia Digital</h3>
+              <p>
+                No hacemos nada al azar. Cada acción tiene un propósito claro:
+                mejorar tu posicionamiento y acercar a tus clientes ideales.
+              </p>
+            </article>
+
+            <article
+              class="pillar-card"
+              aria-label="Identidad de marca y diseño"
+              title="Identidad de marca y diseño">
+              <span class="pillar-icon" aria-hidden="true">🎨</span>
+              <h3>Identidad de Marca</h3>
+              <p>
+                Diseñamos la imagen que tu empresa merece. Coherente,
+                profesional y memorable en todos los medios digitales.
+              </p>
+            </article>
+
+            <article
+              class="pillar-card"
+              aria-label="Análisis y métricas de resultados"
+              title="Análisis y métricas de resultados">
+              <span class="pillar-icon" aria-hidden="true">📊</span>
+              <h3>Resultados Medibles</h3>
+              <p>
+                Sabemos lo que funciona porque lo medimos. Reportes claros,
+                ajustes constantes y mejora continua en cada campaña.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <!-- Separador -->
+        <div class="section-divider" aria-hidden="true">
+          <span>Nuestro equipo</span>
+        </div>
+
+        <!-- Nuestro Equipo -->
+        <div class="about-team" aria-labelledby="equipo-title">
+          <div class="about-team-header">
+            <h2 id="equipo-title">
+              La persona detrás<br>
+              <span>de cada proyecto</span>
+            </h2>
+            <p>
+              En Aniwa no hay intermediarios. Trabajas directamente con quien
+              diseña, desarrolla y piensa en tu marca con toda la dedicación
+              que merece.
+            </p>
+          </div>
+
+          <div class="team-member" aria-label="Perfil de Alan Quintana" role="region">
+            <div class="team-member-info">
+              <div class="team-member-identity">
+                <div class="team-member-photo">
+                  <img
+                    src="../assets/img/profile.webp"
+                    alt="Alan Quintana, desarrollador y diseñador digital desde 2010"
+                    width="144"
+                    height="144"
+                    loading="lazy"
+                    decoding="async" />
+                </div>
+                <div class="team-member-heading">
+                  <span class="member-since" aria-label="Desde 2010">Desde 2010</span>
+                  <h3>Alan Quintana</h3>
+                  <p class="member-role">Desarrollador &amp; Diseñador Digital</p>
+                </div>
+              </div>
+
+              <p class="member-bio">
+                Hola, soy Alan. Y si llegaste hasta aquí, probablemente estás
+                buscando a alguien que realmente entienda tu negocio y le dé la
+                visibilidad que merece. Eso es exactamente lo que hago.
+              </p>
+              <p class="member-bio">
+                Desde 2010 me dedico a crear experiencias digitales que generan
+                resultados: sitios web que convierten, campañas que venden y
+                contenido que conecta de verdad con la gente. Combino el lado
+                técnico del desarrollo con el ojo creativo del diseño para que
+                cada proyecto no solo funcione bien, sino que también se vea
+                increíble.
+              </p>
+              <p class="member-bio">
+                Me apasiona ayudar a empresas a crecer en el mundo digital,
+                sobre todo cuando veo cómo una buena estrategia transforma por
+                completo la presencia de una marca. Cada cliente es un reto
+                nuevo y eso es lo que hace que este trabajo nunca se sienta como
+                trabajo.
+              </p>
+
+              <div class="member-stats" aria-label="Datos de trayectoria">
+                <div class="member-stat">
+                  <strong>+15</strong>
+                  <span>años de experiencia</span>
+                </div>
+                <div class="member-stat">
+                  <strong>2 en 1</strong>
+                  <span>diseño y desarrollo</span>
+                </div>
+                <div class="member-stat">
+                  <strong>100%</strong>
+                  <span>dedicación en cada proyecto</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA final -->
+        <div class="about-cta" role="region" aria-labelledby="cta-nosotros-title">
+          <h2 id="cta-nosotros-title">
+            ¿Listo para que tu empresa<br>
+            <span>despegue en digital?</span>
+          </h2>
+          <p>
+            Cuéntanos sobre tu negocio y juntos vamos a construir la estrategia
+            que necesitas para atraer más clientes y aumentar tus ventas.
+          </p>
+          <a
+            href="/es/contacto.html"
+            class="btn btn--block"
+            title="Ir a la página de contacto"
+            aria-label="Contáctanos para comenzar tu estrategia digital"
+            >Hablemos de tu proyecto</a>
+        </div>
+
       </section>
     </main>
 
