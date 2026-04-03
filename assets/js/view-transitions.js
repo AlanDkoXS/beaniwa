@@ -265,7 +265,17 @@ function handlePopState() {
         await loadPage(href, true); // isBack = true
       });
 
-      activeTransition.finished.catch(() => {
+      activeTransition.finished.then(() => {
+        if (window.location.hash) {
+          const target = document.querySelector(window.location.hash);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        } else {
+          // Reset scroll position for non-hash navigation
+          window.scrollTo(0, 0);
+        }
+      }).catch(() => {
         // Transition was aborted — ignore
       }).finally(() => {
         activeTransition = null;

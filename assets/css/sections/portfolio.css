@@ -119,7 +119,7 @@
 }
 
 .portfolio-card--cta {
-  border: 2px solid var(--color-primary);
+  border: none;
 }
 
 /* Last card spacing */
@@ -130,7 +130,7 @@
 /* Button */
 .portfolio .btn {
   display: flex;
-  margin: 0;
+  margin: 0 auto;
   position: relative;
   z-index: 10;
   grid-column: 1 / -1;
@@ -156,7 +156,7 @@
   }
 
   .portfolio-flex > .portfolio-card:last-child {
-    grid-column: span 4;
+    grid-column: 1 / -1;
     margin-top: var(--space-lg);
   }
 
@@ -172,5 +172,13 @@
 
   .portfolio-card p {
     font-size: 1rem;
+  }
+
+  /* Button */
+  .portfolio .btn {
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
   }
 }

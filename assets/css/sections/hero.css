@@ -179,7 +179,7 @@
 @media (min-width: 768px) {
   .hero {
     min-height: 100vh;
-    padding: var(--space-3xl) var(--space-xl);
+    padding: var(--space-3xl) 0;
   }
 
   .hero-video {
@@ -198,7 +198,7 @@
 
 @media (min-width: 1024px) {
   .hero {
-    padding: var(--space-3xl) var(--space-2xl);
+    padding: var(--space-3xl) 0;
   }
 
   .hero-content {
