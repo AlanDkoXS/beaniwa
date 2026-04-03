@@ -120,6 +120,8 @@
 
 .portfolio-card--cta {
   border: none;
+  grid-column: 1 / -1;
+  margin-top: var(--space-lg);
 }
 
 /* Last card spacing */
@@ -153,11 +155,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding-top: var(--space-2xl);
-  }
-
-  .portfolio-flex > .portfolio-card:last-child {
-    grid-column: 1 / -1;
-    margin-top: var(--space-lg);
   }
 
   .portfolio-card {

@@ -53,6 +53,23 @@ function isAnchorLink(href) {
 }
 
 /**
+ * Check if href is an index page (where scanner exists)
+ */
+function isIndexPage(href = null) {
+  const path = href ? new URL(href, window.location.origin).pathname : window.location.pathname;
+  return (
+    path === "/" ||
+    path === "/index.html" ||
+    path === "/es" ||
+    path === "/es/" ||
+    path === "/es/index.html" ||
+    path === "/en" ||
+    path === "/en/" ||
+    path === "/en/index.html"
+  );
+}
+
+/**
  * Navigate to URL with view transition
  */
 let activeTransition = null;
@@ -63,6 +80,12 @@ let lastNavigatedPathname = window.location.pathname;
 async function navigateWithTransition(href) {
   if (!supportsViewTransitions()) {
     // Fallback: regular navigation
+    window.location.href = href;
+    return;
+  }
+
+  // Force hard navigation for index pages to avoid CSS cascade corruption
+  if (isIndexPage(href)) {
     window.location.href = href;
     return;
   }
@@ -251,6 +274,12 @@ function handlePopState() {
   const currentPathname = window.location.pathname;
 
   if (supportsViewTransitions()) {
+    // Force hard navigation for index pages to avoid CSS cascade corruption
+    if (isIndexPage(href)) {
+      window.location.href = href;
+      return;
+    }
+
     // Abort if a transition is already in progress
     if (activeTransition) return;
 
