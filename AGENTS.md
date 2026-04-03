@@ -29,7 +29,7 @@ This project is a static site with **no build system**, **no tests**, and **no l
   ```
 
 ### Deployment
-- Automatically deploys via Netlify on push to main branch
+- Ask to deploy always
 - No manual build commands needed
 
 ### Testing
