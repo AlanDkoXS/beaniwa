@@ -18,7 +18,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 3.5rem);
+  min-height: calc(100vh - 3.5rem);
   box-sizing: border-box;
 }
 
@@ -130,15 +130,10 @@
 /* Button */
 .portfolio .btn {
   display: flex;
-  margin: 0.5rem auto var(--space-sm);
+  margin: 0;
   position: relative;
   z-index: 10;
-}
-
-@media (max-width: 767px) {
-  .portfolio .btn {
-    margin: var(--space-md) auto var(--space-sm);
-  }
+  grid-column: 1 / -1;
 }
 
 @media (min-width: 768px) {

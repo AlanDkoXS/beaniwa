@@ -6,10 +6,11 @@
 .dripping-effect {
   position: absolute;
   width: 100vw;
-  height: 100%;
+  height: calc(100% - 7rem);
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
+  top: 7rem;
   border-top: 15px solid var(--color-dark);
   border-bottom: 15px solid var(--color-dark);
   filter: url("#drip-goo");
@@ -331,6 +332,6 @@
 }
 @media (min-width: 992px) {
   .dripping-effect {
-    height: 100%;
+    height: calc(100% - 7rem);
   }
 }

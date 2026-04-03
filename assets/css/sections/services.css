@@ -74,3 +74,25 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
+
+.services .btn {
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 767px) {
+  .services {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 100vh;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .services h1,
+  .services > p,
+  .services-grid,
+  .services .btn {
+    margin: 0;
+  }
+}

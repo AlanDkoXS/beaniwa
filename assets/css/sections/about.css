@@ -7,14 +7,7 @@
   color: var(--color-light);
   position: relative;
   overflow: hidden;
-  background-image: url("../../img/textures/temporal-gradient.png");
-  background-blend-mode: normal;
-  background-size: 250px;
-  background-position: top left;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 3.5rem);
+  min-height: calc(100vh - 3.5rem);
 }
 
 .about::before,
@@ -98,8 +91,28 @@
 }
 
 @media (min-width: 992px) {
-  .about-values {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
+.about-values {
+  display: grid;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.about .btn {
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-xl);
+  padding: 1rem 2rem;
+}
+
+.about h2 {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .about .btn {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
   }
+}
 }
