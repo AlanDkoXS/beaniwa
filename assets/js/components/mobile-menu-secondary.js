@@ -106,9 +106,11 @@ function handleItemClickSecondary(href, clickedItem) {
 
   // Delay navigation to allow wave effect to be visible
   setTimeout(() => {
-    // Back navigation
+    // Back navigation: navigate directly to the index page (hard navigation)
+    // to avoid CSS cascade issues with the SPA view transition engine.
     if (href === "back") {
-      window.history.back();
+      const lang = getCurrentLanguage();
+      window.location.href = lang === "en" ? "/en/" : "/es/";
       return;
     }
 
