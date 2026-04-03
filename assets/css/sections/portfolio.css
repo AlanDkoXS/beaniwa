@@ -16,8 +16,10 @@
     );
   padding: 0 0 var(--space-sm);
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 3.5rem);
   box-sizing: border-box;
-  max-height: 100vh;
 }
 
 /* Liquid cheese texture background */
@@ -66,19 +68,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   position: relative;
   z-index: 10;
   width: 100%;
+  flex: 1;
+  justify-content: center;
   padding: 0 var(--space-md);
-  margin: 2.5rem 0 var(--space-sm);
   box-sizing: border-box;
 }
 
 /* Portfolio-specific card (white bg, dark text, controlled width) */
 .portfolio-card {
   width: 100%;
-  max-width: 320px;
   height: 100px;
   background: var(--color-light);
   border-radius: var(--radius-md);
@@ -102,13 +104,13 @@
 .portfolio-card h2 {
   margin-bottom: var(--space-xs);
   color: var(--color-dark);
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .portfolio-card p {
   margin-bottom: 0;
   color: var(--color-dark);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .portfolio-card:hover {
@@ -144,11 +146,11 @@
   }
 
   .portfolio-card h2 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-bottom: var(--space-sm);
   }
 
   .portfolio-card p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }

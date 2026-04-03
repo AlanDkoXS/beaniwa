@@ -12,6 +12,9 @@
   background-size: 250px;
   background-position: top left;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 3.5rem);
 }
 
 .about::before,

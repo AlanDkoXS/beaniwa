@@ -49,7 +49,7 @@
   position: relative;
   width: 100%;
   height: calc(
-    200px + 2rem
+    300px + 2rem
   ); /* card height + 1rem breathing room top & bottom */
   overflow: visible;
   display: flex;
@@ -94,8 +94,8 @@
 
 .scanner-card-wrapper {
   position: relative;
-  width: 300px;
-  height: 200px;
+  width: 450px;
+  height: 300px;
   flex-shrink: 0;
   border-radius: var(--radius-md, 12px);
   overflow: hidden;

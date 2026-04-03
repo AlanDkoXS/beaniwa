@@ -42,7 +42,7 @@ function handleValueCardsMobile() {
   const cards = document.querySelectorAll(".value-card");
   
   // Find the card that is closest to the vertical center of the screen
-  const centerY = window.innerHeight / 2;
+  const centerY = window.innerHeight * 0.33;
   let closestCard = null;
   let closestDistance = Infinity;
   

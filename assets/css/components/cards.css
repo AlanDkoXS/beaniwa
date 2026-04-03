@@ -123,7 +123,7 @@ button.project-card {
 }
 
 .value-card-content {
-  padding: var(--space-2xl) var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
   position: relative;
   z-index: 10;
   height: 100%;
