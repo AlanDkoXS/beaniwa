@@ -149,8 +149,19 @@
     padding: 0 0 var(--space-xl);
   }
 
+  .portfolio-flex {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    justify-content: center;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
   .portfolio-card {
-    max-width: 960px;
+    max-width: none;
+    width: 100%;
   }
 
   .portfolio-card h2 {
