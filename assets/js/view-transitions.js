@@ -238,15 +238,22 @@ function handlePopState() {
       return;
     }
 
-    activeTransition = document.startViewTransition(async () => {
-      await loadPage(href, true); // isBack = true
-    });
+    try {
+      activeTransition = document.startViewTransition(async () => {
+        await loadPage(href, true); // isBack = true
+      });
 
-    activeTransition.finished.catch(() => {
-      // Transition was aborted — ignore
-    }).finally(() => {
+      activeTransition.finished.catch(() => {
+        // Transition was aborted — ignore
+      }).finally(() => {
+        activeTransition = null;
+      });
+    } catch (err) {
+      // InvalidStateError: startViewTransition called in an invalid state
+      // (e.g. during hash navigation popstate). Fall back to a plain reload.
       activeTransition = null;
-    });
+      window.location.reload();
+    }
   } else {
     window.location.reload();
   }
