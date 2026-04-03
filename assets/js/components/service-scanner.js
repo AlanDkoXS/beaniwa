@@ -172,7 +172,15 @@ class ServiceCarousel {
     this.lightBarWidth = 3;
     this.fadeZone = 16;    // px fade at beam top/bottom edges
 
+    // Event handlers for cleanup
+    this.onDragHandler = null;
+    this.endDragHandler = null;
+    this.onTouchDragHandler = null;
+    this.endTouchDragHandler = null;
+    this.resizeHandler = null;
+
     this.rafId = null;
+    this.intervalId = null;
 
     this.init();
   }
@@ -182,11 +190,18 @@ class ServiceCarousel {
     this.createCanvas();
     this.createGradientCache();
     this.initParticles();
+
+    // Set up event handlers for cleanup
+    this.onDragHandler = e => this.onDrag(e);
+    this.endDragHandler = () => this.endDrag();
+    this.onTouchDragHandler = e => this.onDrag(e.touches[0]);
+    this.endTouchDragHandler = () => this.endDrag();
+
     this.setupEvents();
     this.animate();
 
     // Periodically refresh ASCII for a live-terminal feel
-    setInterval(() => this.updateAsciiContent(), 220);
+    this.intervalId = setInterval(() => this.updateAsciiContent(), 220);
   }
 
   // ── Strip Construction ──────────────────────────────────────────────────────
@@ -303,14 +318,22 @@ class ServiceCarousel {
     this.canvas = document.createElement('canvas');
     this.canvas.id = 'serviceScannerCanvas';
     this.canvas.setAttribute('aria-hidden', 'true');
+    // Force position:absolute inline so the canvas never participates in block
+    // layout — even before service-scanner.css has been applied (race condition
+    // on back/forward navigation via syncHead).
+    this.canvas.style.position = 'absolute';
+    this.canvas.style.top = '0';
+    this.canvas.style.left = '0';
+    this.canvas.style.pointerEvents = 'none';
     this.ctx = this.canvas.getContext('2d');
     this.section.appendChild(this.canvas);
     this.resizeCanvas();
 
-    window.addEventListener('resize', () => {
+    this.resizeHandler = () => {
       this.resizeCanvas();
       this.calculateDimensions();
-    });
+    };
+    window.addEventListener('resize', this.resizeHandler);
   }
 
   resizeCanvas() {
@@ -657,12 +680,12 @@ class ServiceCarousel {
 
   setupEvents() {
     this.strip.addEventListener('mousedown', e => this.startDrag(e));
-    document.addEventListener('mousemove', e => this.onDrag(e));
-    document.addEventListener('mouseup', () => this.endDrag());
+    document.addEventListener('mousemove', this.onDragHandler);
+    document.addEventListener('mouseup', this.endDragHandler);
 
     this.strip.addEventListener('touchstart', e => this.startDrag(e.touches[0]), { passive: false });
-    document.addEventListener('touchmove', e => this.onDrag(e.touches[0]), { passive: false });
-    document.addEventListener('touchend', () => this.endDrag());
+    document.addEventListener('touchmove', this.onTouchDragHandler, { passive: false });
+    document.addEventListener('touchend', this.endTouchDragHandler);
 
     this.strip.addEventListener('wheel', e => this.onWheel(e));
     this.strip.addEventListener('selectstart', e => e.preventDefault());
@@ -805,6 +828,21 @@ class ServiceCarousel {
 
   destroy() {
     if (this.rafId) cancelAnimationFrame(this.rafId);
+    if (this.intervalId) clearInterval(this.intervalId);
+
+    // Remove document-level event listeners to prevent leaks across navigations
+    if (this.onDragHandler) {
+      document.removeEventListener('mousemove', this.onDragHandler);
+      document.removeEventListener('touchmove', this.onTouchDragHandler);
+    }
+    if (this.endDragHandler) {
+      document.removeEventListener('mouseup', this.endDragHandler);
+      document.removeEventListener('touchend', this.endTouchDragHandler);
+    }
+    if (this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+
     if (this.canvas) this.canvas.remove();
     const container = this.section.querySelector('.scanner-strip-container');
     if (container) container.remove();
