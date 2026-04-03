@@ -275,8 +275,9 @@ function offsetMenuBorder(element, menuBorder) {
   if (!element || !menuBorder) return;
 
   const menu = document.querySelector(".mobile-menu");
-  const offsetActiveItem = element.getBoundingClientRect();
+  if (!menu) return;
 
+  const offsetActiveItem = element.getBoundingClientRect();
   const left =
     Math.floor(
       offsetActiveItem.left -

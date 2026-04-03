@@ -17,7 +17,7 @@ import { initRouter } from "./router.js";
 import { initScroll } from "./scroll.js";
 import updateDateYear from "./utils/date_updater.js";
 import { initViewTransitions } from "./view-transitions.js";
-import { initServiceScanner } from "./components/service-scanner.js";
+import { initServiceScanner, destroyServiceScanner } from "./components/service-scanner.js";
 
 // Mobile menu state
 let mobileMenuInitialized = false;
@@ -218,6 +218,9 @@ document.addEventListener("viewTransitionComplete", (event) => {
     initHeroMiddleEffect(isBack);
     initAmbientGlow(isBack);
     initServiceScanner();
+  } else {
+    // Destroy scanner RAF when navigating away from index to prevent ghost frames
+    destroyServiceScanner();
   }
 });
 

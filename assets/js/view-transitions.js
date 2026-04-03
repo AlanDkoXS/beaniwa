@@ -55,6 +55,8 @@ function isAnchorLink(href) {
 /**
  * Navigate to URL with view transition
  */
+let activeTransition = null;
+
 async function navigateWithTransition(href) {
   if (!supportsViewTransitions()) {
     // Fallback: regular navigation
@@ -62,16 +64,23 @@ async function navigateWithTransition(href) {
     return;
   }
 
+  // Abort if a transition is already in progress
+  if (activeTransition) return;
+
   // Use View Transitions API
-  const transition = document.startViewTransition(async () => {
+  activeTransition = document.startViewTransition(async () => {
     await loadPage(href);
     updateURL(href);
   });
 
   // Handle navigation for back/forward buttons
-  transition.finished.then(() => {
+  activeTransition.finished.then(() => {
     // Reset scroll position
     window.scrollTo(0, 0);
+  }).catch(() => {
+    // Transition was aborted — ignore
+  }).finally(() => {
+    activeTransition = null;
   });
 }
 
@@ -212,8 +221,17 @@ function handlePopState() {
   const href = window.location.href;
 
   if (supportsViewTransitions()) {
-    document.startViewTransition(async () => {
+    // Abort if a transition is already in progress
+    if (activeTransition) return;
+
+    activeTransition = document.startViewTransition(async () => {
       await loadPage(href, true); // isBack = true
+    });
+
+    activeTransition.finished.catch(() => {
+      // Transition was aborted — ignore
+    }).finally(() => {
+      activeTransition = null;
     });
   } else {
     window.location.reload();
