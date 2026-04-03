@@ -57,6 +57,9 @@ function isAnchorLink(href) {
  */
 let activeTransition = null;
 
+// Track the pathname of the last SPA navigation so popstate can detect hash-only changes
+let lastNavigatedPathname = window.location.pathname;
+
 async function navigateWithTransition(href) {
   if (!supportsViewTransitions()) {
     // Fallback: regular navigation
@@ -72,6 +75,10 @@ async function navigateWithTransition(href) {
     await loadPage(href);
     updateURL(href);
   });
+
+  // Record the pathname so popstate can distinguish hash-only changes
+  const targetPathname = new URL(href, window.location.origin).pathname;
+  lastNavigatedPathname = targetPathname;
 
   // Handle navigation for back/forward buttons
   activeTransition.finished.then(() => {
@@ -219,10 +226,17 @@ function updateURL(href) {
  */
 function handlePopState() {
   const href = window.location.href;
+  const currentPathname = window.location.pathname;
 
   if (supportsViewTransitions()) {
     // Abort if a transition is already in progress
     if (activeTransition) return;
+
+    // If only the hash changed (same pathname as last SPA navigation),
+    // this is a hash-only popstate — no full page transition needed.
+    if (currentPathname === lastNavigatedPathname && window.location.hash) {
+      return;
+    }
 
     activeTransition = document.startViewTransition(async () => {
       await loadPage(href, true); // isBack = true
