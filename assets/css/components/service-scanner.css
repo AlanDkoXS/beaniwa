@@ -34,7 +34,6 @@
 .services > .btn {
   position: relative;
   z-index: 6;
-  margin-top: var(--space-xl);
 }
 
 /* ── Hide original grid while the carousel is active ────────────────── */

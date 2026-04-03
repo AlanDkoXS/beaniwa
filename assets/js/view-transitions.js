@@ -104,6 +104,9 @@ function syncHead(newDoc) {
   document.title = newDoc.title;
 
   // --- CSS <link> elements ---
+  // Rebuild stylesheet order to match the destination page exactly.
+  // This preserves cascade order across SPA navigations so that stylesheets
+  // added/removed per-page don't land at the wrong position in the cascade.
   const currentLinks = Array.from(
     document.head.querySelectorAll('link[rel="stylesheet"]'),
   );
@@ -111,7 +114,6 @@ function syncHead(newDoc) {
     newDoc.head.querySelectorAll('link[rel="stylesheet"]'),
   );
 
-  const currentHrefs = new Set(currentLinks.map(l => l.getAttribute("href")));
   const newHrefs = new Set(newLinks.map(l => l.getAttribute("href")));
 
   // Remove CSS no longer needed
@@ -119,10 +121,30 @@ function syncHead(newDoc) {
     if (!newHrefs.has(link.getAttribute("href"))) link.remove();
   });
 
-  // Add CSS from new page not currently loaded
+  // Build a map of currently loaded links by href so we can reuse them
+  const existingByHref = new Map(
+    Array.from(document.head.querySelectorAll('link[rel="stylesheet"]'))
+      .map(l => [l.getAttribute("href"), l]),
+  );
+
+  // Find the first head element that is NOT a stylesheet link.
+  // We will insert all stylesheets before this anchor so they stay grouped.
+  // insertBefore(node, null) is equivalent to appendChild.
+  const firstNonStylesheet = Array.from(document.head.children).find(
+    el => !(el.tagName === "LINK" && el.getAttribute("rel") === "stylesheet"),
+  ) || null;
+
+  // Re-insert every new stylesheet in order, reusing existing elements or
+  // cloning new ones.  insertBefore(node, null) is equivalent to appendChild.
   newLinks.forEach(link => {
-    if (!currentHrefs.has(link.getAttribute("href"))) {
-      document.head.appendChild(link.cloneNode(true));
+    const href = link.getAttribute("href");
+    const existing = existingByHref.get(href);
+    if (existing) {
+      // Move the existing element to the correct position
+      document.head.insertBefore(existing, firstNonStylesheet);
+    } else {
+      // Clone and insert the new stylesheet
+      document.head.insertBefore(link.cloneNode(true), firstNonStylesheet);
     }
   });
 
