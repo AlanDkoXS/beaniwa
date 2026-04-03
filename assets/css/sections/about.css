@@ -84,6 +84,13 @@
   padding: 1rem 2rem;
 }
 
+@media (max-width: 767px) {
+  .about .btn {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+}
+
 @media (min-width: 576px) {
   .about-values {
     grid-template-columns: repeat(2, 1fr);

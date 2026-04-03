@@ -137,7 +137,7 @@
 
 @media (max-width: 767px) {
   .portfolio .btn {
-    margin: 0.25rem auto var(--space-sm);
+    margin: var(--space-md) auto var(--space-sm);
   }
 }
 
@@ -157,11 +157,12 @@
     align-items: start;
     max-width: 1200px;
     margin: 0 auto;
+    padding-top: var(--space-2xl);
   }
 
-  .portfolio-flex > .portfolio-card:nth-last-child(2) {
+  .portfolio-flex > .portfolio-card:last-child {
     grid-column: span 4;
-    margin-top: var(--space-md);
+    margin-top: var(--space-lg);
   }
 
   .portfolio-card {
