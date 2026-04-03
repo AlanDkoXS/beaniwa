@@ -7,14 +7,14 @@
 }
 
 .contact h1 {
-  text-align: center;
-  margin-inline: auto;
+  text-align: left;
+  margin-inline: 0;
   margin-bottom: var(--space-sm);
 }
 
 .contact > p {
-  text-align: center;
-  margin-inline: auto;
+  text-align: left;
+  margin-inline: 0;
   margin-bottom: var(--space-xl);
   color: var(--color-neutral);
 }
