@@ -586,9 +586,14 @@ class ServiceCarousel {
    *   --clip-normal-right  inset from right (clips normal card from right)
    *   --clip-ascii-left    inset from left  (clips ascii card from left)
    *   --clip-ascii-right   inset from right (clips ascii card from right)
+   *
+   * Uses a read-then-write pattern to avoid layout thrashing:
+   *   1. Batch all getBoundingClientRect() reads first.
+   *   2. Then apply all CSS custom property writes.
+   *
+   * @param {DOMRect} sectionRect - pre-read section bounding rect (passed from render())
    */
-  updateCardClipping() {
-    const sectionRect = this.section.getBoundingClientRect();
+  updateCardClipping(sectionRect) {
     const lx = sectionRect.left + this.beamLeftX;   // left beam screen X
     const rx = sectionRect.left + this.beamRightX;  // right beam screen X
     const lLeft = lx - this.lightBarWidth / 2;
@@ -596,72 +601,58 @@ class ServiceCarousel {
     const rLeft = rx - this.lightBarWidth / 2;
     const rRight = rx + this.lightBarWidth / 2;
 
-    this.strip.querySelectorAll('.scanner-card-wrapper').forEach(wrapper => {
+    const wrappers = this.strip.querySelectorAll('.scanner-card-wrapper');
+
+    // ── Phase 1: batch-read all rects (no writes yet) ─────────────────────
+    const items = [];
+    wrappers.forEach(wrapper => {
       const rect = wrapper.getBoundingClientRect();
+      if (rect.width <= 0) return;
+      items.push({
+        wrapper,
+        rect,
+        normal: wrapper.querySelector('.scanner-card-normal'),
+        asciiLeft: wrapper.querySelector('.scanner-card-ascii-left'),
+        asciiRight: wrapper.querySelector('.scanner-card-ascii-right'),
+      });
+    });
+
+    // ── Phase 2: compute values and write CSS properties (no reads) ────────
+    items.forEach(({ wrapper, rect, normal, asciiLeft, asciiRight }) => {
       const cw = rect.width;
-      if (cw <= 0) return;
-
-      const normal = wrapper.querySelector('.scanner-card-normal');
-      const ascii = wrapper.querySelector('.scanner-card-ascii');
-      if (!normal || !ascii) return;
-
       const cardLeft = rect.left;
       const cardRight = rect.right;
 
-      // ── Normal card: visible only between the two beams ────────────────
-      // clip-path: inset(top right bottom left)
-      // We clip from left up to where beamLeft crosses, and from right back to where beamRight crosses.
-
-      // Distance from card left to left beam right edge (how much to clip on the left of normal)
-      let normalClipL = 0;
-      if (lRight > cardLeft) {
-        normalClipL = ((lRight - cardLeft) / cw) * 100;
-      }
-
-      // Distance from right beam left edge to card right (how much to clip on the right of normal)
-      let normalClipR = 0;
-      if (rLeft < cardRight) {
-        normalClipR = ((cardRight - rLeft) / cw) * 100;
-      }
-
-      // Clamp to [0, 100]
+      // Normal card: visible only between the two beams
+      let normalClipL = lRight > cardLeft ? ((lRight - cardLeft) / cw) * 100 : 0;
+      let normalClipR = rLeft < cardRight ? ((cardRight - rLeft) / cw) * 100 : 0;
       normalClipL = Math.max(0, Math.min(100, normalClipL));
       normalClipR = Math.max(0, Math.min(100, normalClipR));
 
-      // ── ASCII card: visible outside the two beams ──────────────────────
-      // This is the complement: show everything EXCEPT the center band
-      // We achieve this by rendering two overlapping ascii divs OR by using
-      // two separate clip-path vars — here we pick the dominant side.
-
-      // The ASCII card actually needs to show in TWO regions (left + right of beams).
-      // We handle this with two separate absolutely-positioned divs: .scanner-card-ascii-left and .scanner-card-ascii-right
-      const asciiLeft = wrapper.querySelector('.scanner-card-ascii-left');
-      const asciiRight = wrapper.querySelector('.scanner-card-ascii-right');
+      if (normal) {
+        normal.style.setProperty('--clip-normal-left', `${normalClipL}%`);
+        normal.style.setProperty('--clip-normal-right', `${normalClipR}%`);
+      }
 
       if (asciiLeft && asciiRight) {
-        // asciiLeft: show from card left to beamLeft (clip right = everything after beamLeft)
-        let asciiLClipR = 100;
+        // asciiLeft: clip from the right, showing only the area left of the left beam
+        let asciiLClipR;
         if (lLeft > cardLeft && lLeft < cardRight) {
           asciiLClipR = ((cardRight - lLeft) / cw) * 100;
         } else if (lLeft <= cardLeft) {
-          asciiLClipR = 100; // beam is to the left of card → show full left ascii? No → hide it all
-          // actually means the beam has passed the whole card, so left-side ascii fills everything
-          asciiLClipR = 0;
+          asciiLClipR = 0; // beam has passed whole card → fill entirely
         } else {
-          // lLeft >= cardRight → beam hasn't reached yet → no left ascii shown
-          asciiLClipR = 100;
+          asciiLClipR = 100; // beam hasn't reached yet → hidden
         }
 
-        // asciiRight: show from beamRight to card right (clip left = everything before beamRight)
-        let asciiRClipL = 0;
+        // asciiRight: clip from the left, showing only the area right of the right beam
+        let asciiRClipL;
         if (rRight > cardLeft && rRight < cardRight) {
           asciiRClipL = ((rRight - cardLeft) / cw) * 100;
         } else if (rRight <= cardLeft) {
-          // beam is to the left of card → right-side ascii fills everything
-          asciiRClipL = 0;
+          asciiRClipL = 0; // beam is left of card → fill entirely
         } else {
-          // rRight >= cardRight → beam hasn't reached yet → no right ascii shown
-          asciiRClipL = 100;
+          asciiRClipL = 100; // beam hasn't reached yet → hidden
         }
 
         asciiLClipR = Math.max(0, Math.min(100, asciiLClipR));
@@ -670,9 +661,6 @@ class ServiceCarousel {
         asciiLeft.style.setProperty('--ascii-clip-right', `${asciiLClipR}%`);
         asciiRight.style.setProperty('--ascii-clip-left', `${asciiRClipL}%`);
       }
-
-      normal.style.setProperty('--clip-normal-left', `${normalClipL}%`);
-      normal.style.setProperty('--clip-normal-right', `${normalClipR}%`);
     });
   }
 
@@ -720,7 +708,7 @@ class ServiceCarousel {
     this.lastMouseX = e.clientX;
 
     this.strip.style.transform = `translateX(${this.position}px)`;
-    this.updateCardClipping();
+    this.updateCardClipping(this.section.getBoundingClientRect());
   }
 
   endDrag() {
@@ -745,7 +733,7 @@ class ServiceCarousel {
     const delta = e.deltaY > 0 ? 20 : -20;
     this.position += delta;
     this.updatePosition();
-    this.updateCardClipping();
+    this.updateCardClipping(this.section.getBoundingClientRect());
   }
 
   updatePosition() {
@@ -763,6 +751,11 @@ class ServiceCarousel {
   render(timestamp) {
     const deltaTime = this.lastTime ? (timestamp - this.lastTime) / 1000 : 0.016;
     this.lastTime = timestamp;
+
+    // ── Read phase: snapshot geometry before any writes ───────────────────
+    // Reading getBoundingClientRect here (before canvas writes) avoids
+    // forced synchronous layout / reflow warnings.
+    const sectionRect = this.section.getBoundingClientRect();
 
     // Advance carousel
     if (this.isAnimating && !this.isDragging) {
@@ -818,7 +811,7 @@ class ServiceCarousel {
       this.particleCount -= excess;
     }
 
-    this.updateCardClipping();
+    this.updateCardClipping(sectionRect);
   }
 
   animate(timestamp = 0) {
