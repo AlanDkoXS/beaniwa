@@ -6,9 +6,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 220px;
+  min-width: 220px;
   height: 50px;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   background-color: var(--color-primary);
   color: var(--color-light);
   border-radius: var(--radius-md);
@@ -19,6 +19,7 @@
   text-decoration: none;
   font-family: inherit;
   font-size: 1rem;
+  white-space: nowrap;
 }
 
 .btn:hover {
@@ -30,16 +31,18 @@
 /* Modifier for section CTA buttons (centered block) */
 .btn--block {
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 280px;
   position: relative;
   z-index: 1;
 }
 
 @media (max-width: 480px) {
   .btn {
+    min-width: unset;
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
   }
 }
