@@ -22,7 +22,6 @@ const labelsSecondary = {
 // Single item for non-index pages
 const regresarItem = {
   id: "regresar",
-  href: "back",
   icon: `<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"/>`,
 };
 
@@ -86,6 +85,15 @@ function createMenuItemSecondary(item, index, isActive) {
       triggerWaveEffectSecondary(button);
       toggleHamburgerMenuSecondary(button);
     });
+  } else if (item.id === "regresar") {
+    button.addEventListener("click", e => {
+      e.preventDefault();
+      triggerWaveEffectSecondary(button);
+      setTimeout(() => {
+        const lang = getCurrentLanguage();
+        window.location.href = lang === "en" ? "/en/" : "/es/";
+      }, 300);
+    });
   } else {
     button.addEventListener("click", e =>
       handleItemClickSecondary(item.href, button),
@@ -106,14 +114,6 @@ function handleItemClickSecondary(href, clickedItem) {
 
   // Delay navigation to allow wave effect to be visible
   setTimeout(() => {
-    // Back navigation: navigate directly to the index page (hard navigation)
-    // to avoid CSS cascade issues with the SPA view transition engine.
-    if (href === "back") {
-      const lang = getCurrentLanguage();
-      window.location.href = lang === "en" ? "/en/" : "/es/";
-      return;
-    }
-
     if (href.includes("#")) {
       const [path, hash] = href.split("#");
       const targetId = hash || path;
@@ -432,9 +432,8 @@ function offsetMenuBorderSecondary(element, menuBorder) {
 /**
  * Initialize the secondary mobile menu (for non-index pages)
  * @param {boolean} isReinitialization - If true, skip check for existing menu
- * @param {string} destinationHref - The destination URL for View Transitions (not used but kept for consistency)
  */
-function initSecondaryMobileMenu(isReinitialization = false, destinationHref = null) {
+function initSecondaryMobileMenu(isReinitialization = false) {
   // Check if mobile menu already exists (skip if reinitialization)
   if (!isReinitialization && document.querySelector(".mobile-menu")) {
     return;
@@ -629,19 +628,22 @@ function updateSecondaryMenuLinks() {
   const mobileMenu = document.querySelector(".mobile-menu");
   if (!mobileMenu) return;
 
-  // Update Regresar button - always uses back navigation
+  // Re-bind Regresar button click handler
   const regresarBtn = mobileMenu.querySelector('[data-id="regresar"]');
   if (regresarBtn) {
     regresarBtn.onclick = e => {
       e.preventDefault();
-      handleItemClickSecondary("back", regresarBtn);
+      triggerWaveEffectSecondary(regresarBtn);
+      setTimeout(() => {
+        const lang = getCurrentLanguage();
+        window.location.href = lang === "en" ? "/en/" : "/es/";
+      }, 300);
     };
   }
 
-  // Update hamburger - doesn't need href update but ensure click handler is correct
+  // Re-attach hamburger click handler to ensure it works after navigation
   const hamburgerButton = mobileMenu.querySelector('[data-hamburger="true"]');
   if (hamburgerButton) {
-    // Re-attach click handler to ensure it works after navigation
     hamburgerButton.onclick = e => {
       e.preventDefault();
       triggerWaveEffectSecondary(hamburgerButton);

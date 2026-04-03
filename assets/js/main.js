@@ -198,7 +198,7 @@ document.addEventListener("viewTransitionComplete", (event) => {
     if (newMenuType === 'main') {
       initMobileMenu(true, destinationHref);
     } else {
-      initSecondaryMobileMenu(true, destinationHref);
+      initSecondaryMobileMenu(true);
     }
     currentMenuType = newMenuType;
   }
