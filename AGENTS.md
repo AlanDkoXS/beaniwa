@@ -30,6 +30,7 @@ This project is a static site with **no build system**, **no tests**, and **no l
 
 ### Deployment
 - Ask to deploy always
+- **Always ask before pushing** to remote.
 - No manual build commands needed
 
 ### Testing
