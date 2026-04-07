@@ -25,6 +25,7 @@
   display: inline-block;
   flex: 0 0 auto;
   vertical-align: middle;
+  color: var(--color-light);
   background-color: currentColor;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
