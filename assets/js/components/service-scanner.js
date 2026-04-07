@@ -260,7 +260,18 @@ class ServiceCarousel {
     normal.className = 'scanner-card-normal';
 
     const h2 = document.createElement('h2');
-    h2.textContent = data.title;
+    
+    // Add icon inside h2 if iconClass is provided
+    if (data.iconClass) {
+      const icon = document.createElement('span');
+      icon.className = 'service-card-icon ' + data.iconClass;
+      icon.setAttribute('aria-hidden', 'true');
+      h2.appendChild(icon);
+    }
+    
+    // Add title text as text node
+    h2.appendChild(document.createTextNode(data.title));
+    
     const p = document.createElement('p');
     p.textContent = data.body;
     normal.appendChild(h2);
@@ -851,22 +862,43 @@ class ServiceCarousel {
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-/**
- * Extract card data from the existing .services-grid articles.
- * @param {HTMLElement} section
- * @returns {{ title: string, body: string }[]}
- */
-function extractCardData(section) {
-  const cards = section.querySelectorAll('.services-grid article.service-card');
-  const data = [];
-  cards.forEach(card => {
-    data.push({
-      title: card.querySelector('h2')?.textContent.trim() || '',
-      body: card.querySelector('p')?.textContent.trim() || '',
-    });
-  });
-  return data.length ? data : [{ title: 'Service', body: '' }];
-}
+ /**
+  * Extract card data from the existing .services-grid articles.
+  * @param {HTMLElement} section
+  * @returns {{ title: string, body: string, iconClass: string }[]}
+  */
+ function extractCardData(section) {
+   const cards = section.querySelectorAll('.services-grid article.service-card');
+   const data = [];
+   cards.forEach(card => {
+     const h2 = card.querySelector('h2');
+     const iconSpan = h2?.querySelector('.service-card-icon');
+     let iconClass = '';
+     let title = '';
+     
+     if (iconSpan) {
+       const classes = Array.from(iconSpan.classList);
+       const modifierClass = classes.find(cls => cls.startsWith('service-card-icon--'));
+       iconClass = modifierClass || '';
+     }
+     
+     // Extract title text excluding the icon span
+     if (h2) {
+       title = Array.from(h2.childNodes)
+         .filter(node => node.nodeType === Node.TEXT_NODE)
+         .map(node => node.textContent)
+         .join('')
+         .trim();
+     }
+     
+     data.push({
+       title: title || '',
+       body: card.querySelector('p')?.textContent.trim() || '',
+       iconClass: iconClass,
+     });
+   });
+   return data.length ? data : [{ title: 'Service', body: '' }];
+ }
 
 /**
  * Build the scanner-card-ascii-left / scanner-card-ascii-right sub-elements
