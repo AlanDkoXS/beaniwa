@@ -9,9 +9,54 @@
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--color-light);
   transition:
     transform 0.3s ease,
     background 0.3s ease;
+}
+
+.service-card-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: var(--space-sm);
+  display: inline-block;
+  flex: 0 0 auto;
+  vertical-align: middle;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.service-card-icon--web {
+  -webkit-mask-image: url('../../icons/about-cards/web.svg');
+  mask-image: url('../../icons/about-cards/web.svg');
+}
+
+.service-card-icon--social {
+  -webkit-mask-image: url('../../icons/about-cards/social.svg');
+  mask-image: url('../../icons/about-cards/social.svg');
+}
+
+.service-card-icon--seo {
+  -webkit-mask-image: url('../../icons/about-cards/seo.svg');
+  mask-image: url('../../icons/about-cards/seo.svg');
+}
+
+.service-card-icon--app {
+  -webkit-mask-image: url('../../icons/about-cards/app.svg');
+  mask-image: url('../../icons/about-cards/app.svg');
+}
+
+.service-card-icon--brand {
+  -webkit-mask-image: url('../../icons/about-cards/brand.svg');
+  mask-image: url('../../icons/about-cards/brand.svg');
 }
 
 .service-card:hover {
@@ -22,13 +67,16 @@
 .service-card h2 {
   margin-bottom: var(--space-sm);
   color: var(--color-light);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .service-card p {
   margin-bottom: 0;
   color: var(--color-light);
   opacity: 0.85;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 /* Project Cards */
