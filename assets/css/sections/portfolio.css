@@ -256,44 +256,53 @@
 .brand-mercadoregional {
   --brand-a: #4a7a3a; /* olive green */
   --brand-b: #e2453c; /* apple red */
-  --brand-angle: 135deg;
+  --brand-corner-a: 0% 0%;
+  --brand-corner-b: 100% 100%;
 }
 
 .brand-forjanorte {
   --brand-a: #23406e; /* steel blue */
   --brand-b: #e89a2c; /* forged gold */
-  --brand-angle: 160deg;
+  --brand-corner-a: 0% 0%;
+  --brand-corner-b: 100% 100%;
 }
 
 .brand-alanquintana {
   --brand-a: #f5d547; /* signature yellow */
   --brand-b: #c9b98a; /* paper cream */
-  --brand-angle: 110deg;
+  --brand-corner-a: 0% 100%;
+  --brand-corner-b: 100% 0%;
 }
 
 .brand-calsautocredit {
   --brand-a: #9aa0a6; /* showroom silver */
   --brand-b: #fdd500; /* taxi yellow */
-  --brand-angle: 45deg;
+  --brand-corner-a: 0% 100%;
+  --brand-corner-b: 100% 0%;
 }
 
 .brand-automercado {
   --brand-a: #10b981; /* emerald accent */
   --brand-b: #f0b71d; /* amber */
-  --brand-angle: 200deg;
+  --brand-corner-a: 100% 0%;
+  --brand-corner-b: 0% 100%;
 }
 
 .portfolio-card[class*='brand-'],
 .portfolio-page-card[class*='brand-'] {
-  /* Mostly black, with a subtle touch of the client colors in the corners */
+  /* Mostly black, with a subtle glow of the client colors in two opposite corners */
   background-color: var(--color-dark);
-  background-image: linear-gradient(
-    var(--brand-angle),
-    color-mix(in srgb, var(--brand-a) 22%, var(--color-dark)) 0%,
-    var(--color-dark) 40%,
-    var(--color-dark) 65%,
-    color-mix(in srgb, var(--brand-b) 18%, var(--color-dark)) 100%
-  );
+  background-image:
+    radial-gradient(
+      ellipse 45% 90% at var(--brand-corner-a),
+      color-mix(in srgb, var(--brand-a) 30%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 90% at var(--brand-corner-b),
+      color-mix(in srgb, var(--brand-b) 26%, transparent),
+      transparent 70%
+    );
 }
 
 /* Home cards: white domain, orange accent line, stronger tint on hover.
@@ -319,13 +328,17 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-image: linear-gradient(
-    var(--brand-angle),
-    color-mix(in srgb, var(--brand-a) 40%, var(--color-dark)) 0%,
-    transparent 45%,
-    transparent 60%,
-    color-mix(in srgb, var(--brand-b) 35%, var(--color-dark)) 100%
-  );
+  background-image:
+    radial-gradient(
+      ellipse 55% 110% at var(--brand-corner-a),
+      color-mix(in srgb, var(--brand-a) 30%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 55% 110% at var(--brand-corner-b),
+      color-mix(in srgb, var(--brand-b) 26%, transparent),
+      transparent 70%
+    );
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;

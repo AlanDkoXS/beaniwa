@@ -20,6 +20,8 @@
   max-width: 100vw;
   box-sizing: border-box;
   --bgColorItem: #fa6e02;
+  /* Near-opaque so the bar and the bump look the same over any background */
+  --mobile-menu-bg: rgba(36, 36, 36, 0.96);
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -32,7 +34,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: rgba(36, 36, 36, 0.85);
+  background-color: var(--mobile-menu-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   pointer-events: none;
@@ -115,14 +117,13 @@
 .mobile-menu__border {
   position: absolute;
   left: 0;
-  /* Overlap the bar by 3px so no seam shows; the overlap fades out so the two
-     translucent layers don't stack into a darker line */
-  bottom: calc(100% - 3px);
+  /* Overlap the bar by 2px so no seam shows */
+  bottom: calc(100% - 2px);
   width: 10.9em;
   height: 1.8em;
   clip-path: url(#mobile-menu-clip);
   will-change: transform, opacity;
-  background: linear-gradient(to top, rgba(36, 36, 36, 0.35), rgba(36, 36, 36, 0.85) 3px);
+  background-color: var(--mobile-menu-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition:
