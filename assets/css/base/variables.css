@@ -3,6 +3,9 @@
    =================================== */
 
 :root {
+  /* Opt out of browser auto-dark modes: the site manages its own dark palette */
+  color-scheme: only light;
+
   /* Electric Border Colors */
   --electric-border-color: #dd8448;
   --electric-light-color: var(
