@@ -246,3 +246,115 @@
     z-index: 10;
   }
 }
+
+/* ===================================
+   Project brand gradients
+   Each card tints its background with the client's own palette,
+   blended into the brand black so the text stays readable.
+   =================================== */
+
+.brand-mercadoregional {
+  --brand-a: #4a7a3a; /* olive green */
+  --brand-b: #e2453c; /* apple red */
+  --brand-angle: 135deg;
+}
+
+.brand-forjanorte {
+  --brand-a: #23406e; /* steel blue */
+  --brand-b: #e89a2c; /* forged gold */
+  --brand-angle: 160deg;
+}
+
+.brand-alanquintana {
+  --brand-a: #f5d547; /* signature yellow */
+  --brand-b: #c9b98a; /* paper cream */
+  --brand-angle: 110deg;
+}
+
+.brand-calsautocredit {
+  --brand-a: #9aa0a6; /* showroom silver */
+  --brand-b: #fdd500; /* taxi yellow */
+  --brand-angle: 45deg;
+}
+
+.brand-automercado {
+  --brand-a: #10b981; /* emerald accent */
+  --brand-b: #f0b71d; /* amber */
+  --brand-angle: 200deg;
+}
+
+.portfolio-card[class*='brand-'],
+.portfolio-page-card[class*='brand-'] {
+  background-color: var(--color-dark);
+  background-image: linear-gradient(
+    var(--brand-angle),
+    color-mix(in srgb, var(--brand-a) 45%, var(--color-dark)) 0%,
+    var(--color-dark) 55%,
+    color-mix(in srgb, var(--brand-b) 40%, var(--color-dark)) 100%
+  );
+  border-color: color-mix(in srgb, var(--brand-b) 45%, transparent);
+}
+
+/* Home cards: white domain, brighter tint on hover, brand accent bar */
+.portfolio-card[class*='brand-'] {
+  overflow: hidden;
+}
+
+.portfolio-card[class*='brand-'] h2 {
+  color: var(--color-light);
+}
+
+.portfolio-card[class*='brand-'] h2,
+.portfolio-card[class*='brand-'] p {
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-card[class*='brand-']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    var(--brand-angle),
+    color-mix(in srgb, var(--brand-a) 70%, var(--color-dark)) 0%,
+    color-mix(in srgb, var(--color-dark) 85%, transparent) 55%,
+    color-mix(in srgb, var(--brand-b) 65%, var(--color-dark)) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card[class*='brand-']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-a), var(--brand-b));
+}
+
+.portfolio-card[class*='brand-']:hover,
+.portfolio-card[class*='brand-']:focus-visible {
+  border-color: var(--brand-b);
+}
+
+.portfolio-card[class*='brand-']:hover::before,
+.portfolio-card[class*='brand-']:focus-visible::before {
+  opacity: 1;
+}
+
+/* Portfolio page cards: brand-colored top bar and hover border */
+.portfolio-page-card[class*='brand-']::before {
+  background: linear-gradient(90deg, var(--brand-a), var(--brand-b));
+}
+
+.portfolio-page-card[class*='brand-']:hover {
+  border-color: var(--brand-b);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card[class*='brand-']::before {
+    transition: none;
+  }
+}
