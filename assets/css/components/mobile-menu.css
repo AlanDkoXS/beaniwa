@@ -13,9 +13,6 @@
   align-items: center;
   padding: 0 1em;
   height: 3.5em;
-  background-color: rgba(36, 36, 36, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   font-size: 1em;
   margin: 0;
@@ -25,6 +22,20 @@
   --bgColorItem: #fa6e02;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Bar background lives on a pseudo-element: a backdrop-filter on .mobile-menu itself
+   would become the backdrop root of .mobile-menu__border, so the bump above the bar
+   could not blur the page and would look lighter than the bar. */
+.mobile-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgba(36, 36, 36, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
 }
 
 .mobile-menu__item {
@@ -104,12 +115,14 @@
 .mobile-menu__border {
   position: absolute;
   left: 0;
-  bottom: 99%;
+  /* Overlap the bar by 3px so no seam shows; the overlap fades out so the two
+     translucent layers don't stack into a darker line */
+  bottom: calc(100% - 3px);
   width: 10.9em;
   height: 1.8em;
   clip-path: url(#mobile-menu-clip);
   will-change: transform, opacity;
-  background-color: rgba(36, 36, 36, 0.85);
+  background: linear-gradient(to top, rgba(36, 36, 36, 0.35), rgba(36, 36, 36, 0.85) 3px);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition:
