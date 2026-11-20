@@ -21,9 +21,6 @@
 # Eslint Config
 eslint.config.mjs
 
-# OpenCode
-opencode.json
-
 # Public Key
 config.js
 

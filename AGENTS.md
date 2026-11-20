@@ -1,6 +1,6 @@
-# AGENTS.md - OpenCode Guidelines for beaniwa.com
+# AGENTS.md - Agent Guidelines for beaniwa.com
 
-This document provides guidelines for OpenCode and other agentic tools operating in this repository.
+This document provides guidelines for AI coding agents (Claude Code and others) operating in this repository.
 
 ## Color Palette
 
