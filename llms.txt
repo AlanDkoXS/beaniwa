@@ -12,7 +12,7 @@
 ### English (Primary)
 - [Home](https://beaniwa.com/en/index.html) - Agency overview and value proposition.
 - [Services](https://beaniwa.com/en/services.html) - Full details on development, SEO, and marketing solutions.
-- [Portfolio](https://beaniwa.com/en/portfolio.html) - Case studies including `mercadoregional.com.mx`, `forjanorte.com.mx`, and `alanquintana.pro`.
+- [Portfolio](https://beaniwa.com/en/portfolio.html) - Case studies including `mercadoregional.com.mx`, `forjanorte.com.mx`, `alanquintana.pro`, `calsautocreditinc.com`, and `automercado.com.mx`.
 - [About](https://beaniwa.com/en/about.html) - History, mission, and team values.
 - [Contact](https://beaniwa.com/en/contact.html) - Lead generation and inquiry form.
 
