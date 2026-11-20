@@ -23,6 +23,14 @@
   pointer-events: none;
 }
 
+/* Ambient drifting particles: behind the card strip (z-index 4) */
+.service-ambient-canvas {
+  position: absolute;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
 /* ── Lift heading / subtitle / CTA above the canvas ─────────────────── */
 
 .services > h1,
@@ -81,6 +89,8 @@
   white-space: nowrap;
   cursor: grab;
   user-select: none;
+  /* Horizontal drags move the strip; vertical swipes still scroll the page */
+  touch-action: pan-y;
   will-change: transform;
 }
 
